@@ -1,0 +1,41 @@
+D:\StoreMaintenance\UtilityPotTest\bin\Debug\UtilityPotTest.dll
+D:\StoreMaintenance\UtilityPotTest\bin\Debug\UtilityPotTest.pdb
+D:\StoreMaintenance\UtilityPotTest\bin\Debug\UtilityPot.dll
+D:\StoreMaintenance\UtilityPotTest\bin\Debug\log4net.dll
+D:\StoreMaintenance\UtilityPotTest\bin\Debug\MaintContracts.dll
+D:\StoreMaintenance\UtilityPotTest\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenance\UtilityPotTest\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenance\UtilityPotTest\obj\Debug\UtilityPotTest.csprojResolveAssemblyReference.cache
+D:\StoreMaintenance\UtilityPotTest\obj\Debug\UtilityPotTest.dll
+D:\StoreMaintenance\UtilityPotTest\obj\Debug\UtilityPotTest.pdb
+D:\StoreMaintenanceRepository\UtilityPotTest\bin\Debug\UtilityPotTest.dll
+D:\StoreMaintenanceRepository\UtilityPotTest\bin\Debug\UtilityPotTest.pdb
+D:\StoreMaintenanceRepository\UtilityPotTest\bin\Debug\UtilityPot.dll
+D:\StoreMaintenanceRepository\UtilityPotTest\bin\Debug\log4net.dll
+D:\StoreMaintenanceRepository\UtilityPotTest\bin\Debug\MaintContracts.dll
+D:\StoreMaintenanceRepository\UtilityPotTest\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenanceRepository\UtilityPotTest\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenanceRepository\UtilityPotTest\obj\Debug\UtilityPotTest.csprojResolveAssemblyReference.cache
+D:\StoreMaintenanceRepository\UtilityPotTest\obj\Debug\UtilityPotTest.dll
+D:\StoreMaintenanceRepository\UtilityPotTest\obj\Debug\UtilityPotTest.pdb
+D:\Other Development\OttJohn\UtilityPotTest\bin\Debug\UtilityPotTest.dll
+D:\Other Development\OttJohn\UtilityPotTest\bin\Debug\UtilityPotTest.pdb
+D:\Other Development\OttJohn\UtilityPotTest\bin\Debug\UtilityPot.dll
+D:\Other Development\OttJohn\UtilityPotTest\bin\Debug\log4net.dll
+D:\Other Development\OttJohn\UtilityPotTest\bin\Debug\MaintContracts.dll
+D:\Other Development\OttJohn\UtilityPotTest\bin\Debug\UtilityPot.pdb
+D:\Other Development\OttJohn\UtilityPotTest\bin\Debug\MaintContracts.pdb
+D:\Other Development\OttJohn\UtilityPotTest\obj\Debug\UtilityPotTest.csprojResolveAssemblyReference.cache
+D:\Other Development\OttJohn\UtilityPotTest\obj\Debug\UtilityPotTest.dll
+D:\Other Development\OttJohn\UtilityPotTest\obj\Debug\UtilityPotTest.pdb
+G:\Other Development\OttJohn\UtilityPotTest\bin\Debug\UtilityPotTest.dll
+G:\Other Development\OttJohn\UtilityPotTest\bin\Debug\UtilityPotTest.pdb
+G:\Other Development\OttJohn\UtilityPotTest\bin\Debug\UtilityPot.dll
+G:\Other Development\OttJohn\UtilityPotTest\bin\Debug\log4net.dll
+G:\Other Development\OttJohn\UtilityPotTest\bin\Debug\MaintContracts.dll
+G:\Other Development\OttJohn\UtilityPotTest\bin\Debug\OpenPop.dll
+G:\Other Development\OttJohn\UtilityPotTest\bin\Debug\UtilityPot.pdb
+G:\Other Development\OttJohn\UtilityPotTest\bin\Debug\MaintContracts.pdb
+G:\Other Development\OttJohn\UtilityPotTest\obj\Debug\UtilityPotTest.csprojResolveAssemblyReference.cache
+G:\Other Development\OttJohn\UtilityPotTest\obj\Debug\UtilityPotTest.dll
+G:\Other Development\OttJohn\UtilityPotTest\obj\Debug\UtilityPotTest.pdb

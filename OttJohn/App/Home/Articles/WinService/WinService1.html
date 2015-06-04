@@ -1,0 +1,22 @@
+﻿Sometimes when working out problems, we might take some unexpected paths to arrive their solutions. For instance, as I am a web applications programmer, 
+I spend most of my time working with a suite of technologies that allow me to directly support my stack. This means that I very rarely build 
+Windows components. This does not mean, however, that I don't work with them at all. As a case in point, I recently had to build out a process that 
+went against all logic:
+<p />
+I am building my company a portal. The membership for the portal is driven by ASP.NET Membership provider and Forms Authentication. The Membership provider 
+is actually a decent solution because is comes with multi-tenency capabilities built-in, which is good because the company I work for owns a lot of 
+distinct businesses, and they want all their people managed by one app. So, of course, I built out clients for all of the major components for the provider: 
+registration, get password, change password, change email, member approval, role assignment, feature assignment, etc. 
+<p />
+Now, when it came time to manage the passwords, how do you think my boss wanted me to do it? Yep! He did not want to use all the logical stuff I built 
+into the portal. Managing users and passwords from a centralized application is just way too logical! Nope, he wanted to continue to manage all of that 
+stuff from the other applications, separately. Now, since I do get paid, I definitely toe the company line, so I told him no problem and then wondered 
+how I was going to solve this problem.
+<p />
+The first thing I thought about was a SQL Server Task of some kind that I could schedule to run every night at midnight. Then I decided not to because 
+a lot of the processing I needs had already been completed in code I generated to initially migrate the users into the new system. What I really needed 
+was a Windows Service with a timer that would execute my existing code, and I would be done! Backwards, yes. Ill-advised, hell yes. But I have to do what 
+the boss wants, so ... Let's go.
+<p />
+Note: creating a Window's service is really easy, so I am going to also add at least two other items in here: how to write to the event log, and 
+how to work with your local application configuration file.

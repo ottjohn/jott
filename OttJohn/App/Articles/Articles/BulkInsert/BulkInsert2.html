@@ -1,0 +1,33 @@
+﻿Basically, to use Bulk Insert you need a file. The problem is, the third-party that sends the file probably 
+does not have it formatted in a very useful way. What to do? Reformat it, of course! Below is the code I used 
+to reformat the document, including comments illustrating what's going on:
+<p />
+<pre>
+    string FilePathNew = "";
+    FileContents = FileContents.Replace("$", "");           //The dollar sign was given its own row. Right? Are you kidding me?
+    FileContents = FileContents.Replace("\r\n", "$");       //To preserve the whitespace that is \r\n, I replaced it wtih $
+    Regex Reg = new Regex("\\s{2,}");                       //
+    FileContents = Reg.Replace(FileContents, ",");          //I replaced all fo the whitespace with width with a comma
+    Reg = new Regex("\\${1,}");                             //
+    FileContents = Reg.Replace(FileContents, "\r\n");       //I re-inserted the \r\n by replacing the dollar sign with it
+    try
+    {
+        FilePathNew = FilePath.Replace(".txt", "Conv.txt"); 
+        File.WriteAllText(FilePathNew, FileContents);       //Saved the file to disk
+    }
+    catch (Exception ex)
+    {
+    }
+    return FilePathNew;
+</pre>
+<p />
+The point of the massaging of the file is that you can use the code to make something that looks like this ...
+<p />
+    <img src="App/Articles/Articles/BulkINsert/MessyFile.png" style="display: block;" />
+<p />
+Look like this ...
+<p />
+    <img src="App/Articles/Articles/BulkINsert/CSV.png" style="display: block;" />
+<p />
+Okay, so we've taken an almost useless file and massaged it so that it is standard CSV, which we can now use with SQL Server. 
+Now we need to hop over to the SQL Server side and see what kind of constraints we have waiting for us there.

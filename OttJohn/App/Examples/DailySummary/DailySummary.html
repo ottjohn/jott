@@ -1,0 +1,41 @@
+﻿Disconntected entities (and here I mean those that have no service layer to access third-party data) must be really 
+frustrating for some people. Being a programmer, I just do what I'm told and offer advice where I can (especially when 
+it comes into trying to talk to third-party providers about exposing a public endpoint for use by customers). The poor 
+guys at work have to deal with this every single day. Part of my job is to make their lives easier. Sometimes, however, 
+it's hard to work on something like this when you do there's a much better solution.
+<p />
+Anyway, the company I work for owns four businesses, and the CFO needs end-of-day financials from his managers. I'm not 
+even going to try to pretend where these guys get this information from, but when one of the businesses owns almost 70 
+Cricket stores, the process has to be somewhat painful. It actualy makes me cringe to even think about it. Okay, so there 
+are two parts to this piece: data collection and an ad hoc report. The data collection was simple to build and allows either 
+one or multiple managers to fill in some or all of the fields:
+<p />
+<img src="App/Examples/DailySummary/SummaryDataEntry1.png" style="display: block;" />
+<p />
+There are four companies, so there are four collapsable sections of the data entry component. Therefore, if a manager wants 
+to enter the end-of-day numbers for Cricket, he just clicks on the first section:
+<p />
+<img src="App/Examples/DailySummary/SummaryDataEntry2.png" style="display: block;" />
+<p />
+And if he wants to enter the end-of-day numbers for the next company, he simply clicks the next section:
+<p />
+<img src="App/Examples/DailySummary/SummaryDataEntry3.png" style="display: block;" />
+<p />
+The end-of-day numbers can be entered all at once or individually, it does not matter. Each day's summary has a parent table 
+in the database that simply has a ParentId and a date. All of the other data is granularized into seven sub-tables that make 
+the data easier to use when it comes time to create reports focused on just month-over-month profits or cost of doing 
+business. The CFO wanted a report embedded with the app that combined all of the data from all of the businesses so he could 
+have a snapshot of how things were going financially at the end of each day. This report, at first site, looks like this:
+<p />
+<img src="App/Examples/DailySummary/Report1.png" style="display: block;" />
+<p />
+In each of these sections, however, there are drill-downs to support a more granular overview. So with the first-listed 
+company, for instance, we have
+<p />
+<img src="App/Examples/DailySummary/Report2.png" style="display: block;" />
+<p />
+And ...
+<p />
+<img src="App/Examples/DailySummary/Report3.png" style="display: block;" />
+<p />
+The ad hoc report was fun to make.

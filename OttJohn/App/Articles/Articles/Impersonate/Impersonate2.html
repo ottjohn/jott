@@ -1,0 +1,70 @@
+﻿This whole exercise is going to assume that you already have a web application running under IIS. If you do not, to follow along, 
+you really should make one that does something with a database; otherwise, you are going to be simply reading and not doing. With 
+that in mind, here is what you need to do to get this process going:
+<p />
+<ol>
+    <li>Open IIS (for the purpose of this exercise, know that I am using version 7.5.7)</li>
+    <li>Find and click on your application name</li>
+    <li>In the main pain at the very bottom, select the Features tab (you are probably aready on it)</li>
+    <li>Under the IIS group, double-click the Authentication icon</li>
+</ol>
+<p />
+    <img src="App/Articles/Articles/Impersonate/IISAuth.png" style="display: block;" />
+<p />
+Once you've done this, the main panel will change to illustrate how your current authentication scheme is working. It will probably say 
+that your authentication is anonymous. And this is perfectly okay if you want to continue to use the sa password in your connection 
+string ... or if you want to add the anonymous IIS account to SQL Server and give it permission to do what it needs to do in the 
+database. But we don't want to continue on this way. We're tired of it. We should be wearing a scarlet SA. Oh the shame. Here is am 
+image of my configuration for reference:
+<p />
+    <img src="App/Articles/Articles/Impersonate/IISAuthScheme.png" style="display: block;" />
+<p />
+So let's change everything now ...
+<p />
+<ol>
+    <li>
+        Right click on Anonymous Authentication and select Edit. This will bring up a dialog
+    </li>
+    <li>
+        Under Anonymous User Identity click the Specify User radio button; then Click the Set button
+    </li>
+    <li>
+        In the newly-presented dialog, enter the credentials of the account you want to impersonate. 
+        This does not have to be an account on the machine. The point here is that you can assign an 
+        account here that is on the domain.
+    </li>
+</ol>
+Last, once you close the dialogs, right click on ASP.NET Impersonation and select <i>enable</i>. This will add an item to your web config file under your application. We will take a look at that 
+modification later in this document. Why did we replace the built-in user? If we are working on a domain and the SQL Server is on a different machine than IIS, 
+then we need to leverage a user that exists on the domain and has the requisite privileges on both machines to run the IIS application and the SQL Server. 
+In this case, using the App Pool identity on one machine and then trying to access the SQL Server on another machine in the domain with those same creds just 
+won’t work. In this case, you must have a domain user account. You can call it whatever you want.
+<p />
+Next, we need to add the user to SQL Server. Open up SSMS, drill down to the Security/Logins tab. Right click on Logins and select New Login from the context menu.
+<p />
+    <img src="App/Articles/Articles/Impersonate/SQLServerSecurity.png" style="display: block;" />
+<p />
+This will bring up a dialog in which you can add and configure the user. 
+<p />
+    <img src="App/Articles/Articles/Impersonate/SQLNewUser.png" style="display: block;" />
+<p />
+Now do the following:
+<p />
+<ol>
+    <li>Under Login name, type in the user name you added to IIS. Enter it in the form domain\username</li>
+    <li>Ensure that Windows Authentication is selected</li>
+    <li>Click on Server Roles in the <i>Select a Page</i> feature on the left. Here, ensure that Public is selected</li>
+    <li>Now click on User Mapping in the menu on the left. This will bring up another dialog</li>
+</ol>
+<p />
+In the new dialog, select the databases you want the user to have access to. With respect to specific permissions, in addition to Public, select datareader and datawriter. 
+Now you can close out of the security feature. Note: selecting datareader and datawriter should give you sufficient privileges if your user is going to execute scripts 
+against the database. This does not cover execution of stored procedures. To do this, you need to do one more thing: Open up a query window in SQL Server. In the window, 
+type the following:
+<p />
+<pre>
+    use [Database Name]
+    go
+    grant execute to [UserName]
+</pre>
+<p />

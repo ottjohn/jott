@@ -1,0 +1,27 @@
+﻿The next dialog will ask you to build a connection string for the report server. The simplest way to do this is 
+to click the Edit button. You will now see the following:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/ConnectString.png" style="display: block;" />
+<p />
+In the Server Name dropdown, just type a period if you only have a single instance of SQL Server on your machine; 
+otherwise, selected a named instance from the list. Just use Windows Authentication, and select a handy database 
+name. In your case, make sure that you have access to a table that has a date field. I will not only include a date 
+variable here, but I will also include a variable that is represented by an external helper table as well as an 
+additional table that helps the helper table (this is called a cascading dependency. It might sound confusing right 
+now, but I promise it is not). once you have your database selected, you can test the connection and then click the
+OK button. When you get back to your main dialog, click the checkbox next to the label <i>Make this a shared 
+data source</i>. Now click the Next button. You will see the following:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/QueryBuilder.png" style="display: block;" />
+In this dialog, you can either place a query, parameterized or not, or the name of a stored procedure, followed by a 
+list of parameters. In my case, I am going to put the name of a stored procedure in here:
+<p />
+<pre>
+    exec POSRebateCreditReconcile_Report @beginDate, @endDate, @mainCategory, @subCategory
+</pre>
+<p />
+The rest is just a click-through for styles applied and where you want your fields to go. Having said that, click 
+through the Report Type screen, then on the next page, click the Details button until all of the listed columns 
+are gone. Here is what I mean:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/GroupData.png" style="display: block;" />

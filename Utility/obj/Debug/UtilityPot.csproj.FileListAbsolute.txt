@@ -1,0 +1,40 @@
+D:\MaintenanceMove\StoreMaintenance\Utility\bin\Debug\UtilityPot.dll.config
+D:\MaintenanceMove\StoreMaintenance\Utility\bin\Debug\UtilityPot.dll
+D:\MaintenanceMove\StoreMaintenance\Utility\bin\Debug\UtilityPot.pdb
+D:\MaintenanceMove\StoreMaintenance\Utility\bin\Debug\MaintContracts.dll
+D:\MaintenanceMove\StoreMaintenance\Utility\bin\Debug\MaintContracts.pdb
+D:\MaintenanceMove\StoreMaintenance\Utility\obj\Debug\UtilityPot.csprojResolveAssemblyReference.cache
+D:\MaintenanceMove\StoreMaintenance\Utility\obj\Debug\UtilityPot.dll
+D:\MaintenanceMove\StoreMaintenance\Utility\obj\Debug\UtilityPot.pdb
+D:\StoreMaintenance\Utility\bin\Debug\UtilityPot.dll.config
+D:\StoreMaintenance\Utility\bin\Debug\UtilityPot.dll
+D:\StoreMaintenance\Utility\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenance\Utility\bin\Debug\MaintContracts.dll
+D:\StoreMaintenance\Utility\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenance\Utility\obj\Debug\UtilityPot.csprojResolveAssemblyReference.cache
+D:\StoreMaintenance\Utility\obj\Debug\UtilityPot.dll
+D:\StoreMaintenance\Utility\obj\Debug\UtilityPot.pdb
+D:\StoreMaintenanceRepository\Utility\bin\Debug\UtilityPot.dll.config
+D:\StoreMaintenanceRepository\Utility\bin\Debug\UtilityPot.dll
+D:\StoreMaintenanceRepository\Utility\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenanceRepository\Utility\bin\Debug\MaintContracts.dll
+D:\StoreMaintenanceRepository\Utility\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenanceRepository\Utility\obj\Debug\UtilityPot.csprojResolveAssemblyReference.cache
+D:\StoreMaintenanceRepository\Utility\obj\Debug\UtilityPot.dll
+D:\StoreMaintenanceRepository\Utility\obj\Debug\UtilityPot.pdb
+D:\Other Development\OttJohn\Utility\bin\Debug\UtilityPot.dll.config
+D:\Other Development\OttJohn\Utility\bin\Debug\UtilityPot.dll
+D:\Other Development\OttJohn\Utility\bin\Debug\UtilityPot.pdb
+D:\Other Development\OttJohn\Utility\bin\Debug\MaintContracts.dll
+D:\Other Development\OttJohn\Utility\bin\Debug\MaintContracts.pdb
+D:\Other Development\OttJohn\Utility\obj\Debug\UtilityPot.dll
+D:\Other Development\OttJohn\Utility\obj\Debug\UtilityPot.pdb
+D:\Other Development\OttJohn\Utility\obj\Debug\UtilityPot.csprojResolveAssemblyReference.cache
+G:\Other Development\OttJohn\Utility\bin\Debug\UtilityPot.dll.config
+G:\Other Development\OttJohn\Utility\bin\Debug\UtilityPot.dll
+G:\Other Development\OttJohn\Utility\bin\Debug\UtilityPot.pdb
+G:\Other Development\OttJohn\Utility\bin\Debug\MaintContracts.dll
+G:\Other Development\OttJohn\Utility\bin\Debug\MaintContracts.pdb
+G:\Other Development\OttJohn\Utility\obj\Debug\UtilityPot.csprojResolveAssemblyReference.cache
+G:\Other Development\OttJohn\Utility\obj\Debug\UtilityPot.dll
+G:\Other Development\OttJohn\Utility\obj\Debug\UtilityPot.pdb

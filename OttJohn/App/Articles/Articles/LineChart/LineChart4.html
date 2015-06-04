@@ -1,0 +1,187 @@
+﻿On the previous page, I left out the definitions of five methods that were called as a part of building the line chart:
+<p />
+<pre>
+    Chart.DrawChartArea(ChartData, RectWidth, RectHeight);
+    Chart.DrawHorizontalLinesAndVerticalMarks(ChartData, VertGridSpacing, RectTickLineVert, RectWidth, VertTickMarkIncrement);
+    Chart.DrawBottomChartMarkers(ChartData, RectWidth, RectHeight);
+    Chart.DrawLine(ChartData, FullNumericHeight, RectWidth, RectHeight);
+    Chart.DrawTitle(ChartData, RectWidth, RectHeight);
+</pre>
+<p />
+Let's go over these one by one (note that once I define a particular method on the chart context, I will not re-define it if 
+it is used in subsequent methods that I've created):
+<p />
+<pre>
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //  Draw chart area helper
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    Chart.DrawChartArea = function (ChartData, RectWidth, RectHeight) {
+
+        ChartContext.beginPath();
+        ChartContext.rect(ChartData.DimsAndColor.GridTopLeftX, ChartData.DimsAndColor.GridTopLeftY, RectWidth, RectHeight);
+        ChartContext.fillStyle = ChartData.DimsAndColor.ChartBackColor;
+        ChartContext.fill();
+        ChartContext.stroke();
+
+    }
+</pre>
+<p />
+<ul>
+    <li>
+        ChartContext.beginPath(): use this method to start your drawing process. The engine expects to draw something.
+    </li>
+    <li>
+        ChartContext.rect(...): use this method to draw a rectangle. The parameters should be self-explanatory.
+    </li>
+    <li>
+        ChartContext.fillStyle: property to set the background color of an object.
+    </li>
+    <li>
+        ChartContext.fill(): use this method to actually fill the background color of an object.
+    </li>
+    <li>
+        ChartContext.stroke(): use this method when you want to draw the object.
+    </li>
+</ul>
+<p />
+<pre>
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //  Draw horizontal grid lines and vertical markings
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    Chart.DrawHorizontalLinesAndVerticalMarks = function (ChartData, VertGridSpacing, RectTickLineVert, RectWidth, VertTickMarkIncrement) {
+
+        var StartVertNumber = VertGridSpacing;
+        for (var i = 0; i < ChartData.DimsAndColor.VerticalTicCount; i++) {
+
+            ChartContext.beginPath();
+            ChartContext.moveTo(ChartData.DimsAndColor.GridTopLeftX, RectTickLineVert);
+            ChartContext.lineTo(ChartData.DimsAndColor.GridTopLeftX + RectWidth, RectTickLineVert);
+            ChartContext.strokeStyle = ChartData.FontsAndText.TicMarkColor;
+            ChartContext.stroke();
+            ChartContext.font = ChartData.FontsAndText.TicMarkFont;
+            ChartContext.strokeText(StartVertNumber, ChartData.DimsAndColor.GridTopLeftX - 10, RectTickLineVert + 5);
+            StartVertNumber += VertGridSpacing;                     
+            RectTickLineVert -= VertTickMarkIncrement;      //I will leave these final two as an excercise. They are already defined.
+
+        }
+    }
+</pre>
+<p />
+<ul>
+    <li>
+        StartVertNumber: this will be the first vertical label.
+    </li>
+    <li>
+        ChartContext.moveTo(...): once you tell the engine to get ready to draw, use this method to move the pen to a particular position. 
+        RectTickLineVert: vertical position of the above stated label.
+    </li>
+    <li>
+        ChartContext.lineTo(...): use this method to draw the line from where you presently are to the coordinates specified in the parameters.
+        ChartData.DimsAndColor.GridTopLeftX + RectWidth: tells me where horizontally to draw to.
+    </li>
+    <li>
+        ChartContext.strokeStyle: property to set the color of the line.
+    </li>
+    <li>
+        ChartContext.font: property to set the font.
+    </li>
+    <li>
+        ChartContext.strokeText(...): use this method to draw text given the verbiage and coordinates specified in the parameters. 
+        ChartData.DimsAndColor.GridTopLeftX - 10, RectTickLineVert + 5: -10 is an adjustment to make the placement of the text look nice. 
+        The number 5 represents the same for the vertical adjustment.
+    </li>
+</ul>
+<p />
+<pre>
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //  Build grid horizontal ticks and markers
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    Chart.DrawBottomChartMarkers = function (ChartData, RectWidth, RectHeight) {
+
+        var HorizValuesLen = ChartData.LineData.Labels.length;
+        var HorizTickIncrement = Math.floor(RectWidth / HorizValuesLen);
+        var HorizStart = HorizTickIncrement;
+
+        for (var i = 0; i < HorizValuesLen; i++) {
+
+            ChartContext.beginPath();
+            ChartContext.moveTo(ChartData.DimsAndColor.GridTopLeftX + HorizStart - 
+                HorizTickIncrement / 2, ChartData.DimsAndColor.GridTopLeftY + RectHeight);
+
+            ChartContext.lineTo(ChartData.DimsAndColor.GridTopLeftX + HorizStart - 
+                HorizTickIncrement / 2, ChartData.DimsAndColor.GridTopLeftY + RectHeight + 5);
+
+            ChartContext.strokeStyle = ChartData.FontsAndText.TicMarkColor;
+            ChartContext.stroke();
+            ChartContext.textAlign = "center";
+            ChartContext.strokeStyle = ChartData.FontsAndText.TicMarkColor;
+            ChartContext.strokeText(ChartData.LineData.Labels[i], ChartData.DimsAndColor.GridTopLeftX + HorizStart - 
+                HorizTickIncrement / 2, ChartData.DimsAndColor.GridTopLeftY + RectHeight + 20);
+            HorizStart += HorizTickIncrement;
+
+        }
+    }
+</pre>
+<p />
+<ul>
+    <li>
+        HorizTickIncrement: calculates the distance between the horizontal lables given the width of the rectagle and the label count.
+    </li>
+    <li>
+        ChartContext.textAlign: property to set the text alignment for the following text.
+    </li>
+    <li>
+        All of the remaining methods and properties have been defined above.
+    </li>
+</ul>
+<p />
+<pre>
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //  Build line
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    Chart.DrawLine = function (ChartData, FullNumericHeight, RectWidth, RectHeight) {
+
+        var HorizValuesLen = ChartData.LineData.Labels.length;
+        var HorizTickIncrement = Math.floor(RectWidth / HorizValuesLen);
+        var HorizStart = HorizTickIncrement;
+        var DataPointScale = RectHeight + ChartData.DimsAndColor.GridTopLeftY - 
+            Math.round((ChartData.LineData.Data[0] / FullNumericHeight) * RectHeight);
+
+        ChartContext.beginPath();
+        var FirstLeftPoint = ChartData.DimsAndColor.GridTopLeftX + HorizStart - HorizTickIncrement / 2;
+        ChartContext.moveTo(ChartData.DimsAndColor.GridTopLeftX + HorizStart - HorizTickIncrement / 2, DataPointScale);
+
+        for (var i = 1; i < HorizValuesLen; i++) {
+
+            DataPointScale = RectHeight + ChartData.DimsAndColor.GridTopLeftY - 
+                Math.round((ChartData.LineData.Data[i] / FullNumericHeight) * RectHeight);
+
+            HorizStart += HorizTickIncrement;
+            ChartContext.lineTo(ChartData.DimsAndColor.GridTopLeftX + HorizStart - 
+                HorizTickIncrement / 2, DataPointScale);
+
+            ChartContext.strokeStyle = ChartData.LineData.Color;
+            ChartContext.lineWidth = ChartData.LineData.LineWidth;
+            ChartContext.stroke();
+
+        }
+    }
+</pre>
+<ul>
+    <li>
+        DataPointScale: this will scale the placement, in pixels, of the given value, a number.
+    </li>
+    <li>
+        FirstLeftPoint: calculates the position in pixles of the first horizontal point. Need to do this outside of the loop 
+        to accomodate the beginPath method.
+    </li>
+    <li>
+        ChartContext.lineWidth: sets the width of the line before it is drawn.
+    </li>
+</ul>
+<p />
+Okay, for a simple little chart, there was a lot here, and I apologize for that. In addition, I made the explanations a little 
+dense so you would have to remember previous defined items to get through the exposition of the methods. Finally, I only gave a 
+cursory explanation of most of the mathematics in here. I'm going to just assume that if you can't understand what's going on in 
+here, then you need to brush up on your algebra and get back to me; otherwise, email me, and I will do my best to explain it. Now 
+that we have the hard stuff done, let's take a look at the chart.

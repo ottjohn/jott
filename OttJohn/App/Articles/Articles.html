@@ -1,0 +1,101 @@
+﻿<div data-ng-controller="ArticlesController as Articles" id="ArticlesContainer" class="ContentFull">
+    <div class="ContentBackground MessageArea ContentFont" style="font-weight: bold;" id="MessageArea">{{Articles.Message}}</div>
+    <div id="ArticleList" style="padding: 20px; display: ;">
+        <table cellpadding="5" cellspacing="5" style="width: 100%;">
+            <tr>
+                <td colspan="2" class="ButtonBarSubAppBack" style="padding-top: 5px; padding-bottom: 5px; width: 100%; color: white; border: solid; border-color: black; border-width: 1px 1px 1px 1px;">
+                    <table cellpadding="0" cellspacing="2" style="width: 100%;">
+                        <tr>
+                            <td>
+                                Filter by: <!--<input type="text" class="ContentFont" style="width: 200px;" />-->
+                            </td>
+                            <td>
+                                <div ng-repeat="Item in Articles.UsedCategories.Categories" style="margin: 2px; width: 90px; float: right; border: solid; border-color: white; border-width: 1px 1px 1px 1px;">
+                                    <input type="checkbox" ng-checked="Item.CategorySelected == 1"  ng-click="Articles.GetCategoryId(Item.CategoryId)" />&nbsp;{{Item.Category}}
+                                </div>
+                            </td>
+                            <td>
+                                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" style="font-weight: bold; float:right;" type="button" value="Go" id="btnSearch" ng-click="Articles.GoSearch()" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr ng-repeat="Item in Articles.Synopsis">
+                <td class="ContentFont" style="font-weight: bold; border: solid; border-width: 1px 1px 1px 1px; width: 10%; background: #eeeeee; text-align: center; vertical-align: middle;">{{Item.DateStamp | date:'yyyy-MM-dd'}}</td>
+                <td ng-click="Articles.GetArticle(Item.ArticleNumber)" class="ContentFont" style="cursor: pointer; border: solid; border-width: 1px 1px 1px 1px; width: 90%; background: white; height: 40px; vertical-align: top;">
+                    <b>{{Item.Title}}</b>: {{Item.Synopsis}}
+                    <br /><b>Category: </b>{{Item.Categories}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="ButtonBarSubAppBack" style="border: solid; border-width: 1px 1px 1px 1px;">
+                    <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value=">|" id="btnListLast" style="float:right;" ng-click="Articles.SynLast()" />
+                    <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value=">" id="btnListNext" style="float:right;" ng-click="Articles.SynNext()" />
+                    <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="<" id="btnListPrev" style="float:right;" ng-click="Articles.SynBack()" />
+                    <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="|<" id="btnListFirst" style="float:right;" ng-click="Articles.SynFirst()" />
+                    <div style="float: left; margin-top: 3px;" class="ContentFont TitleMenuFore">Page {{Articles.CurrentPage}} of {{Articles.TotalPages}}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="ArticleContent" style="padding: 20px; display: none;">
+        <table cellpadding="0" cellspacing="0" style="width: 100%;" border="0">
+            <tr>
+                <td style="width: 50px; background: gray;">
+                    &nbsp;
+                </td>
+                <td style="background: white; padding: 10px; height: 500px; vertical-align: top; opacity: initial;">
+                    <div class="ContentFont" style="font-weight: bold; font-size: 16pt;" id="ArticleTitle">{{Articles.ArticleTitle}}</div><p />
+                    <div class="ContentFont" style="font-size: 12pt;" ui-view>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="background: gray;" colspan="2">
+                    <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Next" id="btnHomeNext" style="float:right;" ng-click="Articles.Next()" />
+                    <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Back" id="btnHomeBack" style="float:right;" ng-click="Articles.Back()" />
+                    <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Exit" id="btnHomeExit" style="float:right;" ng-click="Articles.Exit()" />
+                </td>
+            </tr>
+            <tr><td colspan="2">&nbsp</td></tr>
+            <tr>
+                <td loggedin colspan="2" style="width: 100%;">
+                    <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                        <tr>
+                            <td>
+                                <comments comment="Articles.Comment" callback="Articles.AddComment()" />
+                            </td>
+                        </tr>
+                        <tr><td colspan="2">&nbsp</td></tr>
+                        <tr>
+                            <td style="width: 100%">
+                                <table cellpadding="0" cellspacing="0" style="width: 100%">
+                                    <tr>
+                                        <td colspan="2" style="font-weight: bold; height: 25px; background: gray; color: white; padding-left: 5px">
+                                            Comments
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="Item in Articles.ArticleContent.ArticleComments.CommentList">
+                                        <td>
+                                            <table cellpadding="0" cellspacing="0" style="width: 100%">
+                                                <tr>
+                                                    <td class="ContentFont" style="padding-left: 5px; height: 25px; font-weight: bold; border: solid; border-width: 1px 1px 1px 1px; background: #eeeeee; vertical-align: middle;">{{Item.UserName}} {{Item.DateStamp | date:'yyyy-MM-dd'}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="ContentFont" style="padding: 5px; cursor: pointer; border: solid; border-width: 1px 1px 1px 1px; background: white; height: 40px; vertical-align: top;">
+                                                        {{Item.UserComment}}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

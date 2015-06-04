@@ -1,0 +1,61 @@
+﻿We now have a service and we now have a stored procedure that looks as though it can make a call to the service. Let's see if it works. 
+Go ahead and run the following in a SQL Server Query window:
+<p />
+<pre>
+    declare @ReturnValue varChar(1000)
+    exec TestWebService 'YourFirstName', 'YourLastName', @ReturnValue output
+    print @ReturnValue
+</pre>
+<p />
+Once you've run this, you will find that you are going to get nothing meaningful in return. The reason is really simple: SQL Server cannot use 
+MSXML to talk to a WCF service. So all of our time up to this point is wasted. Just kidding. We need to basically turn our WCF service into a RESTful 
+service, one that we can communicate with over the URL in a browser. Right now, it is not set up to do that. You can test this by entering the following 
+into the location field of your broswer:
+<p />
+<pre>
+    http://localhost/SQLWCF/SQLWCF.svc/GetData?FirstName=YourFirstName&LastName=YourLastName
+</pre>
+<p />
+You will either get an error, a 404, or nothing at all. There are only a few things we need to do to make this work, and here they are: first, we 
+need to describe the action for the service by decorating the method with a UriTemplate. Do this in the following way:
+<p />
+<pre>
+    [WebGet(UriTemplate = "/GetData?FirstName={FirstName}&LastName={LastName}", ResponseFormat = WebMessageFormat.Xml)]
+</pre>
+<p />
+Note that WebGet is under the System.SeviceModel.Web namespace, so if you do not have that reference, add it. The next thing we need to do is modify our 
+web config file to create an endpoint that the service will listen to. It will work under webHttpBinding and not basicHttpBinding. For the endpoint, do the 
+following:
+<p />
+<pre>
+    &lt;system.servicemodel&gt;
+        &lt;services&gt;
+            &lt;service name="WebHttpSQLServerWCF.SQLWCF"&gt;
+                &lt;endpoint contract="WebHttpSQLServerWCF.ISQLWCF" binding="webHttpBinding" behaviorconfiguration="webHttp" /&gt;
+            &lt;/service&gt;
+        &lt;/services&gt;
+        ...
+</pre>
+<p />
+Here, under the service tag, the name attribute is going to have the namespace followed by the class name of your service. The endpoint is going to have the 
+namespace followed by the interface name. Notice the binding type. There is also a behaviorConfiguration attribute that is defined below in the following way:
+<p />
+<pre>
+    &lt;/services&gt;
+    &lt;behaviors&gt;
+        &lt;endpointbehaviors&gt;
+            &lt;behavior name="webHttp"&gt;
+                &lt;webhttp /&gt;
+            &lt;/behavior&gt;
+        &lt;/endpointbehaviors&gt;
+        ...
+</pre>
+<p />
+Once you've done this, compile your service project and hit that URL again from your browser. This time you should get the first and last name back. Once you 
+are satisfied with that, execute your stored procedure. You should get the same thing back, but the result should be wrapped in a SOAP document. 
+<p />
+Sometimes, you will find a decent application of a technology where you least expect to. In this case, I was really dreading having to make both an adapter 
+for a third-party payment system and a harness for that adapter within a VBA application. To say that would have sucked royally is putting it very mildly. 
+After some thought, however, I figured that as long as the VBA app was using stored procedures to enter customer information in our system, why not use that 
+same sproc to call a service that will invoke methods in the adapter that will query that entry and simply take over the processing from there? The anwswer? 
+There is no reason why not to!

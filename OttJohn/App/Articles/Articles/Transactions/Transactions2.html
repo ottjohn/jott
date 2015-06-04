@@ -1,0 +1,70 @@
+﻿Let's say you have a collection of really simple things that you need to insert into the database. For 
+instance, let's say you have a list of nightly drops you need to add to a deposit table. In the scenario, 
+the user selects the drops she wants to include in the deposit, and then clicks some button called 
+Create Deposit. In this scenario, we may want the drops to behave as a tightly-bound unit; that is, if 
+one of the drops does not make it into the deposit, then none of the drops will. 
+<p />
+I have seen example code that looks something like this:
+<p />
+<pre>
+    using (ReportsDataDataContext Context = new ReportsDataDataContext())
+    {
+        int ILen = Drops.OpenDrops.Count;
+        for (int i = 0; i < ILen; i++)
+        {
+            try 
+            {
+                Context.CloseDropItems(DepositId, DropId, Variance, VarianceReason);
+            }
+            catch(Exception Ex) 
+            {
+                //Log the error here
+            }
+        }
+    }
+</pre>
+<p />
+Now, there is noting wrong with this under two scenarios: one, there is only one drop per deposit; or, 
+two, every mechanism surrouding this whole process is guaranteed to run with no errors and no network failures. 
+Unlikely huh? There is only one little thing missing, and it's really easy to add: TransactionScope. You'll 
+find TransactionScope under the System.Transactions namespace. Now, let's rewrite this little piece so we 
+can make this collection all or none in behavior:
+<p />
+<pre>
+    var HasErrors = false;
+    using (ReportsDataDataContext Context = new ReportsDataDataContext())
+    {
+        using (var Transaction = new TransactionScope())
+        {
+            int ILen = Drops.OpenDrops.Count;
+            try 
+            {
+                for (int i = 0; i < ILen; i++)
+                {
+                    int? RetVal = null;
+                    Context.CloseDropItems(DepositId, DropId, Variance, VarianceReason, ref RetVal);
+                    int DropId = RetVal.Value;
+                    if (DropId == 0)
+                    {
+                        HasErrors = true;
+                        break;
+                    }
+                }            
+            }
+            catch(Exception Ex) 
+            {
+                HasErrors = true;
+                //Log the error here
+            }
+            finally 
+            {
+                if(!HasErrors) Transaction.Complete;
+            }
+        }
+    }
+</pre>
+<p />
+As you can see from the really simple example above, this is very easy to implement, so there is no reason not 
+to. Start by creating a boolean value that assumes everything is going to work out (I called mine <i>HasErrors</i>), 
+create your transaction object, then, as you loop through your inserts, check for an error. If something goes wrong, 
+set the boolean value accordingly, break out of the loop, and do not commit the transaction. Simple as that!

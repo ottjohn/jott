@@ -1,0 +1,86 @@
+﻿it's funny that in a world where it seems that everyone is trying to go with service-based consumption when dealing with 
+third-party providers of mission-critical information, some businesses simply refuse to get on board with it and are 
+fine with staying in the dark ages. Such is the reality of working for a company that owns Cricket stores. Don't get 
+me wrong: it's not my company's fault. That rests squarely on the shoulders of Cricket (now AT&T), their own services, 
+and their third-party providers. Messy is a nice word for it.
+<p />
+So anyway, the stores have to do these things called cash drops and deposits. They do the cash drops through the Cricket 
+POS called RQ, but they do not provide a really decent way of managing those drops and deposits in-house, so we have to 
+write software that will manage some of it on our end for reporting purposes. Now, you'd think that a big company like 
+Cricket would have a service to grab the daily drops and even keep track of our deposits, right? Wrong! Long story short, 
+we needed a screen that would capture these drops that were sent to us via Excel document and pushed into a SQL Server 
+backend. What follows are some screen shots of the associated project.
+<p />
+The following screen is the first that the user sees when navigating to the part of the application that manages drops and 
+deposits:
+<p />
+<img src="App/Examples/DropDeposit/DropDepositEntry.png" style="display: block;" />
+<p />
+Behind the scenes, the user has already logged into the application. Upon entering this part of it, the UserId is used to 
+grab all associated stores. These stores are placed into the dropdown at the top of the screen. Once as store is selected, 
+all of the open drops (those drops that have not been deposited) are displayed in a checkbox list in the middle of the screen, 
+like so:
+<p />
+<img src="App/Examples/DropDeposit/DropDepositDrops.png" style="display: block;" />
+<p />
+Here the user can select drops from the list to make a deposit. Each row in the list has several behaviors:
+<ul>
+    <li>
+        If the drop has not yet been selected, selecting the checkbox will highlight the row and present the details of 
+        the drop below to the user for a count confirmation.
+        <p />
+    </li>
+    <li>
+        If the drop has not yet been selected, selecting the row will check the checkbox, highlight the row, and present 
+        the details of the drop below to the user for a count confirmation.
+        <p />
+    </li>
+    <li>
+        If the drop has already been confirmed, then a flag in its associated JSON object is set to include it in the 
+        deposit. If the user unchecks the checkbox, all the information for the drop remains, but this flag is set so 
+        that the drop is no longer included in the deposit.
+        <p />
+    </li>
+    <li>
+        If the drop has already been confirmed, the selecting the row associated with the drop does nothing but make that 
+        drop active so that its confirmation information can be viewed or updated.
+        <p />
+    </li>
+    <li>
+        If no confirmation information is entered, or if a drop's confirmation information is incomplete, and the user 
+        selects a different drop, the previously-selected drop is unchecked and ignored.
+    </li>
+</ul>
+Once a drop is selected, the user must confirm the drop by recounting it before it can be associated with a drop. Here is 
+what the screen looks like:
+<p />
+<img src="App/Examples/DropDeposit/DropDepositSelectDrop.png" style="display: block;" />
+<p />
+If there is a variance between the recount on the drop and the drop amount reported to Cricket, a reason must be entered into 
+the associated confirm field. Once this information is filled out, the user clicks the Confirm button to add the drop to the 
+deposit:
+<p />
+<img src="App/Examples/DropDeposit/DropDepositPostConfirm.png" style="display: block;" />
+<p />
+As usual with disconnected service, all of the drops in the report receive from Cricket are a day old. If we want to include 
+a drop from the current day in the deposit, we have to manually enter it. We can do this by clicking Show Manual Drop button 
+at the bottom of the screen (see first figure above). This will display the following:
+<p />
+<img src="App/Examples/DropDeposit/DropDepositManualDrop.png" style="display: block;" />
+<p />
+As you can see, there are only two fields: one is the drop amount, the other is the transaction number that was given to the 
+user by Cricket when the drop was entered in their system. The user can then include this drop in the deposit by clicking the 
+Add Manual Drop button at the bottom of the screen:
+<p />
+<img src="App/Examples/DropDeposit/DropDepositConfirmManual.png" style="display: block;" />
+<p />
+Once the user clicks that button, the drop is added to the top of the list, its associated checkbox is checked, and it is 
+presented for confirmation. The confirmation is done in the same way an aged drop is confirmed. If there is a variance from 
+the reported count, it must be explained. If there is not variance, there is no need to fill in the Reason field. Once this 
+is done, the drop is included in the deposit by clicking Confirm button. Clicking this button adds the drops to a JSON 
+object that contains a list of drops to be deposited. 
+<p />
+<img src="App/Examples/DropDeposit/DropDepositMakeDeposit.png" style="display: block;" />
+<p />
+Once all of the drops for the deposit have been selected, the user can click the Deposit button, which will associated the 
+selected drops to a single deposit in our backend for reporting purposes.

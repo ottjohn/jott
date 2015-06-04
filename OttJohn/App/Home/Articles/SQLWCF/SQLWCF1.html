@@ -1,0 +1,16 @@
+﻿Okay, here's a problem that I hope you are never unfortunate enough to come across. Before I get into it's solution, let me give you 
+some background: I work in a really small shop, and the skills here with respect to coding were very limited before I came along. 
+That means that solutions, although they work, are archaic and generally unsettling. The primary architecture in this shop is an 
+Access application built over SQL Server 2008 all delivered by Terminal Services Client. 
+<p />
+When it is time to integrate external, third-party providers, such as a payment system, then, the task can be a little daunting and 
+frustrating. Making a .NET-based adapter for that third-party service work with an application fueled by VBScript is not in the least 
+bit fun. Believe me. I've been there and done that. This time, however, I decided to come at it from a different angle.
+<p />
+As I thought about the problem, I remembered that I had once fired off a service call from SQL Server 2005. Just for the hell of it. 
+Because there is no practical benefit to firing off a service call from SQL Server in the first place, right? Well, as it turns out, 
+I guess there is some practicality to it. Especially if you have disparate systems working with the same problem, and you can use 
+that service as a hand off.
+<p />
+When I had first fired off the call years ago, it was to an old ASMX service. Converting your WCF to this type of service will be 
+one of the things that will have to be covered. So if you are interested in how to do this, please read on.

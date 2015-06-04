@@ -1,0 +1,93 @@
+﻿<div data-ng-controller="RegistrationController as Registration" id="RegistrationContainer" ng-keydown="Registration.CheckValidation($event)">
+    <table cellpadding="3" cellspacing="0" border="0" class="ContentFont SolidBorder BorderColor">
+        <tr>
+            <td colspan="2" class="SubTitleBack TitleMenuFore SubAppTitleMetric">
+                User Registration
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1" class="RegPanelLeftRight ContentBackground" style="vertical-align: top;">
+                <table cellpadding="0" cellspacing="5" border="0">
+                    <tr>
+                        <td class="InputLabel">
+                            First Name
+                        </td>
+                        <td>
+                            <input data-ng-model="Registration.RegistrationFields.FirstName.Value" type="text" id="txtFirstName" class="ContentFont TextInput" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="InputLabel">
+                            Last Name
+                        </td>
+                        <td>
+                            <input data-ng-model="Registration.RegistrationFields.LastName.Value" type="text" id="txtLastName" class="ContentFont TextInput" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="InputLabel">
+                            Email
+                        </td>
+                        <td>
+                            <input data-ng-model="Registration.RegistrationFields.Email.Value" type="text" id="txtEmail" class="ContentFont TextInput" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td colspan="1" class="RegPanelLeftRight ContentBackground" style="vertical-align: top;">
+                <table cellpadding="0" cellspacing="5" border="0">
+                    <tr>
+                        <td class="InputLabel">
+                            User Name
+                        </td>
+                        <td>
+                            <input data-ng-model="Registration.RegistrationFields.UserName.Value" type="text" id="txtUserName" class="ContentFont TextInput" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="InputLabel">
+                            Password
+                        </td>
+                        <td>
+                            <input data-ng-model="Registration.RegistrationFields.Password.Value" type="password" id="txtPassword" class="ContentFont TextInput" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="InputLabel">
+                            Retype Password
+                        </td>
+                        <td>
+                            <input data-ng-model="Registration.RegistrationFields.Password1.Value" type="password" id="txtPassword1" class="ContentFont TextInput" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="InputLabel">
+                            Security Question
+                        </td>
+                        <td>
+                            <input data-ng-model="Registration.RegistrationFields.Question.Value" type="text" id="txtQuestion" class="ContentFont TextInput" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="InputLabel">
+                            Security Answer
+                        </td>
+                        <td>
+                            <input data-ng-model="Registration.RegistrationFields.Answer.Value" type="text" id="txtAnswer" class="ContentFont TextInput" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="ContentBackground MessageArea" id="MessageArea">{{Registration.Message}}</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="ButtonBar SubTitleBack">
+                <input class="SubTitleBack ContentFont TitleMenuFore Button" type="button" value="Exit" id="btnExit" ng-click="Registration.ReturnToMainScreen()" />
+                <input class="SubTitleBack ContentFont TitleMenuFore Button" type="button" value="Clear" id="btnClear" />
+                <input class="SubTitleBack ContentFont TitleMenuFore Button" type="button" value="Submit" id="btnAdd" ng-click="Registration.ValidateFields()" />
+            </td>
+        </tr>
+    </table>
+</div>

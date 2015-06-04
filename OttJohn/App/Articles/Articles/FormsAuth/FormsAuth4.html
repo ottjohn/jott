@@ -1,0 +1,93 @@
+﻿Okay, so we have a membership database in place, we've added some stuff to the web config file to make all of that work, and we've 
+added stuff to the Global.asax file to create an authentication ticket. The last thing we need 
+to add is an authentication web service and a reference to that service. I am sure you have experience adding a web service, so 
+let's just go through the motions:
+<p />
+<ol>
+    <li>
+        Right click on your project and select Add, then New Item
+    </li>
+    <li>
+        Under your chosen language, select Web and then scroll most of the way down to the bottom
+    </li>
+    <li>
+        Select the plain WCF Service. Give it a decent name before clicking OK
+    </li>
+</ol>
+<p />
+    <img src="App/Articles/Articles/FormsAuth/AddWebService.png" style="display: block;" />
+<p />
+Once you've done this, you need to change a couple of things with respect to the service itself. Go to the service and right click on the 
+service name, and then select View Markup. You will want to replace what is there with the following (you will find this code at the very 
+top of the file, and it should be the only thing in the file):
+<p />
+<pre>
+    Service="System.Web.ApplicationServices.AuthenticationService"
+    CodeBehind="System.Web.ApplicationServices.ApplicationServicesHostFactory"
+</pre>
+<p />
+Once you've saved this file, you will probably be asked if you want to allow changes to your config file. Allow the changes. Now that we have the service 
+installed, let's make a reference to it. Before we can do this, we need the URL for the service. If you do not know how to get this, don't worry. All 
+you have to do is right click on the service itself and select Browse With. A dialog box will appear asking you to select the browser you want to use. 
+Ignore this and click browse. This will bring up a browser and the location field will have the URL of the service. 
+<p />
+<img src="App/Articles/Articles/FormsAuth/GetServiceUrl.png" style="display: block;" />
+<p />
+Now, do the following: right click on the project name and select Add, then Service Reference. Once you've done this, paste the URL of the service into 
+the Address field and click Go. You will see the dialog think for a bit and then it will return with a description of the service in the services list. 
+Once the service has been added, give it a decent namespace (other than the cleverly-named default) and click Ok.
+<p />
+<img src="App/Articles/Articles/FormsAuth/ServiceReference.png" style="display: block;" />
+<p />
+I know you are anxious to test this out, but there are some things we need to check in the config file. So let's make certain that everything is in order 
+there.
+<p />
+First, check that authentication service is enabled. You can do this by searching for authenticationService in the config file. If it is not there, place 
+the following right below your membership entry (this is not a part of system.web):
+<p />
+<pre>
+    &lt;system.web.extensions&gt;
+        &lt;scripting&gt;
+        &lt;webservices&gt;
+            &lt;authenticationservice enabled="true" requiressl="false" /&gt;
+            &lt;/webservices&gt;
+        &lt;/scripting&gt;
+    &lt;/system.web.extensions&gt;
+</pre>
+<p />
+Second, we need to configure some stuff to allow the service to work with JSON. Make certain you have the following under the behaviors node (this will be 
+under system.serviceModel, just like the client and services fragments):
+<p />
+<pre>
+    &lt;behaviors&gt;
+    &lt;endpointbehaviors&gt;
+        &lt;behavior name="AuthenticationEPBehavior"&gt;
+            &lt;enablewebscript /&gt;
+        &lt;/behavior&gt;
+    &lt;/endpointbehaviors&gt;
+    &lt;servicebehaviors&gt;
+    &lt;behavior name="AuthenticationServiceTypeBehaviors"&gt;
+        &lt;servicemetadata httpgetenabled="true" /&gt;
+        &lt;servicedebug includeexceptiondetailinfaults="true" /&gt;
+    &lt;/behavior&gt;
+    &lt;behavior name=""&gt;
+        &lt;servicemetadata httpgetenabled="true" /&gt;
+        &lt;servicedebug includeexceptiondetailinfaults="false" /&gt;
+    &lt;/behavior&gt;
+    &lt;/servicebehaviors&gt;
+    &lt;/behaviors&gt;
+</pre>
+<p />
+Now, under Services, make sure that the endpoint node references the AuthenticationEPBehavior rule. For example, my Services fragment looks like this:
+<p />
+<pre>
+    &lt;services&gt;
+    &lt;service name="System.Web.ApplicationServices.AuthenticationService" behaviorconfiguration="AuthenticationServiceTypeBehaviors"&gt;
+    &lt;endpoint contract="System.Web.ApplicationServices.AuthenticationService" binding="webHttpBinding" behaviorconfiguration="AuthenticationEPBehavior" 
+              bindingnamespace="http://asp.net/ApplicationServices/v200" /&gt;
+      &lt;/service&gt;
+    &lt;/services&gt;
+</pre>
+<p />
+Okay, now you should be good to go. All that is left is to add a couple of examples illustrating this stuff. I will give you two things: a simple AJAX call 
+and the notation to determine if a user is currently logged in.

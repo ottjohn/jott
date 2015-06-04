@@ -1,0 +1,557 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Welcome to my website</title>
+
+
+    <style type="text/css">
+
+        @font-face {
+            font-family: "Cambria Math";
+            panose-1: 2 4 5 3 5 4 6 3 2 4;
+        }
+
+        @font-face {
+            font-family: Tahoma;
+            panose-1: 2 11 6 4 3 5 4 4 2 4;
+        }
+
+        @font-face {
+            font-family: Verdana;
+            panose-1: 2 11 6 4 3 5 4 4 2 4;
+        }
+
+        /* Style Definitions */
+        p.MsoNormal, li.MsoNormal, div.MsoNormal {
+            margin: 0in;
+            margin-bottom: .0001pt;
+            font-size: 12.0pt;
+            font-family: "Times New Roman",serif;
+        }
+
+        .MainTitleStyle {
+            margin-left: 130px;
+            margin-top: 25px;
+            font-family: verdana;
+            font-size: 28pt;
+            font-weight: bold;
+            color: black;
+            padding-left: 10px;
+        }
+
+        .LogoStyle {
+            margin: 0px;
+            padding-left: 0px;
+            float: left;
+            margin-top: 0px;
+            width: 145px;
+        }
+
+        .TitleContainer {
+            width: 100%;
+            float: left;
+            background: linear-gradient(to right, white 40%, black 60%);
+        }
+
+        .GridCellClass 
+        {
+            white-space: nowrap;
+            float: left; 
+            overflow: hidden; 
+            cursor: pointer;
+        }
+        
+        .RowCellClass 
+        {
+            white-space: nowrap;
+        }
+    </style>
+    <style type="text/css">
+        /***************************************************************************************************/
+        /*Main Page Metrics                                                                                */
+        /***************************************************************************************************/
+        .pageWidth {
+            width: 80%;
+        }
+
+        .ContentFull {
+            width: 100%;
+        }
+
+        .ContentTD {
+            width: 100%;
+            height: 500px;
+            vertical-align: top;
+        }
+
+        .MainView {
+            width: 97%;
+            margin: 5px;
+            padding: 10px;
+        }
+
+        .ContentBackground {
+            background: white;
+        }
+
+        .BufferHeight {
+            font-size: 3px;
+            height: 3px;
+        }
+
+        .FooterHeight {
+            height: 25px;
+        }
+
+        .FooterContent {
+            width: 90%;
+            margin: 5px;
+        }
+
+        /***************************************************************************************************/
+        /*Global Styles Metrics                                                                            */
+        /***************************************************************************************************/
+        .TitleBar {
+            hheight: 24px;
+        }
+
+        .ContentFont {
+            font-family: Verdana;
+            font-size: 8pt;
+        }
+
+        .ContentReadFont {
+            font-family: Verdana;
+            font-size: 11pt;
+        }
+
+        .ContentHeavyFont {
+            font-weight: bold;
+        }
+
+        .SolidBorder {
+            border: solid;
+            border-width: 1px;
+        }
+
+        .SolidBorderBottomOpen {
+            border: solid;
+            border-width: 1px 1px 0px 1px;
+        }
+
+        .BorderColor {
+            border-color: black;
+        }
+
+        .TaskBorderColor {
+            border-color: #ff6666;
+        }
+
+        .TitleMenuBack {
+            background: black;
+        }
+
+        .TitleMenuFore {
+            color: white;
+        }
+
+        .TaskSubTitleBack {
+            background: #ff6666;
+        }
+
+        .TaskSubTitleFore {
+            color: white;
+        }
+
+        .SubTitleBack {
+            background: #4d4d4d;
+        }
+
+        .SelectSubTitleBack {
+            background: white;
+        }
+
+        .SelectTitleMenuFore {
+            color: black;
+        }
+
+        .SubAppTitleMetric {
+            padding: 5px;
+            text-align: right;
+            font-size: 9pt;
+            font-weight: bold;
+        }
+
+        .SubSubAppTitleMetric {
+            padding: 8px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .SubSubAppTaskMetric {
+            padding: 8px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .RegPanelLeftRight {
+            height: 270px;
+            width: 450px;
+            vertical-align: top;
+        }
+
+        .ManagePanel {
+            height: 360px;
+            width: 900px;
+        }
+
+        .TaxPanelLeft {
+            width: 590px;
+        }
+
+        .TaxPanelRight {
+            width: 300px;
+        }
+
+        .MemberManageContentHeight {
+            height: 300px;
+        }
+
+        .MemberManageContainerHeight {
+            height: 355px;
+        }
+
+        .ManagementSubAppMetric {
+            padding: 5px;
+            hheight: 280px;
+            height: 300px;
+        }
+
+        .ManageSubAppMetricTax {
+            height: 90px;
+            padding: 5px;
+        }
+
+        .MessageArea {
+            padding: 2px;
+            height: 13px;
+            color: red;
+        }
+
+        .ButtonBar {
+            text-align: right;
+            height: 13px;
+        }
+
+        .Button {
+            margin: 3px;
+            border: none;
+        }
+
+        .ButtonBarSubAppBack {
+            background: #888888;
+        }
+
+        .ButtonBarTaskAppBack {
+            background: #ff6666;
+        }
+
+        A:Hover {
+            color: black;
+            background: white;
+        }
+
+        #idTop:hover #idTopMenu {
+            display: block;
+        }
+
+        #idTop1:hover #idTop1Menu {
+            display: block;
+        }
+
+        /***************************************************************************************************/
+        /*Field Styles                                                                                     */
+        /***************************************************************************************************/
+        .InputLabel {
+            width: 150px;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        .InputLabelShort {
+            width: 80px;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        .TextInputShort {
+            width: 80px;
+            border-width: 1px;
+            padding-left: 2px;
+        }
+
+        .TextInput {
+            width: 200px;
+            border-width: 1px;
+            padding-left: 2px;
+        }
+
+        .TextInputLong {
+            width: 300px;
+            border-width: 1px;
+            padding-left: 2px;
+        }
+
+        .FieldSetStyle {
+            border-color: #dddddd;
+            width: 95%;
+        }
+
+        /***************************************************************************************************/
+        /*Main Page Top Menu                                                                               */
+        /***************************************************************************************************/
+        .ULMenuStyle {
+            list-style: none;
+            text-indent: 0em;
+            margin: 0em;
+            padding: 0em;
+        }
+
+        .LIMenuStyle {
+            text-indent: 0em;
+            float: left;
+        }
+
+        .MemberLinks {
+            text-decoration: none;
+            float: inherit;
+            width: auto;
+            padding-right: 5px;
+        }
+
+        .MemberLoggedIn {
+            float: right;
+            padding: 5px;
+        }
+
+        .MemberLogIn {
+            float: right;
+            padding-right: 0px;
+        }
+
+        .LIMenuStyleChild {
+            text-indent: 0em;
+        }
+
+        .AnchorMenuItem {
+            display: block;
+            text-decoration: none;
+            padding: 5px;
+            padding-right: 25px;
+        }
+
+        .AApp {
+            display: block;
+            text-decoration: none;
+            padding: 5px;
+            width: 125px;
+        }
+
+        /***************************************************************************************************/
+        /*Task Styles                                                                                      */
+        /***************************************************************************************************/
+        .TaskLinkItem {
+            background: white;
+            color: blue;
+            width: 50%;
+        }
+
+        /***************************************************************************************************/
+        /*Modal Styles                                                                                   */
+        /***************************************************************************************************/
+
+        /***************************************************************************************************/
+        /*Feature Styles                                                                                   */
+        /***************************************************************************************************/
+        #Maingroups UL {
+            list-style: none;
+            font-family: Verdana;
+            font-size: 8pt;
+            cursor: pointer;
+            margin: 0px;
+            margin-left: -1.5em;
+        }
+
+        .TreeChildStyle {
+            margin-left: -2.5em;
+        }
+
+        .FolderIcon {
+            list-style-image: url('images/folder_icon.png');
+        }
+
+        #Maingroups DIV {
+            white-space: nowrap;
+        }
+
+        .FeatureContainer {
+            padding: 5px;
+            width: 250px;
+            height: 220px;
+            overflow-y: scroll;
+            overflow-x: scroll;
+            background: white;
+            border: solid;
+            border-width: 1px 1px 1px 1px;
+        }
+
+        .ElementFont {
+            font-family: Verdana;
+            font-size: 8pt;
+        }
+
+        .TreeMenuContPadding {
+            padding: 10px;
+        }
+
+    </style>
+
+    <!--###########################################################################################################################-->
+    <!--JavaScript Content                                                                                                         -->
+    <!--###########################################################################################################################-->
+    <script src="scripts/jquery-1.7.2.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/jquery-ui-1.10.1.custom.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <script src="scripts/angular-ui-router.min.js"></script>
+    <script src="scripts/raphael.js"></script>
+
+    <script src="App/Home/Home.Module.js"></script>
+    <script src="App/Home/HomeService.js"></script>
+    <script src="App/Home/HomeContracts.js"></script>
+    <script src="App/Home/HomeController.js"></script>
+    <script src="App/Home/HomeModel.js"></script>
+
+    <script src="App/Paylocity/Paylocity.Module.js"></script>
+    <script src="App/Paylocity/PaylocityService.js"></script>
+    <script src="App/Paylocity/PaylocityContracts.js"></script>
+    <script src="App/Paylocity/PaylocityController.js"></script>
+    <script src="App/Paylocity/PaylocityModel.js"></script>
+
+    <script src="App/Articles/Articles.Module.js"></script>
+    <script src="App/Articles/ArticlesService.js"></script>
+    <script src="App/Articles/ArticlesContracts.js"></script>
+    <script src="App/Articles/ArticlesController.js"></script>
+    <script src="App/Articles/ArticlesModel.js"></script>
+    <script src="App/Articles/Articles/Paging/Paging5Controller.js"></script>
+    <script src="App/Articles/Articles/Paging/Paging5Model.js"></script>
+
+    <script src="App/Examples/ExamplesModule.js"></script>
+    <script src="App/Examples/ExamplesService.js"></script>
+    <script src="App/Examples/ExamplesContracts.js"></script>
+    <script src="App/Examples/ExamplesController.js"></script>
+
+    <script src="App/FlashCards/FlashCards.Module.js"></script>
+    <script src="App/FlashCards/FlashCardsService.js"></script>
+    <script src="App/FlashCards/FlashCardsContracts.js"></script>
+    <script src="App/FlashCards/FlashCardsController.js"></script>
+    <script src="App/FlashCards/FlashCardEntry/FlashCardEntryController.js"></script>
+    <script src="App/FlashCards/FlashCardEntry/FlashCardEntryModel.js"></script>
+    <script src="App/FlashCards/FlashCardView/FlashCardViewController.js"></script>
+    <script src="App/FlashCards/FlashCardView/FlashCardViewModel.js"></script>
+
+    <script src="App/MemberManagement/MemberManagement.Module.js"></script>
+    <script src="App/MemberManagement/ManageService.js"></script>
+    <script src="App/MemberManagement/ManageUserContracts.js"></script>
+    <script src="App/MemberManagement/ManageController.js"></script>
+
+    <script src="App/MemberManagement/Registration/RegistrationController.js"></script>
+    <script src="App/MemberManagement/Registration/RegisterUserModel.js"></script>
+
+    <script src="App/MemberManagement/PasswordManagement/PasswordManagementController.js"></script>
+    <script src="App/MemberManagement/PasswordManagement/PasswordManagementModel.js"></script>
+
+    <script src="App/MemberManagement/MemberEdit/MemberEditController.js"></script>
+    <script src="App/MemberManagement/MemberEdit/MemberEditModel.js"></script>
+
+    <script src="App/MemberManagement/UserLogging/UserLoggingController.js"></script>
+    <script src="App/MemberManagement/UserLogging/UserLoggingModel.js"></script>
+
+    <script src="App/MemberManagement/FeatureManagement/FeatureManagementController.js"></script>
+    <script src="App/MemberManagement/FeatureManagement/FeatureManagementModel.js"></script>
+
+    <script src="App/About/About.Module.js"></script>
+    <script src="App/About/AboutService.js"></script>
+    <script src="App/About/AboutContracts.js"></script>
+    <script src="App/About/AboutController.js"></script>
+
+    <script src="App/Validation/Validation.Module.js"></script>
+    <script src="App/Validation/CommonValidator.js"></script>
+
+    <script src="App/Services/AppState/AppState.Module.js"></script>
+    <script src="App/Services/AppState/AppState.js"></script>
+    
+    <script src="App/App.js"></script>
+    <script src="App/AppController.js"></script>
+
+    <script src="App/Directives/AuthFunction/AuthDirective.js"></script>
+    <script src="App/Directives/LoggedIn/LoggedInDirective.js"></script>
+    <script src="App/Directives/LoggedIn/LoggedOut.js"></script>
+    <script src="App/Directives/LoggedIn/UserNameItem.js"></script>
+    <script src="App/Directives/Modal/ModalDirectiveNew.js"></script>
+    <script src="App/Directives/PieChart/PieChart.js"></script>
+    <script src="App/Directives/TitleCollapse/TitleCollapse.js"></script>
+    <script src="App/Directives/TreeMenu/TreeMenuDirective.js"></script>
+    <script src="App/Directives/LineChart/LineChart.js"></script>
+
+    <link href="OttJS/Pager/PagerControlStyle.css" rel="stylesheet" type="text/css" />
+    <link href="OttJS/CheckBoxList/CheckboxCollectionStyle.css" rel="stylesheet" />
+    <link href="OttJS/ModalLogin/ModalWindowStyle.css" rel="stylesheet" />
+    <script src="OttJS/NewGrid/DatGrid.js" type="text/javascript"></script>
+    <script src="OttJS/Pager/PagerControl.js" type="text/javascript"></script>
+    <script src="OttJS/CheckBoxList/ChkboxCollectionControl.js"></script>
+    <script src="App/Directives/Comments/Comments.js"></script>
+
+</head>
+<body style="background-image: url('images/beach1.jpg'); overflow-y: scroll; background-size: initial; background-repeat: no-repeat; margin: 0px; background-color: #eeeeee;" data-ng-app="App">
+    <div style="background: gray; height: 110px; opacity: .9">
+        <table cellpadding="0" cellspacing="0" style="width: 100%;">
+            <tr>
+                <td style="height: 80px; width: 8%; background: black; color: white; font-family: Algerian; font-size: 36pt; padding-top: 0px; padding-left: 0px;">
+                    <image src="\images\jott.png" style="margin: 0px; padding: 0px; float:left;"></image>
+                </td>
+                <td style="font-size: 20pt; color: white; font-weight: bold; padding-left: 10px; margin-top: 15px;">
+                    John Ott, Web Applications Developer
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="width: 100%; background: black;">
+                    <div style="width: 100%; background: black; opacity: .9; height: 25px;">
+                        <div style="color: white; padding-right: 15px; float: left;"><a class="AnchorMenuItem ContentFont TitleMenuBack TitleMenuFore" ui-sref="Home">Home</a></div>
+                        <div style="color: white; padding-right: 15px; float: left;"><a class="AnchorMenuItem ContentFont TitleMenuBack TitleMenuFore" ui-sref="MemberManagement">Membership</a></div>
+                        <div style="color: white; padding-right: 15px; float: left;"><a class="AnchorMenuItem ContentFont TitleMenuBack TitleMenuFore" ui-sref="Articles">Articles</a></div>
+                        <!--<div style="color: white; padding-right: 15px; float: left;"><a class="AnchorMenuItem ContentFont TitleMenuBack TitleMenuFore" ui-sref="Paylocity">Paylocity</a></div>-->
+                        <div style="color: white; padding-right: 15px; float: left;"><a class="AnchorMenuItem ContentFont TitleMenuBack TitleMenuFore" ui-sref="Examples">Screen Shots</a></div>
+                        <div style="color: white; padding-right: 15px; float: left;"><a class="AnchorMenuItem ContentFont TitleMenuBack TitleMenuFore" ui-sref="FlashCards">Flash Cards</a></div>
+                        <div style="color: white; padding-right: 15px; float: left;"><a class="AnchorMenuItem ContentFont TitleMenuBack TitleMenuFore" ui-sref="About">About</a></div>
+                        <div loggedin id="MemberContainerLoggedIn" class="MemberLogIn" style="display: none;">
+                            <div style="width: 10px; float: right;">&nbsp;</div>
+                            <a class="AnchorMenuItem MemberLinks ContentFont TitleMenuBack TitleMenuFore" style="padding-right: 5px;" ui-sref="Logout">Logout</a>
+                            <div class="MemberLinks ContentFont" style="padding-top: 5px; color: white;">|</div>
+                            <span usernameitem class="MemberLinks ContentFont MemberLoggedIn" id="MemberContainerLoggedInUserName" style="color: white;"></span>
+                        </div>
+                        <div loggedout id="MemberContainer" class="MemberLogIn">
+                            <div style="width: 10px; float: right;">&nbsp;</div>
+                            <a class="AnchorMenuItem MemberLinks ContentFont TitleMenuBack TitleMenuFore" style="padding-right: 5px; text-align: right;" ui-sref="Login">Login</a>
+                            <div class="MemberLinks ContentFont" style="padding-top: 5px;">|</div>
+                            <a class="AnchorMenuItem MemberLinks ContentFont TitleMenuBack TitleMenuFore" style="padding-right: 5px;" ui-sref="Register">Register</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="height: 100%; background: #eeeeee; opacity: .9; padding: 10px;" class = "ContentFont mainview" ui-view>
+    </div>
+</body>
+</html>

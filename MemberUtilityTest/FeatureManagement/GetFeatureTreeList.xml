@@ -1,0 +1,37 @@
+﻿<Rows>
+  <row>
+    <UserName></UserName>
+    <UserId>00000000-0000-0000-0000-000000000000</UserId>
+    <GroupNameId></GroupNameId>
+    <ApplicationId>4</ApplicationId>
+    <ReturnValue>false</ReturnValue>
+  </row>
+  <row>
+    <UserName></UserName>
+    <UserId>F3DC6743-3A33-476B-85BE-336F83FE12CC</UserId>
+    <GroupNameId>F3DC6743-3A33-476B-85BE-336F83FE12CC</GroupNameId>
+    <ApplicationId>F3DC6743-3A33-476B-85BE-336F83FE12CC</ApplicationId>
+    <ReturnValue>true</ReturnValue>
+  </row>
+  <row>
+    <UserName></UserName>
+    <UserId>0</UserId>
+    <GroupNameId>F3DC6743-3A33-476B-85BE-336F83FE12CC</GroupNameId>
+    <ApplicationId>F3DC6743-3A33-476B-85BE-336F83FE12CC</ApplicationId>
+    <ReturnValue>false</ReturnValue>
+  </row>
+  <row>
+    <UserName>MeganOtt</UserName>
+    <UserId>F3DC6743-3A33-476B-85BE-336F83FE12CC</UserId>
+    <GroupNameId>4</GroupNameId>
+    <ApplicationId>F3DC6743-3A33-476B-85BE-336F83FE12CC</ApplicationId>
+    <ReturnValue>true</ReturnValue>
+  </row>
+  <row>
+    <UserName></UserName>
+    <UserId>F3DC6743-3A33-476B-85BE-336F83FE12CC</UserId>
+    <GroupNameId>4</GroupNameId>
+    <ApplicationId>-1</ApplicationId>
+    <ReturnValue>true</ReturnValue>
+  </row>
+</Rows>

@@ -1,0 +1,30 @@
+﻿    .ChkColTable {
+        background: white;
+        font-family: Verdana;
+        font-size: 8pt;
+        border: solid;
+        border-width: 1px 1px 1px 1px;
+    }
+
+    .ChkColTdLabel {
+        padding: 6px;
+        text-align: left;
+    }
+
+    .ChkColTdChk {
+        width: 25px; 
+        text-align: center;
+    }
+    
+    .ChkColTitle 
+    {
+        padding: 4px; 
+        text-align: center; 
+        background: silver; 
+        color: black; 
+        border: solid; 
+        border-color: Black; 
+        border-width: 0px 0px 1px 0px;
+        font-weight: bold;
+    }
+    

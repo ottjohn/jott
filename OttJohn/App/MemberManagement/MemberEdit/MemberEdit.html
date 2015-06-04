@@ -1,0 +1,86 @@
+﻿<div data-ng-controller="MemberEditController as MemberEdit" class="ContentFull ContentBackground" style="padding: 5px;" ng-keydown="MemberEdit.CheckValidation($event)">
+    <table cellpadding="0" cellspacing="0" class="ContentFull" border="0">
+        <tr>
+            <td>
+                <div id="MemberGridContainer" class="ManagementSubAppMetric ContentBackground MemberManageContentHeight" style="display: none;"></div>
+                <div id="tdUserNameMemberEdit" style="display: none;">
+                    <table cellpadding="5" cellspacing="0" border="0" class="ContentFull">
+                        <tr>
+                            <td class="InputLabel">
+                                User Name
+                            </td>
+                            <td>
+                                <input type="text" id="txtUserNameEdit" class="ContentFont TextInput" data-ng-model="MemberEdit.UserName" />
+                            </td>
+                        </tr>
+                        <tr><td style="height: 273px; width: 500px;">&nbsp;</td></tr>
+                    </table>
+                </div>
+                <div id="MemberApproveContainer" class="ManagementSubAppMetric ContentBackground" style="display: none;">
+                    <table cellpadding="5" cellspacing="0" class="ContentFull ContentFont SolidBorder BorderColor" border="0">
+                        <tr>
+                            <td colspan="2" class="SubTitleBack TitleMenuFore SubSubAppTitleMetric">
+                                Membership Approval - {{MemberEdit.UnapprovedUser.UnapprovedFirstName}}&nbsp;{{MemberEdit.UnapprovedUser.UnapprovedLastName}}
+                                &nbsp;(User Name: {{MemberEdit.UnapprovedUser.UnapprovedUserName}})
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="TreeMenuContPadding">
+                                <treemenu id="treeMenuComp" treeattribute="MemberEdit.TreeAttribute" />
+                            </td>
+                            <td style="vertical-align: top;">
+                                <table cellpadding="5" cellspacing="0">
+                                    <tr>
+                                        <td class="InputLabel">
+                                            Select App
+                                        </td>
+                                        <td>
+                                            <select id="drpApplications" class="ContentFont TextInput" ng-model="MemberEdit.SelectedApp" ng-options="App.ApplicationName for App in MemberEdit.UserInApp" ng-change="MemberEdit.SetAppDetails();">
+                                                <option value="">...</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="InputLabel">
+                                            Member Active
+                                        </td>
+                                        <td>
+                                            <input id="chkMemberActive" ng-model="MemberEdit.UnapprovedUser.UserApproved" class="ContentFont" type="checkbox" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="InputLabel">
+                                            Groups
+                                        </td>
+                                        <td>
+                                            <select id="drpMemberProfile" class="ContentFont TextInput" ng-model="MemberEdit.SelectedGroup" ng-options="Group.FeatureGroupName for Group in MemberEdit.ManageTreeGroups" ng-change="MemberEdit.GetNamedGroup();">
+                                                <option value="">...</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="InputLabel" style="vertical-align: top;">Roles</td>
+                                        <td style='padding: 5px;' class="ContentFont TextInput"  colspan="2" id="RoleListContainerParent"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="ContentBackground MessageArea" id="MessageArea">{{MemberEdit.Message}}</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="ButtonBar ButtonBarSubAppBack" style="width: 800px;">
+                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Exit" id="btnMemberEditExit" ng-click="MemberEdit.ReturnToMainScreen()" />
+                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Cancel" id="btnMemberEditCancel" style="display: none;" ng-click="MemberEdit.GetFeatureProfile('Cancel')" />
+                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Assign Member Profile" id="btnMemberEditAssignProfile" style="display: none;" ng-click="MemberEdit.GetFeatureProfile('Assign')" />
+                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Submit" id="btnMemberEditSubmit" ng-click="MemberEdit.CheckProcess()" />
+            </td>
+        </tr>
+    </table>
+    <modaldialog id="modalDialogComp" onmodalresultready="MemberEdit.MessageFromDirective()" modalattribute="MemberEdit.ModalAttribute" />
+</div>
+

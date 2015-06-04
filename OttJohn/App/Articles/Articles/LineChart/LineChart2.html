@@ -1,0 +1,86 @@
+﻿As with the pie chart, we need to define a contract that will model the chart. With that in mind, here is what I came up with:
+<p />
+<pre>
+function GetLineChart() {
+    var LineChart = {
+        GridUniqueId: "One",
+        FontsAndText: GetChartFontsAndText(),
+        DimsAndColor: GetChartDimsAndColor(),
+        LineData: GetLineData()
+    }
+    return LineChart;
+}
+</pre>
+<p />
+This contract has only four parts to it:
+<ul>
+    <li>
+        GridUniqueId: this is an id you will provide to uniquely identify your chart.
+    </li>
+    <li>
+        FontsAndText: this is an object that will allow manipulation of the fonts and font colors associated with the chart.
+    </li>
+    <li>
+        DimsAndColor: this is an object that will allow sizing and background color manipulation of the chart.
+    </li>
+    <li>
+        LineData: this is an object that describes everything we need to know about the line in the chart.
+    </li>
+</ul>
+<p />
+The sub objects are defined in the following way:
+<p />
+<pre>
+function GetChartFontsAndText() {
+
+    var ChartFontsAndText = {
+
+        Title: "Visits Over Past Week",                     //Defines the main title of the chart
+        TitleFont: "14pt arial",                            //Font size for the title
+        TitleColor: "black",                                //Font color for the title
+        TicMarkFont: "8pt arial",                           //Font size for all other lablels
+        TicMarkColor: "black"                               //Font color for all other labels
+
+    }
+    return ChartFontsAndText;
+}
+</pre>
+<p />
+<pre>
+function GetChartDimsAndColor() {
+
+    var ChartDimsAndColor = {
+
+        CanvasHeight: 300,                                  //Height of the area in which the chart will reside (canvas)
+        CanvasWidth: 800,                                   //Width of the area in which the chart will reside (canvas)
+        GridBorderColor: "black",                           //Border color for canvas
+        GridBorderThickness: "1",                           //Border thickness for canvas
+        ChartBackColor: "#eeeeee",                          //Background color for the actual chart body
+        GridTopLeftX: 40,                                   //Top left y-coordinate for the chart body
+        GridTopLeftY: 20,                                   //Top left x-coordinate for the chart body
+        VerticalTicCount: 3,                                //Number of horizontal grid lines for the chart body
+        BottomChartOffset: 60                               //The amount of room to provide at the bottom of the chart for the title
+
+    }
+    return ChartDimsAndColor;
+}
+</pre>
+<p />
+<pre>
+function GetLineData() {
+
+    var LineData = {
+
+        Color: "red",                                                                   //Line color
+        LineWidth: 1,                                                                   //Line widths
+        Data: new Array(1, 3, 5, 3, 7, 8, 2),                                           //Line values
+        Labels: new Array('1-17', '1-18', '1-19', '1-12', '1-21', '1-22', '1-23')       //Associated labels
+
+    }
+    return LineData;
+}
+</pre>
+<p />
+Obviously, if you only have one chart, I guess you could hard-code all of your values here; mostly, though, I think you will probably want to 
+populate this stuff on the server side based upon company themes and report descriptions. The only thing here that really should definitely 
+come from the server are the Data and Label arrays.

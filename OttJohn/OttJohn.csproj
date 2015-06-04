@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E370DABE-6B96-41C3-B5D1-9619CA558C34}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OttJohn</RootNamespace>
+    <AssemblyName>OttJohn</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.SelfHost, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.SelfHost.5.2.2\lib\net45\System.Web.Http.SelfHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IOttjohnAuth.cs" />
+    <Compile Include="OttjohnAuth.svc.cs">
+      <DependentUpon>OttjohnAuth.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\OttjohnAuthentication\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App\About\Developer\Developer.html" />
+    <Content Include="App\About\Educator\Educator.html" />
+    <Content Include="App\About\Resume\Resume.html" />
+    <Content Include="App\About\Resume\resumeJohnOttNew.htm" />
+    <Content Include="App\About\Writer\Writer.html" />
+    <Content Include="App\App.js" />
+    <Content Include="App\AppController.js" />
+    <Content Include="App\Articles\Articles.html" />
+    <Content Include="App\Articles\ArticlesContracts.js" />
+    <Content Include="App\Articles\ArticlesController.js" />
+    <Content Include="App\Articles\ArticlesModel.js" />
+    <Content Include="App\Articles\Articles.Module.js" />
+    <Content Include="App\Articles\ArticlesService.js" />
+    <Content Include="App\Articles\Articles\BulkInsert\BulkInsert1.html" />
+    <Content Include="App\Articles\Articles\BulkInsert\BulkInsert2.html" />
+    <Content Include="App\Articles\Articles\BulkInsert\BulkInsert3.html" />
+    <Content Include="App\Articles\Articles\BulkInsert\BulkInsert4.html" />
+    <Content Include="App\Articles\Articles\BulkInsert\BulkInsert5.html" />
+    <Content Include="App\Articles\Articles\BulkInsert\CSV.png" />
+    <Content Include="App\Articles\Articles\BulkInsert\MessyFile.png" />
+    <Content Include="App\Articles\Articles\FormsAuth\AddWebService.png" />
+    <Content Include="App\Articles\Articles\FormsAuth\FormsAuth1.html" />
+    <Content Include="App\Articles\Articles\FormsAuth\FormsAuth2.html" />
+    <Content Include="App\Articles\Articles\FormsAuth\FormsAuth3.html" />
+    <Content Include="App\Articles\Articles\FormsAuth\FormsAuth4.html" />
+    <Content Include="App\Articles\Articles\FormsAuth\FormsAuth5.html" />
+    <Content Include="App\Articles\Articles\FormsAuth\GetServiceUrl.png" />
+    <Content Include="App\Articles\Articles\FormsAuth\ServiceReference.png" />
+    <Content Include="App\Articles\Articles\Impersonate\IISAuth.png" />
+    <Content Include="App\Articles\Articles\Impersonate\IISAuthScheme.png" />
+    <Content Include="App\Articles\Articles\Impersonate\Impersonate1.html" />
+    <Content Include="App\Articles\Articles\Impersonate\Impersonate2.html" />
+    <Content Include="App\Articles\Articles\Impersonate\Impersonate3.html" />
+    <Content Include="App\Articles\Articles\Impersonate\SQLNewUser.png" />
+    <Content Include="App\Articles\Articles\Impersonate\SQLServerSecurity.png" />
+    <Content Include="App\Articles\Articles\Impersonate\SSCM.png" />
+    <Content Include="App\Articles\Articles\LineChart\LineChart1.html" />
+    <Content Include="App\Articles\Articles\LineChart\LineChart2.html" />
+    <Content Include="App\Articles\Articles\LineChart\LineChart3.html" />
+    <Content Include="App\Articles\Articles\LineChart\LineChart4.html" />
+    <Content Include="App\Articles\Articles\LineChart\LineChart5.html" />
+    <Content Include="App\Articles\Articles\Paging\Paging1.html" />
+    <Content Include="App\Articles\Articles\Paging\Paging2.html" />
+    <Content Include="App\Articles\Articles\Paging\Paging3.html" />
+    <Content Include="App\Articles\Articles\Paging\Paging4.html" />
+    <Content Include="App\Articles\Articles\Paging\Paging5.html" />
+    <Content Include="App\Articles\Articles\Paging\Paging5Controller.js" />
+    <Content Include="App\Articles\Articles\Paging\Paging5Model.js" />
+    <Content Include="App\Articles\Articles\PieChart\PieChart1.html" />
+    <Content Include="App\Articles\Articles\PieChart\PieChart2.html" />
+    <Content Include="App\Articles\Articles\PieChart\PieChart3.html" />
+    <Content Include="App\Articles\Articles\PieChart\PieChart4.html" />
+    <Content Include="App\Articles\Articles\PieChart\PieChart5.html" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter1.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter10.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter11.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter12.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter13.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter14.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter15.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter16.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter17.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter18.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter19.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter2.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter20.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter21.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter22.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter3.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter4.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter5.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter6.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter7.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter8.htm" />
+    <Content Include="App\Articles\Articles\ReckoningChapter\ReckoningChapter9.htm" />
+    <Content Include="App\Articles\Articles\SQLWCF\AddIIS.png" />
+    <Content Include="App\Articles\Articles\SQLWCF\BrowseService.png" />
+    <Content Include="App\Articles\Articles\SQLWCF\IIS.png" />
+    <Content Include="App\Articles\Articles\SQLWCF\SQLWCF1.html" />
+    <Content Include="App\Articles\Articles\SQLWCF\SQLWCF2.html" />
+    <Content Include="App\Articles\Articles\SQLWCF\SQLWCF3.html" />
+    <Content Include="App\Articles\Articles\SQLWCF\SQLWCF4.html" />
+    <Content Include="App\Articles\Articles\SQLWCF\WCFApp.png" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\HomeSecurity.png" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\NewRole.png" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\ReportsHome.png" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\SqlServerAssignment.png" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\SQLServerNewLogin.png" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\SQLServerSecurity.png" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\SSRSConfigManager.png" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\SSRSSecurity2.html" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\SSRSSecurity1.html" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\SSRSSecurity3.html" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\SSRSSecurity4.html" />
+    <Content Include="App\Articles\Articles\SSRSSecurity\SSRSSecurity5.html" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\BusinessIntelligenceDlg.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\ConfigDataset.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\ConfigMainParam.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\ConfigSubParameter.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\ConnectString.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\DateParam.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\FinalReport.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\GroupData.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\NewDataSet.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\OpenedNewProject.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\Parameters.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\QueryBuilder.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\ReportProperties.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\ReportsHome.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\ReportWizardDlg.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\SetCascadingParamInDataset.png" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\SSRSWithParams2.html" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\SSRSWithParams1.html" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\SSRSWithParams3.html" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\SSRSWithParams4.html" />
+    <Content Include="App\Articles\Articles\SSRSWithParams\SSRSWithParams5.html" />
+    <Content Include="App\Articles\Articles\Transactions\Transactions3.html" />
+    <Content Include="App\Articles\Articles\Transactions\Transactions1.html" />
+    <Content Include="App\Articles\Articles\Transactions\Transactions2.html" />
+    <Content Include="App\Articles\Articles\WinService\ServiceDesigner.png" />
+    <Content Include="App\Articles\Articles\WinService\ServiceInstaller.png" />
+    <Content Include="App\Articles\Articles\WinService\ServiceProcessInstaller.png" />
+    <Content Include="App\Articles\Articles\WinService\WinService1.html" />
+    <Content Include="App\Articles\Articles\WinService\WinService2.html" />
+    <Content Include="App\Articles\Articles\WinService\WinService3.html" />
+    <Content Include="App\Articles\Articles\WinService\WinService4.html" />
+    <Content Include="App\Articles\Articles\WinService\WinService5.html" />
+    <Content Include="App\Articles\Articles\WinService\WinServiceProject.png" />
+    <Content Include="App\Directives\Comments\Comments.html" />
+    <Content Include="App\Directives\Comments\Comments.js" />
+    <Content Include="App\Directives\Grid\Grid.html" />
+    <Content Include="App\Directives\Grid\GridDirective.js" />
+    <Content Include="App\Directives\LineChart\LineChart.html" />
+    <Content Include="App\Directives\LineChart\LineChart.js" />
+    <Content Include="App\Examples\DailySummary\DailySummary.html" />
+    <Content Include="App\Examples\DailySummary\Excel.png" />
+    <Content Include="App\Examples\DropDeposit\DropDeposit.html" />
+    <Content Include="App\Examples\Examples.html" />
+    <Content Include="App\Examples\ExamplesContracts.js" />
+    <Content Include="App\Examples\ExamplesController.js" />
+    <Content Include="App\Examples\ExamplesModule.js" />
+    <Content Include="App\Examples\ExamplesService.js" />
+    <Content Include="App\Examples\Membership\Membership.html" />
+    <Content Include="App\Examples\StateLocalTax\StateLocalTax.html" />
+    <Content Include="App\FlashCards\FlashCardEntry\FlashCardEntry.html" />
+    <Content Include="App\FlashCards\FlashCardEntry\FlashCardEntryController.js" />
+    <Content Include="App\FlashCards\FlashCardEntry\FlashCardEntryModel.js" />
+    <Content Include="App\FlashCards\FlashCards.html" />
+    <Content Include="App\FlashCards\FlashCards.Module.js" />
+    <Content Include="App\FlashCards\FlashCardsContracts.js" />
+    <Content Include="App\FlashCards\FlashCardsController.js" />
+    <Content Include="App\FlashCards\FlashCardsService.js" />
+    <Content Include="App\FlashCards\FlashCardView\FlashCardView.html" />
+    <Content Include="App\FlashCards\FlashCardView\FlashCardViewController.js" />
+    <Content Include="App\FlashCards\FlashCardView\FlashCardViewModel.js" />
+    <Content Include="App\FlashCards\FlashCardView\PopOut\FlashCardPopOut.html" />
+    <Content Include="App\Home\Articles\FormsAuth\FormsAuth1.html" />
+    <Content Include="App\Home\Articles\FormsAuth\FormsAuth2.html" />
+    <Content Include="App\Home\Articles\FormsAuth\FormsAuth3.html" />
+    <Content Include="App\Home\Articles\FormsAuth\FormsAuth4.html" />
+    <Content Include="App\Home\Articles\FormsAuth\FormsAuth5.html" />
+    <Content Include="App\Home\Articles\Impersonate\Impersonate1.html" />
+    <Content Include="App\Home\Articles\Impersonate\Impersonate2.html" />
+    <Content Include="App\Home\Articles\Impersonate\Impersonate3.html" />
+    <Content Include="App\Home\Articles\PieChart\PieChart1.html" />
+    <Content Include="App\Home\Articles\PieChart\PieChart2.html" />
+    <Content Include="App\Home\Articles\PieChart\PieChart3.html" />
+    <Content Include="App\Home\Articles\PieChart\PieChart4.html" />
+    <Content Include="App\Home\Articles\PieChart\PieChart5.html" />
+    <Content Include="App\Directives\AuthFunction\AuthDirective.js" />
+    <Content Include="App\Directives\LoggedIn\LoggedInDirective.js" />
+    <Content Include="App\Directives\LoggedIn\LoggedOut.js" />
+    <Content Include="App\Directives\LoggedIn\UserNameItem.js" />
+    <Content Include="App\Directives\Modal\ModalDialog.html" />
+    <Content Include="App\Directives\Modal\ModalDirectiveNew.js" />
+    <Content Include="App\Directives\PieChart\PieChart.html" />
+    <Content Include="App\Directives\PieChart\PieChart.js" />
+    <Content Include="App\Directives\TitleCollapse\TitleCollapse.html" />
+    <Content Include="App\Directives\TitleCollapse\TitleCollapse.js" />
+    <Content Include="App\Directives\TreeMenu\TreeMenu.html" />
+    <Content Include="App\Directives\TreeMenu\TreeMenuDirective.js" />
+    <Content Include="App\Home\Articles\WinService\WinService1.html" />
+    <Content Include="App\Home\Articles\WinService\WinService2.html" />
+    <Content Include="App\Home\Articles\WinService\WinService3.html" />
+    <Content Include="App\Home\Articles\WinService\WinService4.html" />
+    <Content Include="App\Home\Articles\WinService\WinService5.html" />
+    <Content Include="App\Home\Home.html" />
+    <Content Include="App\Home\Home.Module.js" />
+    <Content Include="App\Home\HomeContracts.js" />
+    <Content Include="App\Home\HomeController.js" />
+    <Content Include="App\Home\HomeModel.js" />
+    <Content Include="App\Home\HomeService.js" />
+    <Content Include="App\Home\Articles\SQLWCF\SQLWCF1.html" />
+    <Content Include="App\Home\Articles\SQLWCF\SQLWCF2.html" />
+    <Content Include="App\Home\Articles\SQLWCF\SQLWCF3.html" />
+    <Content Include="App\Home\Articles\SQLWCF\SQLWCF4.html" />
+    <Content Include="App\About\About.html" />
+    <Content Include="App\About\About.Module.js" />
+    <Content Include="App\About\AboutContracts.js" />
+    <Content Include="App\About\AboutController.js" />
+    <Content Include="App\About\AboutService.js" />
+    <Content Include="App\MemberManagement\FeatureManagement\FeatureManagement.html" />
+    <Content Include="App\MemberManagement\FeatureManagement\FeatureManagementController.js" />
+    <Content Include="App\MemberManagement\FeatureManagement\FeatureManagementModel.js" />
+    <Content Include="App\MemberManagement\ManageController.js" />
+    <Content Include="App\MemberManagement\ManageService.js" />
+    <Content Include="App\MemberManagement\ManageUserContracts.js" />
+    <Content Include="App\MemberManagement\ManageUsersNew.html" />
+    <Content Include="App\MemberManagement\MemberEdit\MemberEdit.html" />
+    <Content Include="App\MemberManagement\MemberEdit\MemberEditController.js" />
+    <Content Include="App\MemberManagement\MemberEdit\MemberEditModel.js" />
+    <Content Include="App\MemberManagement\MemberManagement.Module.js" />
+    <Content Include="App\MemberManagement\PasswordManagement\PasswordManagement.html" />
+    <Content Include="App\MemberManagement\PasswordManagement\PasswordManagementController.js" />
+    <Content Include="App\MemberManagement\PasswordManagement\PasswordManagementModel.js" />
+    <Content Include="App\MemberManagement\Registration\RegisterUserModel.js" />
+    <Content Include="App\MemberManagement\Registration\Registration.html" />
+    <Content Include="App\MemberManagement\Registration\RegistrationController.js" />
+    <Content Include="App\MemberManagement\UserLogging\UserLogging.html" />
+    <Content Include="App\MemberManagement\UserLogging\UserLoggingController.js" />
+    <Content Include="App\MemberManagement\UserLogging\UserLoggingModel.js" />
+    <Content Include="App\Paylocity\Diagram.png" />
+    <Content Include="App\Paylocity\Paylocity.html" />
+    <Content Include="App\Paylocity\Paylocity.Module.js" />
+    <Content Include="App\Paylocity\PaylocityContracts.js" />
+    <Content Include="App\Paylocity\PaylocityController.js" />
+    <Content Include="App\Paylocity\PaylocityModel.js" />
+    <Content Include="App\Paylocity\PaylocityService.js" />
+    <Content Include="App\Services\AppState\AppState.js" />
+    <Content Include="App\Services\AppState\AppState.Module.js" />
+    <Content Include="App\Validation\CommonValidator.js" />
+    <Content Include="App\Validation\Validation.Module.js" />
+    <Content Include="Global.asax" />
+    <Content Include="GridTemp.html" />
+    <Content Include="images\16-beach-sea-photography.jpg" />
+    <Content Include="images\folder_icon&amp;16.png" />
+    <Content Include="images\hal.jpg" />
+    <Content Include="images\Jott.png" />
+    <Content Include="index.html" />
+    <Content Include="JSRefExample.html" />
+    <Content Include="LineChart.html" />
+    <Content Include="OttjohnAuth.svc" />
+    <Content Include="OttJS\CheckBoxList\CheckboxCollectionStyle.css" />
+    <Content Include="OttJS\CheckBoxList\ChkboxCollectionControl.js" />
+    <Content Include="OttJS\NewGrid\DatGrid.js" />
+    <Content Include="OttJS\Pager\PagerControl.js" />
+    <Content Include="OttJS\Pager\PagerControlStyle.css" />
+    <Content Include="scripts\angular-bootstrap-prettify.js" />
+    <Content Include="scripts\angular-bootstrap-prettify.min.js" />
+    <Content Include="scripts\angular-bootstrap.js" />
+    <Content Include="scripts\angular-bootstrap.min.js" />
+    <Content Include="scripts\angular-cookies.js" />
+    <Content Include="scripts\angular-cookies.min.js" />
+    <Content Include="scripts\angular-loader.js" />
+    <Content Include="scripts\angular-loader.min.js" />
+    <Content Include="scripts\angular-mocks.js" />
+    <Content Include="scripts\angular-resource.js" />
+    <Content Include="scripts\angular-resource.min.js" />
+    <Content Include="scripts\angular-route.min.js" />
+    <Content Include="scripts\angular-sanitize.js" />
+    <Content Include="scripts\angular-sanitize.min.js" />
+    <Content Include="scripts\angular-scenario.js" />
+    <Content Include="scripts\angular-ui-router.min.js" />
+    <Content Include="scripts\angular.js" />
+    <Content Include="scripts\angular.min.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\jquery-1.7.2.min.js" />
+    <Content Include="App\Home\routeCollection.html" />
+    <None Include="scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="scripts\jquery-1.9.1.js" />
+    <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\jquery-ui-1.10.1.custom.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="scripts\ng-grid-2.0.11.min.js" />
+    <Content Include="scripts\ng-grid.js" />
+    <Content Include="scripts\ng-grid.min.js" />
+    <Content Include="scripts\raphael.js" />
+    <None Include="Service References\OttjohnAuthentication\OttjohnAuth.disco" />
+    <None Include="Service References\OttjohnAuthentication\configuration91.svcinfo" />
+    <None Include="Service References\OttjohnAuthentication\configuration.svcinfo" />
+    <None Include="Service References\OttjohnAuthentication\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <None Include="Service References\OttjohnAuthentication\AuthenticationService.wsdl" />
+    <None Include="Service References\OttjohnAuthentication\OttjohnAuth.wsdl" />
+    <None Include="Service References\OttjohnAuthentication\OttjohnAuth.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OttjohnAuthentication\OttjohnAuth1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App\Examples\GridControl\" />
+    <Folder Include="App\Examples\TreeControl\" />
+    <Folder Include="Models\" />
+    <Folder Include="Styles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="scripts\jquery-1.9.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerContracts\MaintContracts.csproj">
+      <Project>{05e1b22c-a3ed-46b9-b65e-2f820cee933b}</Project>
+      <Name>MaintContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomerUtility\MemberUtility.csproj">
+      <Project>{7350cb44-9ba0-4c7f-9c88-3c56b8e7dc66}</Project>
+      <Name>MemberUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tasks\Tasks.csproj">
+      <Project>{dd610d02-5bec-4017-9bb5-0a90b959ab7e}</Project>
+      <Name>Tasks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\UtilityPot.csproj">
+      <Project>{cd5dcd75-3af6-435f-9ea4-0238c3e18f63}</Project>
+      <Name>UtilityPot</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\OttjohnAuthentication\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54195</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:54195/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

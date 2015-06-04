@@ -1,0 +1,20 @@
+﻿Sometimes, you've done something for so long that it just becomes ingrained in you, and you ignore the procedure and blindly go about your 
+business without thinking about the possible risk associated with what you're doing. One of the things that I've done for quite some time 
+is you the sys admin password for SQL Server as my credential for my connection string when hitting a database. Actualy, lot's of people do 
+this. There are two things wrong with this:
+<p />
+<ol>
+    <li>You are using an admin account on SQL Server on behalf of a client you really do not want to have admin privileges</li>
+    <li>You are also more than likely littering your config file with the credentials of said sa account, which you probably do not want your devs to have</li>
+</ol>
+<p />
+Okay, so you got lazy. But what should you do? Well, you need to create an account on your domain (or the machine) that has reduced privileges 
+on your SQL Server but still have enough privileges to run what needs to be run to accomplish the tasks you need to accomplish. Beyond the scope of 
+this document is building that SQL Server account. Get your database admin to do it, or wait for a follow-up article on this. In scope is the use 
+of the account so that we may use a trusted connection with our connection strings. 
+<p />
+Now, if you do not have a domain or computer user built into SQL Server with reduced privileges, fear not. Just use your account. Impersonating a 
+user in a web application is half the battle. Once this is accomplished, all that is left is to whittle down the account in SQL Server so that it 
+is no longer all-capable and knowing.
+<p />
+Ready?

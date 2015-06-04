@@ -1,0 +1,76 @@
+D:\AngularLearn\AngularAJAX\CustomerUtility\bin\Debug\CustomerUtility.dll
+D:\AngularLearn\AngularAJAX\CustomerUtility\bin\Debug\CustomerUtility.pdb
+D:\AngularLearn\AngularAJAX\CustomerUtility\bin\Debug\MemberData.dll
+D:\AngularLearn\AngularAJAX\CustomerUtility\bin\Debug\WCRIUtility.dll
+D:\AngularLearn\AngularAJAX\CustomerUtility\bin\Debug\MemberData.pdb
+D:\AngularLearn\AngularAJAX\CustomerUtility\bin\Debug\WCRIUtility.pdb
+D:\AngularLearn\AngularAJAX\CustomerUtility\obj\Debug\MemberUtility.csprojResolveAssemblyReference.cache
+D:\AngularLearn\AngularAJAX\CustomerUtility\obj\Debug\CustomerUtility.dll
+D:\AngularLearn\AngularAJAX\CustomerUtility\obj\Debug\CustomerUtility.pdb
+D:\AngularLearn\AngularAJAX\CustomerUtility\bin\Debug\AppContracts.dll
+D:\AngularLearn\AngularAJAX\CustomerUtility\bin\Debug\AppContracts.pdb
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\bin\Debug\CustomerUtility.dll
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\bin\Debug\CustomerUtility.pdb
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\bin\Debug\MaintContracts.dll
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\bin\Debug\MemberData.dll
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\bin\Debug\UtilityPot.dll
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\bin\Debug\log4net.dll
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\bin\Debug\MaintContracts.pdb
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\bin\Debug\MemberData.pdb
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\bin\Debug\UtilityPot.pdb
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\obj\Debug\MemberUtility.csprojResolveAssemblyReference.cache
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\obj\Debug\CustomerUtility.dll
+D:\MaintenanceMove\StoreMaintenance\CustomerUtility\obj\Debug\CustomerUtility.pdb
+D:\StoreMaintenance\CustomerUtility\bin\Debug\CustomerUtility.dll
+D:\StoreMaintenance\CustomerUtility\bin\Debug\CustomerUtility.pdb
+D:\StoreMaintenance\CustomerUtility\bin\Debug\MaintContracts.dll
+D:\StoreMaintenance\CustomerUtility\bin\Debug\MemberData.dll
+D:\StoreMaintenance\CustomerUtility\bin\Debug\UtilityPot.dll
+D:\StoreMaintenance\CustomerUtility\bin\Debug\log4net.dll
+D:\StoreMaintenance\CustomerUtility\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenance\CustomerUtility\bin\Debug\MemberData.pdb
+D:\StoreMaintenance\CustomerUtility\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenance\CustomerUtility\obj\Debug\MemberUtility.csprojResolveAssemblyReference.cache
+D:\StoreMaintenance\CustomerUtility\obj\Debug\CustomerUtility.dll
+D:\StoreMaintenance\CustomerUtility\obj\Debug\CustomerUtility.pdb
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\CustomerUtility.dll
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\CustomerUtility.pdb
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\MaintContracts.dll
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\MemberData.dll
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\UtilityPot.dll
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\log4net.dll
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\MemberData.pdb
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenanceRepository\CustomerUtility\obj\Debug\MemberUtility.csprojResolveAssemblyReference.cache
+D:\StoreMaintenanceRepository\CustomerUtility\obj\Debug\CustomerUtility.dll
+D:\StoreMaintenanceRepository\CustomerUtility\obj\Debug\CustomerUtility.pdb
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\Reports.dll
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\Reports.pdb
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\ReportsData.dll
+D:\StoreMaintenanceRepository\CustomerUtility\bin\Debug\ReportsData.pdb
+D:\Other Development\OttJohn\CustomerUtility\bin\Debug\CustomerUtility.dll
+D:\Other Development\OttJohn\CustomerUtility\bin\Debug\CustomerUtility.pdb
+D:\Other Development\OttJohn\CustomerUtility\bin\Debug\MaintContracts.dll
+D:\Other Development\OttJohn\CustomerUtility\bin\Debug\MemberData.dll
+D:\Other Development\OttJohn\CustomerUtility\bin\Debug\UtilityPot.dll
+D:\Other Development\OttJohn\CustomerUtility\bin\Debug\log4net.dll
+D:\Other Development\OttJohn\CustomerUtility\bin\Debug\MemberData.pdb
+D:\Other Development\OttJohn\CustomerUtility\bin\Debug\UtilityPot.pdb
+D:\Other Development\OttJohn\CustomerUtility\bin\Debug\MaintContracts.pdb
+D:\Other Development\OttJohn\CustomerUtility\obj\Debug\MemberUtility.csprojResolveAssemblyReference.cache
+D:\Other Development\OttJohn\CustomerUtility\obj\Debug\CustomerUtility.dll
+D:\Other Development\OttJohn\CustomerUtility\obj\Debug\CustomerUtility.pdb
+G:\Other Development\OttJohn\CustomerUtility\bin\Debug\CustomerUtility.dll
+G:\Other Development\OttJohn\CustomerUtility\bin\Debug\CustomerUtility.pdb
+G:\Other Development\OttJohn\CustomerUtility\bin\Debug\MaintContracts.dll
+G:\Other Development\OttJohn\CustomerUtility\bin\Debug\MemberData.dll
+G:\Other Development\OttJohn\CustomerUtility\bin\Debug\UtilityPot.dll
+G:\Other Development\OttJohn\CustomerUtility\bin\Debug\log4net.dll
+G:\Other Development\OttJohn\CustomerUtility\bin\Debug\MaintContracts.pdb
+G:\Other Development\OttJohn\CustomerUtility\bin\Debug\MemberData.pdb
+G:\Other Development\OttJohn\CustomerUtility\bin\Debug\UtilityPot.pdb
+G:\Other Development\OttJohn\CustomerUtility\obj\Debug\MemberUtility.csprojResolveAssemblyReference.cache
+G:\Other Development\OttJohn\CustomerUtility\obj\Debug\CustomerUtility.dll
+G:\Other Development\OttJohn\CustomerUtility\obj\Debug\CustomerUtility.pdb
+G:\Other Development\OttJohn\CustomerUtility\bin\Debug\OpenPop.dll

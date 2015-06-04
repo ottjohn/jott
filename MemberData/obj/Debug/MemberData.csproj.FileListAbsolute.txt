@@ -1,0 +1,74 @@
+D:\AngularLearn\AngularAJAX\MemberData\obj\Debug\MemberData.csprojResolveAssemblyReference.cache
+D:\AngularLearn\AngularAJAX\MemberData\bin\Debug\MemberData.dll.config
+D:\AngularLearn\AngularAJAX\MemberData\bin\Debug\MemberData.dll
+D:\AngularLearn\AngularAJAX\MemberData\bin\Debug\MemberData.pdb
+D:\AngularLearn\AngularAJAX\MemberData\obj\Debug\MemberData.dll
+D:\AngularLearn\AngularAJAX\MemberData\obj\Debug\MemberData.pdb
+C:\AngularLearn\AngularAJAX\MemberData\bin\Debug\MemberData.dll.config
+C:\AngularLearn\AngularAJAX\MemberData\bin\Debug\MemberData.dll
+C:\AngularLearn\AngularAJAX\MemberData\bin\Debug\MemberData.pdb
+C:\AngularLearn\AngularAJAX\MemberData\bin\Debug\CustomerContracts.dll
+C:\AngularLearn\AngularAJAX\MemberData\bin\Debug\CustomerContracts.pdb
+C:\AngularLearn\AngularAJAX\MemberData\obj\Debug\MemberData.csprojResolveAssemblyReference.cache
+C:\AngularLearn\AngularAJAX\MemberData\obj\Debug\MemberData.dll
+C:\AngularLearn\AngularAJAX\MemberData\obj\Debug\MemberData.pdb
+D:\AngularLearn\AngularAJAX\MemberData\bin\Debug\WCRIUtility.dll
+D:\AngularLearn\AngularAJAX\MemberData\bin\Debug\WCRIUtility.pdb
+D:\AngularLearn\AngularAJAX\MemberData\bin\Debug\AppContracts.dll
+D:\AngularLearn\AngularAJAX\MemberData\bin\Debug\AppContracts.pdb
+D:\MaintenanceMove\StoreMaintenance\MemberData\bin\Debug\MemberData.dll.config
+D:\MaintenanceMove\StoreMaintenance\MemberData\bin\Debug\MemberData.dll
+D:\MaintenanceMove\StoreMaintenance\MemberData\bin\Debug\MemberData.pdb
+D:\MaintenanceMove\StoreMaintenance\MemberData\bin\Debug\MaintContracts.dll
+D:\MaintenanceMove\StoreMaintenance\MemberData\bin\Debug\UtilityPot.dll
+D:\MaintenanceMove\StoreMaintenance\MemberData\bin\Debug\log4net.dll
+D:\MaintenanceMove\StoreMaintenance\MemberData\bin\Debug\MaintContracts.pdb
+D:\MaintenanceMove\StoreMaintenance\MemberData\bin\Debug\UtilityPot.pdb
+D:\MaintenanceMove\StoreMaintenance\MemberData\obj\Debug\MemberData.csprojResolveAssemblyReference.cache
+D:\MaintenanceMove\StoreMaintenance\MemberData\obj\Debug\MemberData.dll
+D:\MaintenanceMove\StoreMaintenance\MemberData\obj\Debug\MemberData.pdb
+D:\StoreMaintenance\MemberData\bin\Debug\MemberData.dll.config
+D:\StoreMaintenance\MemberData\bin\Debug\MemberData.dll
+D:\StoreMaintenance\MemberData\bin\Debug\MemberData.pdb
+D:\StoreMaintenance\MemberData\bin\Debug\MaintContracts.dll
+D:\StoreMaintenance\MemberData\bin\Debug\UtilityPot.dll
+D:\StoreMaintenance\MemberData\bin\Debug\log4net.dll
+D:\StoreMaintenance\MemberData\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenance\MemberData\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenance\MemberData\obj\Debug\MemberData.csprojResolveAssemblyReference.cache
+D:\StoreMaintenance\MemberData\obj\Debug\MemberData.dll
+D:\StoreMaintenance\MemberData\obj\Debug\MemberData.pdb
+D:\StoreMaintenanceRepository\MemberData\bin\Debug\MemberData.dll.config
+D:\StoreMaintenanceRepository\MemberData\bin\Debug\MemberData.dll
+D:\StoreMaintenanceRepository\MemberData\bin\Debug\MemberData.pdb
+D:\StoreMaintenanceRepository\MemberData\bin\Debug\MaintContracts.dll
+D:\StoreMaintenanceRepository\MemberData\bin\Debug\UtilityPot.dll
+D:\StoreMaintenanceRepository\MemberData\bin\Debug\log4net.dll
+D:\StoreMaintenanceRepository\MemberData\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenanceRepository\MemberData\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenanceRepository\MemberData\obj\Debug\MemberData.csprojResolveAssemblyReference.cache
+D:\StoreMaintenanceRepository\MemberData\obj\Debug\MemberData.dll
+D:\StoreMaintenanceRepository\MemberData\obj\Debug\MemberData.pdb
+D:\Other Development\OttJohn\MemberData\bin\Debug\MemberData.dll.config
+D:\Other Development\OttJohn\MemberData\bin\Debug\MemberData.dll
+D:\Other Development\OttJohn\MemberData\bin\Debug\MemberData.pdb
+D:\Other Development\OttJohn\MemberData\bin\Debug\MaintContracts.dll
+D:\Other Development\OttJohn\MemberData\bin\Debug\UtilityPot.dll
+D:\Other Development\OttJohn\MemberData\bin\Debug\log4net.dll
+D:\Other Development\OttJohn\MemberData\bin\Debug\UtilityPot.pdb
+D:\Other Development\OttJohn\MemberData\bin\Debug\MaintContracts.pdb
+D:\Other Development\OttJohn\MemberData\obj\Debug\MemberData.csprojResolveAssemblyReference.cache
+D:\Other Development\OttJohn\MemberData\obj\Debug\MemberData.dll
+D:\Other Development\OttJohn\MemberData\obj\Debug\MemberData.pdb
+G:\Other Development\OttJohn\MemberData\bin\Debug\MemberData.dll.config
+G:\Other Development\OttJohn\MemberData\bin\Debug\MemberData.dll
+G:\Other Development\OttJohn\MemberData\bin\Debug\MemberData.pdb
+G:\Other Development\OttJohn\MemberData\bin\Debug\MaintContracts.dll
+G:\Other Development\OttJohn\MemberData\bin\Debug\UtilityPot.dll
+G:\Other Development\OttJohn\MemberData\bin\Debug\log4net.dll
+G:\Other Development\OttJohn\MemberData\bin\Debug\MaintContracts.pdb
+G:\Other Development\OttJohn\MemberData\bin\Debug\UtilityPot.pdb
+G:\Other Development\OttJohn\MemberData\obj\Debug\MemberData.csprojResolveAssemblyReference.cache
+G:\Other Development\OttJohn\MemberData\obj\Debug\MemberData.dll
+G:\Other Development\OttJohn\MemberData\obj\Debug\MemberData.pdb
+G:\Other Development\OttJohn\MemberData\bin\Debug\OpenPop.dll

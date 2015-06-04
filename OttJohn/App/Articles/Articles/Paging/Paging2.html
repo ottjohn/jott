@@ -1,0 +1,42 @@
+﻿We are going to do a little bit more than just page here: we are also going to sort and control the 
+direction of the sort. We will, then, need to keep track of four variables:
+<p />
+<ul>
+    <li>
+        <b>CurrentPage</b>: you will have to keep track of this on your client. It can be a variable in 
+        your controller (if you use MVC), or it can simple be cached in JavaScript on your ASP.NET page.
+        <p />
+        When you manage this value, make sure that you check for boundaries. When I implement this sort 
+        of thing, I typically have four buttons: <i>First</i>, <i>Prev</i>, <i>Next</i>, <i>Last</i>. The 
+        math here is simple, so I am not going to bore you with it.
+        <p />
+    </li>
+    <li>
+        <b>PageCount</b>: the variable is going to depend on a record count. You will need to manage this 
+        as well. If you are not filtering your data, then you can simply get the record count once, construct 
+        your page count, and then cache your page count with your current page variable.
+        <p />
+        To get the page count, you need to figure out what you page size is going to be. You can make this configurable 
+        if you like, or you can store it somewhere, like a config file, and use it as a constant. Again, this 
+        is simple math (although a little more difficult than the previous calculations), so I will provide 
+        a formula for this:
+        <p />
+        PageCount = Math.Ceiling((double)RecordCount/PageSize);
+        <p />
+    </li>
+    <li>
+        <b>SortField</b>: you will have to cache this variable along with the others. I am not going to cover 
+        how this will be implemented (although it will be illustrated in the example), but I will tell you that 
+        you should make your column heading clickable. The first click sorts in ascending order. The second click 
+        will sort on the same field but in descending order. Click it again, and you are back to ascending order. 
+        Got it?
+        <p />
+    </li>
+    <li>
+        <i>SortDirection</i>: cached and completely dependent on the sort field column and the number of consecutive 
+        clicks it's received. The values for this should be <i>asc</i> and <i>desc</i>.
+    </li>
+</ul>
+<p />
+Now that we've covered a strategy for keeping track of the important, related variables on the client, let's look at the 
+tsql.

@@ -1,0 +1,62 @@
+﻿Since I'm the only programmer in the company at which I am currently employed, I sometimes have to go with pre-built or
+mostly-built solutions when implementing something. Of course, anyone who has used pre-built or mostly-built solutions 
+knows that they are far from that. When it came time to choose a member management framework for my applications, I went 
+with the Membership provider. Not only does it do a fine job for small businesses, it is multi-tenant, and easily 
+extendable. I've found that the membership provider and forms authentication does a fine job for me.
+<p />
+My registration process is more like a flow than anything else. To keep garbage out of the backends that I create, all 
+registrants must be approved and processed before giving them rights to any part of the systems I build. Therefore, when 
+registering, all of my applications begin with a screen that looks something like this:
+<p />
+<img src="App/Examples/Membership/Registration.png" style="display: block;" />
+<p />
+This is a very simplified version of my registration process, as these are the only fields I feel I need for this site. 
+The screen here is used to collect registration information required by the membership provider and three pieces of 
+extended information that I need: first name, last name, and email address. Once the user has completed filling out the 
+form fields, his or her part of the registration process is complete. Upon clicking the Submit button, I send the following 
+email:
+<p />
+<img src="App/Examples/Membership/RegEmail.png" style="display: block;" />
+<p />
+Every modification to a user's membership is accompanied by a confirmation email. That would include actions such as 
+retrieving a password, changing a passoword, or changing an email. Now that the user is registered, I have to go in 
+for the approval process. To do this, I have to login, then click the membership menu item at the top of the screen, 
+and then select the Members item on the screen that comes up:
+<p />
+<img src="App/Examples/Membership/NewMemberList.png" style="display: block;" />
+<p />
+I've basically found that when I'm looking for some basic JavaScript tools that some are overbuilt and cost money and 
+some simply are not satisfactory. I decided, therefore, to make my own. You can adjust all colors on this grid, you can 
+elect to not include the pager, you don't have to have scrolling on, you can alias the column headings, exclude certain 
+columns, and rearrange the columns by dragging and dropping them if you like:
+<p />
+<img src="App/Examples/Membership/GridDragDrop.png" style="display: block;" />
+<p />
+That's as much of a plug I'm going to give that tool in this venue. It was fun to build. Anyway, to move along in the 
+approval process, I double click the user name I want to work with, and the following screen magically shows up:
+<p />
+<img src="App/Examples/Membership/MemberConfig.png" style="display: block;" />
+<p />
+Here, we get to the member configuration screen. The panel on the left is a feature tree that I created, which is employed 
+to give or deny users specific access to certainl parts of my site. The top right is a dropdown menu that contains the 
+applications that the overall site can be split up into and managed. For now, there is only Membership. At some later date 
+I may decide to build a different component that can be managed under the umbrella of this SPA. The checkbox below needs 
+to be checked if the member is to have access to the site at all (it can as well be unchecked to suspend membership 
+privileges). The groups is assocated with the feature tree, as you will see in a moment. Finally, there are no roles 
+defined for my site. I'm not sure if I will have any, as I am not certainly they are necessary for such a small application. 
+In my professional sites, roles may or may not show up here for the same reasons. Let's say, then, we want to approve 
+Tom for the site, and we want to select a group for him to be a part of:
+<p />
+<img src="App/Examples/Membership/MemberConfig2.png" style="display: block;" />
+<p />
+As you can see, the feature tree has opened up and the features that Tom can be a part of are automatically selected. If 
+I want to personalize Tom's permissions, I can check any number of feature boxes (or uncheck them), the only difference 
+when saved being that the profile will not be assoicated with a predifined group. 
+<p />
+A short note about the feature tree: this is another little app that I built because I could not find anything really 
+suitable online. Like the grid, it works with a JSON object and gets its values from a single, self-referencing table 
+in SQL Server. The depth of the feature levels is indefinite, and the tool itself is built on the client using 
+recursive JavaScript. As with the grid, it is as well loosely tucked into a custom directive or it can be used outsite 
+of one as well.
+<p />
+Once I am done configuring the user, I click the Assign Profile and the user now has access to the site.

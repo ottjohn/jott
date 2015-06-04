@@ -1,0 +1,69 @@
+﻿<div data-ng-controller="HomeController as Home" id="HomeContainer" class="ContentFull">
+    <div class ="ContentBackground MessageArea ContentFont" style="font-weight: bold;" id="MessageArea">{{Home.Message}}</div>
+    <div style="padding: 10px;">
+        <table cellpadding="0" cellspacing="0" style="width: 100%;">
+            <tr>
+                <td style="width: 50px; background: gray;">
+                    &nbsp;
+                </td>
+                <td style="background: white; padding: 10px; height: 100px; vertical-align: top; opacity: initial;">
+                    <div class="ContentFont" style="font-weight: bold; font-size: 16pt;">
+                        A snapshot of me<p />
+                    </div>
+                    <div class="ContentReadFont">
+                        <canvas linechart id='LineCanvasOne' height='300' width='600' style='width: 600px; border: 1px solid black; background: white; float: right; margin-left: 20px; padding-bottom: 10px;' linechartcontract="Home.LineChartContract" callback="Home.LineChartCallBack"></canvas>
+                        <span style="padding-right: 10px;">
+                            I have split my time over the past twenty or so years between teaching and professional programming. For the past eight years, 
+                            I have focused mainly on programming, centered on Single Page Application Web Development. While I can code on any layer, 
+                            I'm happiest when I'm spreading myself over the full stack. Currently, I'm working at a very small shop where I'm building 
+                            scalable apps that manage business processes, including member management, reporting, and business asset management.
+                            <p />
+                            Presently, my solutions are built around the following languages and technologies: SQL Server 2008 R2, SQL Reporting Services, MVC, AngularJS, 
+                            JavaScript, JQuery, JSON, Web API, WCF for some external callers and internal applications, TSQL, LinqToSQL, Stored Procedures, MS Unit Testing, 
+                            Membership Services, Forms Authentication, IIS,  and, of course, C#, some VB.NET, and some VBScript. Occassionally, I still dabble in the postback 
+                            world, I sometimes also find myself working on Windows Forms, MS Access code, and Windows Services. 
+                            <p />
+                            I like working in small, fairly informal shops. I think it's because it gives me an opportunity to wear a lot of hats and the ability to 
+                            exercise a lot of skills. Since I started programming, I have been a part of three start-ups and two shops that had a start-up feel. I think 
+                            that smaller companies offer interesting challenges that routinely require me to think outside of the box (sometimes way outside). Life isn't 
+                            all about blindly building out adapters for third-party services and translating what you get into a native format so you can run with it, so to speak. 
+                            A lot of it is, but I actually find myself enjoying (even though I complain about it) creating off-the-wall solutions to adapt to providers who apparently 
+                            have no idea what a web service is, much less an API. It can be frustrating for sure, but it's also fun!
+                            <p />
+                            Besides programming, I absolutely love to teach. It's one of those careers in which you can have unequivocol impact on people and actually 
+                            get paid too. In the past I have taught Mathematics, Writing, and Programming courses. The highlight of my teaching career came 
+                            when I developed a two-year web programming curriculum and actually got a chance to teach it at a community college. While the venue for the 
+                            curriculum might not have been the best (Sioux City, Iowa), it was a success for a little more than three years. It's nice to know 
+                            that I have former students out there who are making just as much as I am on just two years of college education delivered by a program I developed! 
+                            Although I don't teach now, when time permits, I like to find adjunct positions at local community colleges so I can keep those skills 
+                            fresh and continue to have impact on people. 
+                            <p/>
+                            A small bit of text about this site: 
+                            <p/>
+                            <ul>
+                                <li>
+                                    If you want to leave any comments regarding any of my articles, you can do so by registering and logging in. Otherwise, 
+                                    they are simply there for you to read.
+                                </li>
+                                <li>
+                                    I understand there are some errors on this site. I am working to get those taken care of. There's only so much time during the day.
+                                </li>
+                                <li>
+                                    Some things might appear incomplete. That's because they are. For instance, the paging in the Article section does not work yet.
+                                </li>
+                                <li>
+                                    I would like to ad a section that demonstrates some of the tools I have built. It would flesh out this site as a vehicle for a 
+                                    portfolio. This might take some time.
+                                </li>
+                                <li>
+                                    I would also like to put in a section in which developers can add interview questions categorized by most of the same categories 
+                                    under my Articles section. This, too, will take some time.
+                                </li>
+                            </ul>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

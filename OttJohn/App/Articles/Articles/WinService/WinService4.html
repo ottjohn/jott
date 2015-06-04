@@ -1,0 +1,75 @@
+﻿Now that we can read our configuration file and log stuff, we can actually think about doing something with the service. Let's 
+build in a Timer and configure it to fire. To do this, we'll need to reference System.Timers and then create a private, global timer 
+object. Call it whatever you like. I called mine MemberReconcileTimer. Next we can configure our time by checking the 
+configuration file for the firing interval we want. Last, we need to name the handler that will be executed each time the timer is fired. 
+I cleverly called this method StartTimer: 
+<p />
+<pre>
+    private void StartTimer()
+    {
+        int IntervalInMinutes = Convert.ToInt32(GetConfigValue("CheckInterval"));
+        MemberReconcileTimer = new Timer();
+        MemberReconcileTimer.Interval = IntervalInMinutes * 60 * 1000;
+        MemberReconcileTimer.Elapsed += new 
+            ElapsedEventHandler(OnMemberReconcileExecute);
+        MemberReconcileTimer.Enabled = true;
+    }
+</pre>
+<p />
+The code here should be obvious: I snag the interval at which I want the timer to fire, which I have in minutes, I instantiate the timer, I set 
+its interval, I add an event handler of my definition to execute whatever needs to happen whenever it fires, and then I enable it. Simple 
+as that. Now let's take a look at the handler:
+<p />
+<pre>
+    private void OnMemberReconcileExecute(object source, ElapsedEventArgs e)
+    {
+        DateTime CurrentDateTime = DateTime.Now;
+        int CurrentHour = CurrentDateTime.Hour;
+        if (CurrentHour == AlwaysSendListAt)
+        {
+            string RetMessage = "";
+            try
+            {
+                MaintService.MaintenanceServiceClient Service = new MaintService.MaintenanceServiceClient();
+                RetMessage = Service.MembershipMerge();
+                Service.Close();
+            }
+            catch (Exception ex)
+            {
+                eventLog1.WriteEntry(ex.Message);
+            }
+        }
+    }
+</pre>
+<p />
+Since my needs are very simple, all I have to do is compare the current hour with the variable AlwaysSendListAt, which I have tucked in 
+my configuration file and which is now a global variable. If they are the same, then I call a web service that will happily do my bidding. 
+As for the service itself, covering that is beyond the scope of this document. Afterall, you could be doing anything here, including calling 
+your own libraries or just tucking in code within the service itself to do some executing. The only real coding left for us to consider 
+are two basic methods:
+<p />
+<pre>
+    protected override void OnStop()
+    {
+        if (EventLogActive) eventLog1.WriteEntry("Member reconciliation component offline");
+    }
+</pre>
+<p />
+Here, we simply log an event to record that the component has been stopped. As for the OnStart method, we have the following:
+<p />
+<pre>
+    protected override void OnStart(string[] args)
+    {
+        SetInterval = Convert.ToDouble(GetConfigValue("ThreshHold"));
+        AlwaysSendListAt = Convert.ToInt32(GetConfigValue("AlwaysSendListAt"));
+        CheckForLogger();
+        StartTimer();
+        if (EventLogActive) eventLog1.WriteEntry("Member reconciliation component online");
+    }
+</pre>
+<p />
+Here, you can see that all we are doing is populating global variables, calling the two methods we defined earlier, and recording in the event 
+log that we have started our processing.
+<p />
+Probably think we're done, right? Probably think we can just fire this puppy up and go to town, huh? Nope. Not yet. We have to install the service;
+then we can have a little party. 

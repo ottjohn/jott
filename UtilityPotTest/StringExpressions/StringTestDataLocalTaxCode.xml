@@ -1,0 +1,17 @@
+﻿<Rows>
+  <row>
+    <TestString>CO123</TestString>
+    <TestKey>LocalTaxRateCode</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+  <row>
+    <TestString>C</TestString>
+    <TestKey>LocalTaxRateCode</TestKey>
+    <TestReturnValue>Tax codes must be between two and six characters.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>COWE3433</TestString>
+    <TestKey>LocalTaxRateCode</TestKey>
+    <TestReturnValue>Tax codes must be between two and six characters.</TestReturnValue>
+  </row>
+</Rows>

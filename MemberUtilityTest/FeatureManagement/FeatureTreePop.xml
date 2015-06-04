@@ -1,0 +1,14 @@
+﻿<Rows>
+  <row>
+    <ExampleType>0</ExampleType>
+    <ReturnValue>false</ReturnValue>
+  </row>
+  <row>
+    <ExampleType>1</ExampleType>
+    <ReturnValue>false</ReturnValue>
+  </row>
+  <row>
+    <ExampleType>2</ExampleType>
+    <ReturnValue>false</ReturnValue>
+  </row>
+</Rows>

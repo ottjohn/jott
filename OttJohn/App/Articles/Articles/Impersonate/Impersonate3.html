@@ -1,0 +1,47 @@
+﻿Now that we have IIS set up to use a particular user account, and now that we have added and configured that account to some extent 
+in SQL Server, we are ready to move forward. The first thing we need to do is change our connection string:
+<p />
+<pre>
+    &lt;add name="ConnectionStringName" connectionstring="Data Source=[Server Name];Initial Catalog=[Database Name];
+         Trusted_Connection=true" providername="System.Data.SqlClient" /&gt;
+</pre>
+<p />
+Also, you should now have an entry under sytem.web that looks like this:
+<p />
+<pre>
+    &lt;identity impersonate="true" /&gt;
+</pre>
+<p />
+Compile your application and test it out. This was not so hard, was it? Now all you have to do is keep track of all of the users 
+you're using for this between your dev, test, and production environments. Before we let this go, though, a few notes:
+<p />
+<ol>
+    <li>
+        The data source in my example is simply dev01. This is because my SQL Server is on the same domain as IIS. In this case, 
+        the system is using something called named pipes to get around. 
+        <p />
+    </li>
+    <li>
+        If your SQL Server is on a different domain, then you need to change the data source to an IP followed by the applicable 
+        port number. Most SQL Servers run off from port 1433, so a typical entry here would look like XXX.XXX.XXX.XXX, 1433.
+        <p />
+        <ul>
+            <li>
+                If you have to use an IP in your connection string, then there’s one other thing that you need to do: you need to make 
+                certain that the TCP/IP protocol is enabled. You can do this by opening up SSCM and going through the Client Protocols 
+                nodes to ensure that this feature is enabled (see below). 
+                <p />
+            </li>
+        </ul>
+    </li>
+    <li>
+        If your SQL Server is on a different domain, then, obviously, you cannot use a single domain user to manage both IIS and the SQL Server. 
+        This is okay. Simply ensure that the user name and password for the user is the same on both machines and you should have no problems. 
+    </li>
+</ol>
+<p />
+Ensuring TCP/IP is enabled in SQL Server. You need to open up SQL Server Configuration Manager. Once there expand all of the nodes to find the 
+protocol feature. To enable a certain protocol, simply double click it. That will present a dialog to turn the feature on or off.
+<p />
+<img src="App/Articles/Articles/Impersonate/SSCM.png" style="display: block;" />
+<p />

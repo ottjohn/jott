@@ -1,0 +1,11 @@
+﻿<div data-ng-controller="UserLoggingController as UserLogger">
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <td colspan="2" style="font-size: 14pt;" loggedout>
+                If you have not registered with this site, you cannot login. To register with this site, please close the dialog and click the 
+                <i>Register</i> link in the upper right-hand portion of the screen.
+            </td>
+        </tr>
+    </table>
+    <modaldialog id="modalDialogComp" onmodalresultready="UserLogger.MessageFromDirective()" modalattribute="UserLogger.ModalAttribute" />
+</div>

@@ -1,0 +1,18 @@
+﻿<Rows>
+  <row>
+    <EffectiveDate>08/29/2014</EffectiveDate>
+    <ReturnValue>true</ReturnValue>
+  </row>
+  <row>
+    <EffectiveDate>08/A/2014</EffectiveDate>
+    <ReturnValue>false</ReturnValue>
+  </row>
+  <row>
+    <EffectiveDate></EffectiveDate>
+    <ReturnValue>false</ReturnValue>
+  </row>
+  <row>
+    <EffectiveDate>Hello</EffectiveDate>
+    <ReturnValue>false</ReturnValue>
+  </row>
+</Rows>

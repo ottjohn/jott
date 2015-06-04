@@ -1,0 +1,79 @@
+﻿<div data-ng-controller="ExamplesController as Examples" id="ExamplesContainer">
+    <table id="ReportingSubContainer" cellpadding="0" cellspacing="0" border="0" class="SolidBorder BorderColor" style="height: 100%; width: 100%; display: ;">
+        <tr>
+            <td class="ContentFull" style="vertical-align: top;">
+                <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                    <tr>
+                        <!--##############################################################################################-->
+                        <!--Title                                                                                         -->
+                        <!--##############################################################################################-->
+                        <td colspan=" 2" class="SubTitleBack TitleMenuFore SubAppTitleMetric">
+                            Examples
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--##############################################################################################-->
+                        <!--LHS Menu                                                                                      -->
+                        <!--##############################################################################################-->
+                        <td class="SubTitleBack" style="vertical-align: top; width: 125px;">
+                            <table cellpadding="0" cellspacing="0" border="0" class="ContentFull">
+                                <tr>
+                                    <td>
+                                        <a tag="DailySummary" ng-click="Examples.SelectLHSItem($event);" auth id="ExamplesDailySummary" ui-sref="Examples.DailySummary" class="SubTitleBack TitleMenuFore AApp" style="display: ;">Daily Summary</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a tag="DropDeposit" ng-click="Examples.SelectLHSItem($event);" auth id="ExamplesDropDeposit" ui-sref="Examples.DropDeposit" class="SubTitleBack TitleMenuFore AApp" style="display: ;">Drop Deposit</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a tag="StateLocalTax" ng-click="Examples.SelectLHSItem($event);" auth id="ExamplesStateLocalTax" ui-sref="Examples.StateLocalTax" class="SubTitleBack TitleMenuFore AApp" style="display: ;">Taxes</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a tag="Membership" ng-click="Examples.SelectLHSItem($event);" auth id="ExamplesMembership" ui-sref="Examples.Membership" class="SubTitleBack TitleMenuFore AApp" style="display: ;">Membership</a>
+                                    </td>
+                                </tr>
+                                <!--<tr>
+                                    <td>
+                                        <a tag="SummaryReport" ng-click="Reporting.SelectLHSItem($event);" auth id="ReportingSummaryReport" ui-sref="Reporting.SummaryReport" class="SubTitleBack TitleMenuFore AApp" style="display: ;">Summary Report</a>
+                                    </td>
+                                </tr>-->
+                            </table>
+                        </td>
+                        <td>
+                            <table cellpadding="3" cellspacing="0" border="0" class="ContentFont ManagePanel" style="width: 100%;">
+                                <tr>
+                                    <!--##############################################################################################-->
+                                    <!--Reporting Screens                                                                                -->
+                                    <!--##############################################################################################-->
+                                    <td id="ExamplesSubApps" style="background: white;vertical-align: top; display: ;">
+                                        <!--##############################################################################################-->
+                                        <!--Reporting Sub App                                                                        -->
+                                        <!--##############################################################################################-->
+                                        <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                                            <tr>
+                                                <td style="vertical-align: top;">
+                                                    <div class="ContentFull" style="padding: 10px; font-size: 12pt; width: 1200px; background: white; height: 100%;" ui-view>
+                                                        Herein, you will find screen shots of some of the things that I've worked on. There is not a lot of stuff in here, 
+                                                        but I hope to add more in the coming weeks.
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="ContentBackground MessageArea" id="MessageArea">{{Examples.Message}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

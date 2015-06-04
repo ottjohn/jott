@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="scripts/jquery-1.7.2.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/jquery-ui-1.10.1.custom.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <script src="scripts/angular-ui-router.min.js"></script>
+    <script src="scripts/raphael.js"></script>
+
+    <script languate ="JavaScript">
+
+        function GetLineChart() {
+
+            var LineChart = {
+
+                GridUniqueId: "One",
+                FontsAndText: GetChartFontsAndText(),
+                DimsAndColor: GetChartDimsAndColor(),
+                LineData: GetLineData()
+
+            }
+
+            return LineChart;
+
+        }
+
+        function GetChartFontsAndText() {
+
+            var ChartFontsAndText = {
+
+                Title: "Visits Over Past Week",
+                TitleFont: "14pt arial",
+                TitleColor: "black",
+                TicMarkFont: "8pt arial",
+                TicMarkColor: "black"
+
+            }
+
+            return ChartFontsAndText;
+
+        }
+
+        function GetChartDimsAndColor() {
+
+
+            var ChartDimsAndColor = {
+
+                CanvasHeight: 300,
+                CanvasWidth: 800,
+                GridBorderColor: "black",
+                GridBorderThickness: "1",
+                ChartBackColor: "#eeeeee",
+                GridTopLeftX: 40,
+                GridTopLeftY: 20,
+                VerticalTicCount: 3,
+                BottomChartOffset: 60
+
+
+            }
+
+            return ChartDimsAndColor;
+
+        }
+
+        function GetLineData() {
+
+            var LineData = {
+
+                Color: "red",
+                LineWidth: 1,
+                Data: new Array(1, 3, 5, 3, 7, 8, 2),
+                Labels: new Array('1-17', '1-18', '1-19', '1-12', '1-21', '1-22', '1-23')
+
+            }
+
+            return LineData;
+
+        }
+
+        var LineChartObject = function () {
+
+            var Chart = this;
+            var ChartContext = null;
+
+            Chart.BuildChart = function (ChartData) {
+
+                Chart.BuildCanvas(ChartData);
+                Chart.GetContext(ChartData);
+                Chart.DrawContentRect(ChartData);
+
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            //  Build the container for the chart
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            Chart.BuildCanvas = function (ChartData) {
+
+                var CanvasHtml = "<canvas id='Canvas$CANVASID$' height='$HEIGHT$' width='$WIDTH$' style='border: $BORDERWIDTH$px solid $BORDERCOLOR$;'></canvas>";
+                CanvasHtml = CanvasHtml.replace("$HEIGHT$", ChartData.DimsAndColor.CanvasHeight);
+                CanvasHtml = CanvasHtml.replace("$WIDTH$", ChartData.DimsAndColor.CanvasWidth);
+                CanvasHtml = CanvasHtml.replace("$BORDERWIDTH$", ChartData.DimsAndColor.GridBorderThickness);
+                CanvasHtml = CanvasHtml.replace("$BORDERCOLOR$", ChartData.DimsAndColor.GridBorderColor);
+                CanvasHtml = CanvasHtml.replace("$CANVASID$", ChartData.GridUniqueId);
+                $("#LineChartContainer").html(CanvasHtml);
+
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            //  Get a reference to the container
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            Chart.GetContext = function (ChartData) {
+
+                var DrawingSurface = document.querySelector("#Canvas" + ChartData.GridUniqueId);
+                ChartContext = DrawingSurface.getContext("2d");
+
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            //  Draw chart area helper
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            Chart.DrawChartArea = function (ChartData, RectWidth, RectHeight) {
+
+                ChartContext.beginPath();
+                ChartContext.rect(ChartData.DimsAndColor.GridTopLeftX, ChartData.DimsAndColor.GridTopLeftY, RectWidth, RectHeight);
+                ChartContext.fillStyle = ChartData.DimsAndColor.ChartBackColor;
+                ChartContext.fill();
+                ChartContext.stroke();
+
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            //  Draw horizontal grid lines and vertical markings
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            Chart.DrawHorizontalLinesAndVerticalMarks = function (ChartData, VertGridSpacing, RectTickLineVert, RectWidth, VertTickMarkIncrement) {
+
+                var StartVertNumber = VertGridSpacing;
+                for (var i = 0; i < ChartData.DimsAndColor.VerticalTicCount; i++) {
+
+                    ChartContext.beginPath();
+                    ChartContext.moveTo(ChartData.DimsAndColor.GridTopLeftX, RectTickLineVert);
+                    ChartContext.lineTo(ChartData.DimsAndColor.GridTopLeftX + RectWidth, RectTickLineVert);
+                    ChartContext.strokeStyle = ChartData.FontsAndText.TicMarkColor;
+                    ChartContext.stroke();
+
+                    ChartContext.font = ChartData.FontsAndText.TicMarkFont;
+                    ChartContext.strokeText(StartVertNumber, ChartData.DimsAndColor.GridTopLeftX - 10, RectTickLineVert + 5);
+
+                    StartVertNumber += VertGridSpacing;
+                    RectTickLineVert -= VertTickMarkIncrement;
+
+                }
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            //  Build grid horizontal ticks and markers
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            Chart.DrawBottomChartMarkers = function (ChartData, RectWidth, RectHeight) {
+
+                var HorizValuesLen = ChartData.LineData.Labels.length;
+                var HorizTickIncrement = Math.floor(RectWidth / HorizValuesLen);
+                var HorizStart = HorizTickIncrement;
+
+                for (var i = 0; i < HorizValuesLen; i++) {
+
+                    ChartContext.beginPath();
+                    ChartContext.moveTo(ChartData.DimsAndColor.GridTopLeftX + HorizStart - HorizTickIncrement / 2, ChartData.DimsAndColor.GridTopLeftY + RectHeight);
+                    ChartContext.lineTo(ChartData.DimsAndColor.GridTopLeftX + HorizStart - HorizTickIncrement / 2, ChartData.DimsAndColor.GridTopLeftY + RectHeight + 5);
+                    ChartContext.strokeStyle = ChartData.FontsAndText.TicMarkColor;
+                    ChartContext.stroke();
+                    ChartContext.textAlign = "center";
+                    ChartContext.strokeStyle = ChartData.FontsAndText.TicMarkColor;
+                    ChartContext.strokeText(ChartData.LineData.Labels[i], ChartData.DimsAndColor.GridTopLeftX + HorizStart - HorizTickIncrement / 2, ChartData.DimsAndColor.GridTopLeftY + RectHeight + 20);
+                    HorizStart += HorizTickIncrement;
+
+                }
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            //  Build line
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            Chart.DrawLine = function (ChartData, FullNumericHeight, RectWidth, RectHeight) {
+
+                var HorizValuesLen = ChartData.LineData.Labels.length;
+                var HorizTickIncrement = Math.floor(RectWidth / HorizValuesLen);
+                var HorizStart = HorizTickIncrement;
+                var DataPointScale = RectHeight + ChartData.DimsAndColor.GridTopLeftY - Math.round((ChartData.LineData.Data[0] / FullNumericHeight) * RectHeight);
+
+                ChartContext.beginPath();
+                var FirstLeftPoint = ChartData.DimsAndColor.GridTopLeftX + HorizStart - HorizTickIncrement / 2;
+                ChartContext.moveTo(ChartData.DimsAndColor.GridTopLeftX + HorizStart - HorizTickIncrement / 2, DataPointScale);
+
+                for (var i = 1; i < HorizValuesLen; i++) {
+
+                    DataPointScale = RectHeight + ChartData.DimsAndColor.GridTopLeftY - Math.round((ChartData.LineData.Data[i] / FullNumericHeight) * RectHeight);
+                    HorizStart += HorizTickIncrement;
+                    ChartContext.lineTo(ChartData.DimsAndColor.GridTopLeftX + HorizStart - HorizTickIncrement / 2, DataPointScale);
+                    ChartContext.strokeStyle = ChartData.LineData.Color;
+                    ChartContext.lineWidth = ChartData.LineData.LineWidth;
+                    ChartContext.stroke();
+
+                }
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            //  Draw Title
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            Chart.DrawTitle = function (ChartData, RectWidth, RectHeight) {
+
+                var ChartCenterX = ChartData.DimsAndColor.GridTopLeftX + Math.floor(RectWidth / 2);
+                ChartContext.textAlign = "center";
+                ChartContext.strokeStyle = ChartData.FontsAndText.TicMarkColor;
+                ChartContext.font = ChartData.FontsAndText.TitleFont;
+                ChartContext.lineWidth = 1;
+                ChartContext.strokeText(ChartData.FontsAndText.Title, ChartCenterX, ChartData.DimsAndColor.GridTopLeftY + RectHeight + 50);
+
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            //  Draw the chart
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            Chart.DrawContentRect = function (ChartData) {
+
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                //  Variable creation that will be used throughout building process
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                var RectWidth = ChartData.DimsAndColor.CanvasWidth - 2 * ChartData.DimsAndColor.GridTopLeftX;
+                var RectHeight = ChartData.DimsAndColor.CanvasHeight - ChartData.DimsAndColor.GridTopLeftY - ChartData.DimsAndColor.BottomChartOffset;
+                var RectBottom = ChartData.DimsAndColor.GridTopLeftY + RectHeight;
+                var VertTickMarkIncrement = Math.floor(RectHeight / ChartData.DimsAndColor.VerticalTicCount);
+                var RectTickLineVert = RectBottom - VertTickMarkIncrement;
+                var MinY = Math.min.apply(Math, ChartData.LineData.Data);
+                var MaxY = Math.max.apply(Math, ChartData.LineData.Data);
+                var VertGridSpacing = Math.floor((MaxY - MinY) / (ChartData.DimsAndColor.VerticalTicCount - 1));
+                var FullNumericHeight = VertGridSpacing * ChartData.DimsAndColor.VerticalTicCount;
+
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                //  Build Chart Area
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                Chart.DrawChartArea(ChartData, RectWidth, RectHeight);
+
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                //  Build grid lines and vertical, numberic markings
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                Chart.DrawHorizontalLinesAndVerticalMarks(ChartData, VertGridSpacing, RectTickLineVert, RectWidth, VertTickMarkIncrement);
+
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                //  Build grid horizontal ticks and markers
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                Chart.DrawBottomChartMarkers(ChartData, RectWidth, RectHeight);
+
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                //  Draw the line
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                Chart.DrawLine(ChartData, FullNumericHeight, RectWidth, RectHeight);
+
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                //  Draw Title
+                ////////////////////////////////////////////////////////////////////////////////////////////
+                Chart.DrawTitle(ChartData, RectWidth, RectHeight);
+
+            }
+
+            return Chart;
+
+        }
+
+        window.onload = function DrawChart() {
+
+            var ChartData = GetLineChart();
+            var MyChart = new LineChartObject();
+            MyChart.BuildChart(ChartData);
+
+        }
+
+    </script>
+</head>
+<body>
+
+    <div id="LineChartContainer"></div>
+
+</body>
+</html>

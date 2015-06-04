@@ -1,0 +1,45 @@
+﻿Once you run the BCP command to create your format file, you still need to edit it. See, the format file will have 
+all the information to describe the contents of the table. But as we are going to use this file to map elements from 
+the CSV to the table by position, we cannot have all of these elements. Here is what my original format file looked 
+like:
+<p />
+<pre>
+    11.0
+    8
+    1       SQLCHAR             0       12      "\t"     1     id               ""
+    2       SQLCHAR             0       256     "\t"     2     Description      SQL_Latin1_General_CP1_CI_AS
+    3       SQLCHAR             0       15      "\t"     3     IMEI             SQL_Latin1_General_CP1_CI_AS
+    4       SQLCHAR             0       24      "\t"     4     SalesDate        ""
+    5       SQLCHAR             0       10      "\t"     5     StoreId          SQL_Latin1_General_CP1_CI_AS
+    6       SQLCHAR             0       30      "\t"     6     CreditDue        ""
+    7       SQLCHAR             0       24      "\t"     7     DateAdded        ""
+    8       SQLCHAR             0       30      "\r\n"   8     Variance         ""
+</pre>
+<p />
+But we do not need the first, seventh, or eigth fields. We can then remove them. We also notice that the column 
+delimers are incorrect. They should be commas. We can fix that, too. Here is what we have so far, then:
+<p />
+<pre>
+    11.0
+    8
+    2       SQLCHAR             0       256     ","     2     Description      SQL_Latin1_General_CP1_CI_AS
+    3       SQLCHAR             0       15      ","     3     IMEI             SQL_Latin1_General_CP1_CI_AS
+    4       SQLCHAR             0       24      ","     4     SalesDate        ""
+    5       SQLCHAR             0       10      ","     5     StoreId          SQL_Latin1_General_CP1_CI_AS
+    6       SQLCHAR             0       30      ","     6     CreditDue        ""
+</pre>
+Almost done. But we missed something. We replaced the end-of-row delimiter with a comma, so we 
+need to replace that once again with a carriage return line feed:
+<p />
+<pre>
+    11.0
+    8
+    1       SQLCHAR             0       256     ","     2     Description      SQL_Latin1_General_CP1_CI_AS
+    2       SQLCHAR             0       15      ","     3     IMEI             SQL_Latin1_General_CP1_CI_AS
+    3       SQLCHAR             0       24      ","     4     SalesDate        ""
+    4       SQLCHAR             0       10      ","     5     StoreId          SQL_Latin1_General_CP1_CI_AS
+    5       SQLCHAR             0       30      "\r\n"     6     CreditDue        ""
+</pre>
+<p />
+Now we are ready to rock. Now we can go into SQL server and build a stored procedure that will insert everything 
+in the file to a particular table.

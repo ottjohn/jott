@@ -1,0 +1,44 @@
+﻿The format file is probably the hardest part here. I will give you the meat of the stored procedure 
+and explain what I think needs explaining:
+<p />
+<pre>
+    set @RetVal = ''
+	begin try
+	
+		declare @bcpCommand varChar(512)
+		set @bcpCommand =	'bcp.exe WcriMembership.dbo.CricketCredits in ' + 
+							@FilePath + ' -T -f ' +  @FileFormat
+					
+		exec xp_cmdShell @bcpCommand
+	
+	end try
+	begin catch
+	
+		set @RetVal = 'Batch upload failed'
+
+	end catch
+</pre>
+<p />
+Here, we are doing a BCP from within SSMS. Again, we specify the full path to the table, and the stored procedure itself 
+is passed the full paths for the file to insert and the format file. Again, the -T refers to trusted connection, and the 
+-f tells the BCP command to use the format file that follows it. Once the command is generated, it is executed, and 
+the table should be updated. 
+<p />
+What if you want to use bulk insert? Even simpler, but with a twist. Here is the command:
+<p />
+<pre>
+    BULK INSERT WcriMembership.dbo.CricketCredits
+    FROM @FilePath
+    WITH 
+      (
+        DATAFILETYPE = 'char',
+        FIELDTERMINATOR = ',',
+        ROWTERMINATOR = '\r\n',
+        FORMATFILE = @FileFormat
+      );
+</pre>
+<p />
+When I originally ran this, it didn't work. It said some nonesense about the version of the format file being wrong. The 
+BCP command reported version 11. As it turns out, the versions of SQL Server on my laptop versus that on the development 
+server are different enough that I had to decrement the version in the format file (the very first line) to 10.0. Odd since 
+both servers are SQL Server 8 R2.

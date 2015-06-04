@@ -1,0 +1,27 @@
+﻿<Rows>
+  <row>
+    <TestString></TestString>
+    <TestKey>UserName</TestKey>
+    <TestReturnValue>User Name must be at least six characters long.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>x</TestString>
+    <TestKey>UserName</TestKey>
+    <TestReturnValue>User Name must be at least six characters long.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>x.y@L.5</TestString>
+    <TestKey>UserName</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+  <row>
+    <TestString>x.y@hotmail.com</TestString>
+    <TestKey>UserName</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+  <row>
+    <TestString>John_Ott1234</TestString>
+    <TestKey>UserName</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+</Rows>

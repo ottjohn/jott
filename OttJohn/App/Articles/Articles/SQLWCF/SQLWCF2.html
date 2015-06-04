@@ -1,0 +1,56 @@
+﻿Okay, the first thing we are going to do is create the service. In this case, open Visual Studio, go to File, New Project, and 
+then select WCF Service Application. Name your application something other than Service1 (I named mine SQLWCF, for example), and 
+then proceed to make the approprate changes to the service and interface names as well.
+<p />
+    <img src="App/Articles/Articles/SQLWCF/WCFApp.png" style="display: block;" />
+<p />
+<ol>
+    <li>In the Solution Explorer, right click on the service name and change it to reflect the name you've given to the project</li>
+    <li>In the Solution Explorer, right click on the interface name and change it to reflect the name you've given to the service</li>
+    <li>Open the code behind the service file and ensure that it's interface has the appropriate name; That is, make certain that it is 
+    the same as the class name, only prepended with an I</li>
+    <li>Remove from the interface and the code behind the service everything except the method GetData</li>
+    <li>Right click on the service name and view the markup. Ensure that reference under the Service attribute points to your service name and not Service1</li>
+</ol>
+<p />
+Once you've straightened out the service, go ahead and modify the GetData method so it looks like this:
+<p />
+<pre>
+    public string GetData(string FirstName, string LastName)
+    {
+        string FullName = FirstName + " " + LastName;
+        return FullName;
+    }
+</pre>
+<p />
+After you've done this, make sure you change the signature of the method in the interface as well. At this point, we are going to go to IIS 
+and add this project as an application. Note: if you do not have IIS installed on your computer, you should install it. You can do this by 
+going to your control panel and clicking on Programs and Features. When you see the dialog, click on <i>Turn Windows features on or off</i> (this 
+article assumes that you are not using Windows 8). Once you've done that, select Internet Information Services. There may be some features under 
+this suite that you do not want on your computer (such as FTP), so be careful about what you choose. If you have any difficulty, please do a search on 
+installing IIS before proceeding. My assumption here is that you are familiar enough with web development that you can get around in IIS. Here is 
+a image for reference:
+<p />
+    <img src="App/Articles/Articles/SQLWCF/AddIIS.png" style="display: block;" />
+<p />
+Go to the Control Panel, then Administrative Tools. Once there, open up Internet Information Services (IIS). Expand the machine node in the 
+Connections panel on the left, expand the Sites node, and then expand the Default Web Site node. 
+<p />
+    <img src="App/Articles/Articles/SQLWCF/IIS.png" style="display: block;" />
+<p />
+Now do the following:
+<p />
+<ol>
+    <li>Right click on the Default Web Site node and select Add Application</li>
+    <li>In the Dialog, enter a name for the application under the Alias field. This is the same as the name you would create for a virtual directory</li>
+    <li>Under the Physical Path field, point to the directory that contains your service</li>
+</ol>
+<p />
+Once you've created your application, Click on it's name in the left-hand pane; then click on the Content View tab at the vary bottom of the main pain. 
+This will show you all of the files associted with your application. Find the service file and right click on it. Select Browse. This should bring up 
+a description of your service in your browser. The page will give you a couple of WSDL links but nothing else very useful. Up in the location field 
+in the browser, however, you will have the path to your service. Copy this and put it somewhere where you can find it later. 
+<p />
+    <img src="App/Articles/Articles/SQLWCF/BrowseService.png" style="display: block;" />
+<p />
+Next up, we will construct the SQL Server code so we can purposely crash this whole process.

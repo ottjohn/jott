@@ -1,0 +1,57 @@
+D:\StoreMaintenance\MemberUtilityTest\bin\Debug\MemberUtilityTest.dll
+D:\StoreMaintenance\MemberUtilityTest\bin\Debug\MemberUtilityTest.pdb
+D:\StoreMaintenance\MemberUtilityTest\bin\Debug\CustomerUtility.dll
+D:\StoreMaintenance\MemberUtilityTest\bin\Debug\MaintContracts.dll
+D:\StoreMaintenance\MemberUtilityTest\bin\Debug\UtilityPot.dll
+D:\StoreMaintenance\MemberUtilityTest\bin\Debug\MemberData.dll
+D:\StoreMaintenance\MemberUtilityTest\bin\Debug\log4net.dll
+D:\StoreMaintenance\MemberUtilityTest\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenance\MemberUtilityTest\bin\Debug\CustomerUtility.pdb
+D:\StoreMaintenance\MemberUtilityTest\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenance\MemberUtilityTest\bin\Debug\MemberData.pdb
+D:\StoreMaintenance\MemberUtilityTest\obj\Debug\MemberUtilityTest.csprojResolveAssemblyReference.cache
+D:\StoreMaintenance\MemberUtilityTest\obj\Debug\MemberUtilityTest.dll
+D:\StoreMaintenance\MemberUtilityTest\obj\Debug\MemberUtilityTest.pdb
+D:\StoreMaintenanceRepository\MemberUtilityTest\bin\Debug\MemberUtilityTest.dll
+D:\StoreMaintenanceRepository\MemberUtilityTest\bin\Debug\MemberUtilityTest.pdb
+D:\StoreMaintenanceRepository\MemberUtilityTest\bin\Debug\CustomerUtility.dll
+D:\StoreMaintenanceRepository\MemberUtilityTest\bin\Debug\MaintContracts.dll
+D:\StoreMaintenanceRepository\MemberUtilityTest\bin\Debug\UtilityPot.dll
+D:\StoreMaintenanceRepository\MemberUtilityTest\bin\Debug\MemberData.dll
+D:\StoreMaintenanceRepository\MemberUtilityTest\bin\Debug\log4net.dll
+D:\StoreMaintenanceRepository\MemberUtilityTest\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenanceRepository\MemberUtilityTest\bin\Debug\CustomerUtility.pdb
+D:\StoreMaintenanceRepository\MemberUtilityTest\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenanceRepository\MemberUtilityTest\bin\Debug\MemberData.pdb
+D:\StoreMaintenanceRepository\MemberUtilityTest\obj\Debug\MemberUtilityTest.csprojResolveAssemblyReference.cache
+D:\StoreMaintenanceRepository\MemberUtilityTest\obj\Debug\MemberUtilityTest.dll
+D:\StoreMaintenanceRepository\MemberUtilityTest\obj\Debug\MemberUtilityTest.pdb
+D:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MemberUtilityTest.dll
+D:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MemberUtilityTest.pdb
+D:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\CustomerUtility.dll
+D:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MaintContracts.dll
+D:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\UtilityPot.dll
+D:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MemberData.dll
+D:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\log4net.dll
+D:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\CustomerUtility.pdb
+D:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\UtilityPot.pdb
+D:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MaintContracts.pdb
+D:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MemberData.pdb
+D:\Other Development\OttJohn\MemberUtilityTest\obj\Debug\MemberUtilityTest.csprojResolveAssemblyReference.cache
+D:\Other Development\OttJohn\MemberUtilityTest\obj\Debug\MemberUtilityTest.dll
+D:\Other Development\OttJohn\MemberUtilityTest\obj\Debug\MemberUtilityTest.pdb
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MemberUtilityTest.dll
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MemberUtilityTest.pdb
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\CustomerUtility.dll
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MaintContracts.dll
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\UtilityPot.dll
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MemberData.dll
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\log4net.dll
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\OpenPop.dll
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MaintContracts.pdb
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\CustomerUtility.pdb
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\UtilityPot.pdb
+G:\Other Development\OttJohn\MemberUtilityTest\bin\Debug\MemberData.pdb
+G:\Other Development\OttJohn\MemberUtilityTest\obj\Debug\MemberUtilityTest.csprojResolveAssemblyReference.cache
+G:\Other Development\OttJohn\MemberUtilityTest\obj\Debug\MemberUtilityTest.dll
+G:\Other Development\OttJohn\MemberUtilityTest\obj\Debug\MemberUtilityTest.pdb

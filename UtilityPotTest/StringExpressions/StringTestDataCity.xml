@@ -1,0 +1,37 @@
+﻿<Rows>
+  <row>
+    <TestString></TestString>
+    <TestKey>City</TestKey>
+    <TestReturnValue>City must be at least two characters in length.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>x</TestString>
+    <TestKey>City</TestKey>
+    <TestReturnValue>City must be at least two characters in length.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>AB Terrace</TestString>
+    <TestKey>City</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+  <row>
+    <TestString>A BB</TestString>
+    <TestKey>City</TestKey>
+    <TestReturnValue>City must be at least two characters in length.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>Three Mile Island</TestString>
+    <TestKey>City</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+  <row>
+    <TestString>Mile Island</TestString>
+    <TestKey>City</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+  <row>
+    <TestString>Mile I</TestString>
+    <TestKey>City</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+</Rows>

@@ -1,0 +1,23 @@
+﻿Now there are two places that we need to add users when thinking about report browsing: to SSRS and to 
+the databases in SQL Server. Let's take care of teh web side first. Go to your SSRS reports landing page 
+by typing in http://localhost/reports in the location field of a browser on the server that runs SSRS as a 
+service. You should now see the following:
+<p />
+<img src="App/Articles/Articles/SSRSSecurity/ReportsHome.png" style="display: block;" />
+<p />
+Once here, click on the Folder Settings icon. This will bring up the following:
+<p />
+<img src="App/Articles/Articles/SSRSSecurity/HomeSecurity.png" style="display: block;" />
+<p />
+Now click on teh New Role Assignment icon at the top of the screen. You will see the following:
+<p />
+<img src="App/Articles/Articles/SSRSSecurity/NewRole.png" style="display: block;" />
+<p />
+Here, simply add the group or suer name in the text field provided. This will be the name of a group or 
+a user that exists on the machine or in the domain the machine is connected to. Once you've done this, 
+select the check boxes that describes who this user or group is. If they are to only browse the reports, 
+then that is the only item you should check. If they are to use the web tools to actually create reports, 
+then check the appropriate boxes. Once you have the user or group configured, click the OK button. The 
+web page will return to the security page and your new user or group will be listed. 
+<p />
+You are now ready to add the user or group to SQL Server. 

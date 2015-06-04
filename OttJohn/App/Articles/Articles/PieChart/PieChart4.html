@@ -1,0 +1,152 @@
+﻿    First a note about Raphael: it requires some kind of box to draw in. I chose to create my containers as simple DIVs. Before we can even use Raphael, then, we need to create
+    a number of boxes that is equal to the items in our chart array. I did this in the following way:
+<p />
+<pre>
+    function BuildContainers(ChartCollection) {
+
+        var ChartCollectionHtml = "";
+        var iLen = ChartCollection.length;
+
+        for (var i = 0; i < iLen; i++) {
+
+            var BuildHolder = "&lt;div id='$ID$' style='width:$WIDTH$px; height:$HEIGHT$px; border: solid; float: left; Margin: 10px;' /&gt;";
+            var BuildHolder = BuildHolder.replace("$WIDTH$", ChartCollection[i].ContainerWidth);
+            var BuildHolder = BuildHolder.replace("$HEIGHT$", ChartCollection[i].ContainerHeight);
+            var BuildHolder = BuildHolder.replace("$ID$", ChartCollection[i].ContainerId);
+            ChartCollectionHtml += BuildHolder;
+
+        }
+
+        $("#ChartContainer").html(ChartCollectionHtml);
+
+    }
+    </pre>
+<p />
+    As you can see, I just pass it the chart collection, note it's length, and then go through a loop that will build a number of containers equal to the number of items in
+    the collection. A couple of things here: the style has the containers floating left, that way they can stack from left to right as necessary to fit on the page. I also
+    use JQuery to place the containers into the DOM. For you purists out there, there are many things that JQuery can do just as well as Angular, and the syntax is simpler.
+    Add to that the fact that AngularJS is actually using JQuery anyway. Finally, the containers themselves get all size and id values from the chart collection. Once we've
+    created the containers and added them to the DOM, we are ready to build the charts.
+<p />
+    Here, we will loop through the collection of charts and call the following function:
+<p />
+<pre>
+    function DrawPieChart(Chart) {
+
+        var Paper = Raphael(Chart.ContainerId);                 //  holder refers to the DIV element below
+        var Arc;                                                //  refers to the arc being drawn during the iterations
+        var ItemKey;                                            //  refers to the key rectangle for the pie chart
+        var ItemTextLabel;                                      //  refers to the label associated with the key
+        var ItemTextTitle;                                      //  title for the chart
+        var ArcLong;                                            //  pushes arc in or out depending on its size
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //  Render chart
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        var iLen = Chart.ChartItems.length;
+        var iSum = 0;
+
+        for (var i = 0; i < iLen; i++) {
+
+            Chart.ChartItems[i].RadianMeasure = (((Chart.ChartItems[i].Proportion) / 100) * 360) * (Math.PI / 180);
+            Chart.ChartItems[i].RadianPosition = (((Chart.ChartItems[i].Proportion + iSum) / 100) * 360) * (Math.PI / 180);
+
+            if (Chart.ChartItems[i].RadianMeasure >= Math.PI)
+                ArcLong = 1;
+            else
+                ArcLong = 0
+
+            Chart.OldX = Chart.CurrentX;
+            Chart.OldY = Chart.CurrentY;
+            Chart.CurrentX = GetXValue(Chart.CenterX, Chart.Radius, Chart.ChartItems[i].RadianPosition);
+            Chart.CurrentY = GetYValue(Chart.CenterY, Chart.Radius, Chart.ChartItems[i].RadianPosition);
+
+            if (i == 0) {
+
+                Chart.ChartItems[i].Path = "M" + Chart.CenterX + "," + Chart.CenterY + " L" + (Chart.CenterX + Chart.Radius) + "," + 
+                Chart.CenterY + " A" + Chart.Radius + "," + Chart.Radius + " 0 " + ArcLong + ",1 " + Chart.CurrentX + "," + Chart.CurrentY + 
+                " L" + Chart.CenterX + "," + Chart.CenterY;
+
+            } else if (i == iLen - 1) {
+
+                Chart.ChartItems[i].Path = "M" + Chart.OldX + "," + Chart.OldY + " A" + Chart.Radius + "," + Chart.Radius + " 0 " + 
+                ArcLong + ",1 " + (Chart.CenterX + Chart.Radius) + "," + Chart.CenterY + " L " + Chart.CenterX + "," + Chart.CenterY;
+
+            } else {
+
+                Chart.ChartItems[i].Path = "M" + Chart.OldX + "," + Chart.OldY + " A" + Chart.Radius + "," + Chart.Radius + " 0 " + 
+                ArcLong + ",1 " + Chart.CurrentX + "," + Chart.CurrentY + " L " + Chart.CenterX + "," + Chart.CenterY;
+
+            }
+
+            Arc = Paper.path(Chart.ChartItems[i].Path);
+            Arc.attr("fill", Chart.ChartItems[i].FillColor);
+
+            ItemKey = Paper.rect(Chart.KeyCenterX - Chart.KeyWidth / 2, Chart.KeyOffsetTop + Chart.KeyCenterY - Chart.KeyHeight / 2 + 
+                        i * Chart.KeyOffsetInterval, Chart.KeyWidth, Chart.KeyHeight);
+
+            ItemKey.attr("fill", Chart.ChartItems[i].FillColor);
+            ItemTextLabel = Paper.text(Chart.KeyCenterX + Chart.KeyWidth, Chart.KeyOffsetTop + Chart.KeyCenterY + i * Chart.KeyOffsetInterval, 
+                            Chart.ChartItems[i].ItemLabel + " " + Chart.ChartItems[i].Proportion + "%");
+
+            ItemTextLabel.attr('text-anchor', 'start');
+            iSum += Chart.ChartItems[i].Proportion;
+        }
+
+        ItemTextTitle = Paper.text(Chart.TitleCenterX, Chart.TitleCenterY, Chart.Title);
+        ItemTextTitle.attr("font-size", "16");
+        ItemTextTitle.attr('text-anchor', 'start');
+
+    }
+    </pre>
+<p />
+    The function takes a single argument, Chart, which describes a single pie chart. It then fires up Raphael and points it to the container in which it wants the chart to be
+    drawn. Some items of note here:
+<ul>
+    <li>
+        Chart.ChartItems[i].RadianMeasure: describes the actual size of the proportion of the slice in radians
+        <p />
+    </li>
+    <li>
+        Chart.ChartItems[i].RadianPosition: describes the position on the circle that the arc is to be drawn to. This means that the proportions
+        need to be summed here, which is why I have iSum in the calculation.
+        <p />
+    </li>
+    <li>
+        ArcLong is a variable that is used to tell Raphael how to push the arc: inward or outward. If the radian measure is less than 180 degrees, then it will be drawn
+        inward; otherwise, it will be drawn outward (basically, this is to keep Raphael from drawing the shortest route for the arc to cover).
+        <p />
+    </li>
+    <li>
+        Chart.CurrentX = GetXValue(Chart.CenterX, Chart.Radius, Chart.ChartItems[i].RadianPosition): gets the current x-value for the chart. This function will be described
+        below. Basically the x- and y- coordinates will describe where within or on the pie chart I should be drawing.
+    </li>
+</ul>
+<p />
+    Now we are down to a condition. Within the condition are dynamically-built SVG commands for drawing things. Now, if you were to draw a pie chart with a crayon, and you were to
+    define everything along the way, you would FIRST find the center of the chart by MOVING your crayon there. Then you might draw a LINE from the center to the right edge of the
+    chart. Then, to draw out the first slice, you would then draw an ARC to the appropriate x- and y-coordinate. To finish off this piece, you then draw a LINE back to the center
+    of the circle:
+<p />
+    M100,150 L190,150 A40,40 0 0,1 CurrentX,CurrentY L100,150;
+<p />
+    And you keep drawing in this manner until the pie chart is complete. As you can see, it takes only three conditions to draw any pie chart. And all of the drawing can be
+    described by M(ove), which simply positions your crayon, L(ine), which draws from the last position to the current position, and A(rc), which draws an arc from the
+    last position to the current one.
+<p />
+    A note about the Arc command: 40,40 is the radius-x and radius-y. For a circle, these will always be the same. For an ellipse, they will be different. The first listed
+    zero is he x-axis rotation. While drawing a circle, there is no net effect here as a circle looks like a circle no matter how much you rotate it about the x-axis. The second
+    listed zero is the ArcLong variable. This is set to zero to allow a small arc to be drawn, hypothetically. The one, simply tells the engine that the arc should be drawn using
+    positive values. Here is a look at one of the helper functions that retrieves the CurrentX value:
+<p />
+<pre>
+    function GetXValue(CenterX, Radius, Radians) {
+
+        return Radius * Math.cos(Radians) + CenterX;
+
+    }
+</pre>
+<p />
+    Obviously, to make some of this work, you are going to have to remember some of your freshman algebra. The rest of the code uses some other commands to create the keys and
+    draw the labels and titles, the relevant commands being Paper.path (for arc), Paper.rect (for the rectangular keys), and Paper.text (for the labels and title). Next, I will let
+    you interact with the chart itself.

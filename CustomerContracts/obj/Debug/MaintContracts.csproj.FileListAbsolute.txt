@@ -1,0 +1,22 @@
+D:\MaintenanceMove\StoreMaintenance\CustomerContracts\bin\Debug\MaintContracts.dll
+D:\MaintenanceMove\StoreMaintenance\CustomerContracts\bin\Debug\MaintContracts.pdb
+D:\MaintenanceMove\StoreMaintenance\CustomerContracts\obj\Debug\MaintContracts.dll
+D:\MaintenanceMove\StoreMaintenance\CustomerContracts\obj\Debug\MaintContracts.pdb
+D:\StoreMaintenance\CustomerContracts\bin\Debug\MaintContracts.dll
+D:\StoreMaintenance\CustomerContracts\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenance\CustomerContracts\obj\Debug\MaintContracts.dll
+D:\StoreMaintenance\CustomerContracts\obj\Debug\MaintContracts.pdb
+D:\StoreMaintenance\CustomerContracts\obj\Debug\MaintContracts.csprojResolveAssemblyReference.cache
+D:\StoreMaintenanceRepository\CustomerContracts\bin\Debug\MaintContracts.dll
+D:\StoreMaintenanceRepository\CustomerContracts\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenanceRepository\CustomerContracts\obj\Debug\MaintContracts.dll
+D:\StoreMaintenanceRepository\CustomerContracts\obj\Debug\MaintContracts.pdb
+D:\Other Development\OttJohn\CustomerContracts\bin\Debug\MaintContracts.dll
+D:\Other Development\OttJohn\CustomerContracts\bin\Debug\MaintContracts.pdb
+D:\Other Development\OttJohn\CustomerContracts\obj\Debug\MaintContracts.dll
+D:\Other Development\OttJohn\CustomerContracts\obj\Debug\MaintContracts.pdb
+G:\Other Development\OttJohn\CustomerContracts\bin\Debug\MaintContracts.dll
+G:\Other Development\OttJohn\CustomerContracts\bin\Debug\MaintContracts.pdb
+G:\Other Development\OttJohn\CustomerContracts\obj\Debug\MaintContracts.dll
+G:\Other Development\OttJohn\CustomerContracts\obj\Debug\MaintContracts.pdb
+G:\Other Development\OttJohn\CustomerContracts\obj\Debug\MaintContracts.csprojResolveAssemblyReference.cache

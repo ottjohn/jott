@@ -1,0 +1,12 @@
+﻿<Rows>
+  <row>
+    <TestString></TestString>
+    <TestKey>SecurityQuestion</TestKey>
+    <TestReturnValue>Security Question must be at least two characters in length.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>This is a test</TestString>
+    <TestKey>SecurityQuestion</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+</Rows>

@@ -1,0 +1,20 @@
+﻿<Rows>
+  <row>
+    <UserName>MeganOtt</UserName>
+    <UserId>F3DC6743-3A33-476B-85BE-336F83FE12CC</UserId>
+    <IsSuccess>false</IsSuccess>
+    <ReturnValue>true</ReturnValue>
+  </row>
+  <row>
+    <UserName>MeganOtt</UserName>
+    <UserId></UserId>
+    <IsSuccess>false</IsSuccess>
+    <ReturnValue>false</ReturnValue>
+  </row>
+  <row>
+    <UserName>MeganOtt</UserName>
+    <UserId></UserId>
+    <IsSuccess>true</IsSuccess>
+    <ReturnValue>true</ReturnValue>
+  </row>
+</Rows>

@@ -1,0 +1,62 @@
+﻿<div data-ng-controller="FlashCardsController as FlashCards" id="FlashCardsContainer">
+    <table id="FlashCardsSubContainer" cellpadding="0" cellspacing="0" border="0" class="SolidBorder BorderColor" style="height: 100%; width: 100%; display: ;">
+        <tr>
+            <td class="ContentFull" style="vertical-align: top;">
+                <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                    <tr>
+                        <!--##############################################################################################-->
+                        <!--Title                                                                                         -->
+                        <!--##############################################################################################-->
+                        <td colspan=" 2" class="SubTitleBack TitleMenuFore SubAppTitleMetric">
+                            Flash Cards
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--##############################################################################################-->
+                        <!--LHS Menu                                                                                      -->
+                        <!--##############################################################################################-->
+                        <td class="SubTitleBack" style="vertical-align: top; width: 125px;">
+                            <table cellpadding="0" cellspacing="0" border="0" class="ContentFull">
+                                <tr>
+                                    <td>
+                                        <a auth tag="Author" ng-click="FlashCards.SelectLHSItem($event);" id="FlashCardsFlashCardsEntry" ui-sref="FlashCards.FlashCardsEntry" class="SubTitleBack TitleMenuFore AApp" style="display: none;">Flash Cards Entry</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a tag="FlashCardsView" ng-click="FlashCards.SelectLHSItem($event);"  id="FlashCardsFlashCardsView" ui-sref="FlashCards.FlashCardsView" class="SubTitleBack TitleMenuFore AApp" style="display: ;">Flash Cards View</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table cellpadding="3" cellspacing="0" border="0" class="ContentFont ManagePanel" style="width: 100%;">
+                                <tr>
+                                    <!--##############################################################################################-->
+                                    <!--Reporting Screens                                                                                -->
+                                    <!--##############################################################################################-->
+                                    <td id="FlashCardsSubApps" style="background: white;vertical-align: top; display: ;">
+                                        <!--##############################################################################################-->
+                                        <!--Reporting Sub App                                                                        -->
+                                        <!--##############################################################################################-->
+                                        <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                                            <tr>
+                                                <td style="vertical-align: top;">
+                                                    <div class="ContentFull" style="padding: 10px; font-size: 12pt; width: 1200px; background: white; height: 450px;" ui-view>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="ContentBackground MessageArea" id="MessageArea">{{FlashCards.Message}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

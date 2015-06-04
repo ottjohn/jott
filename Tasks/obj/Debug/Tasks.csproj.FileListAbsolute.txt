@@ -1,0 +1,77 @@
+D:\MaintenanceMove\StoreMaintenance\Tasks\bin\Debug\Tasks.dll
+D:\MaintenanceMove\StoreMaintenance\Tasks\bin\Debug\Tasks.pdb
+D:\MaintenanceMove\StoreMaintenance\Tasks\bin\Debug\MaintContracts.dll
+D:\MaintenanceMove\StoreMaintenance\Tasks\bin\Debug\TasksData.dll
+D:\MaintenanceMove\StoreMaintenance\Tasks\bin\Debug\UtilityPot.dll
+D:\MaintenanceMove\StoreMaintenance\Tasks\bin\Debug\log4net.dll
+D:\MaintenanceMove\StoreMaintenance\Tasks\bin\Debug\MaintContracts.pdb
+D:\MaintenanceMove\StoreMaintenance\Tasks\bin\Debug\TasksData.pdb
+D:\MaintenanceMove\StoreMaintenance\Tasks\bin\Debug\UtilityPot.pdb
+D:\MaintenanceMove\StoreMaintenance\Tasks\obj\Debug\Tasks.csprojResolveAssemblyReference.cache
+D:\MaintenanceMove\StoreMaintenance\Tasks\obj\Debug\Tasks.dll
+D:\MaintenanceMove\StoreMaintenance\Tasks\obj\Debug\Tasks.pdb
+D:\StoreMaintenance\Tasks\obj\Debug\Tasks.csprojResolveAssemblyReference.cache
+D:\StoreMaintenance\Tasks\bin\Debug\Tasks.dll
+D:\StoreMaintenance\Tasks\bin\Debug\Tasks.pdb
+D:\StoreMaintenance\Tasks\bin\Debug\MaintContracts.dll
+D:\StoreMaintenance\Tasks\bin\Debug\TasksData.dll
+D:\StoreMaintenance\Tasks\bin\Debug\UtilityPot.dll
+D:\StoreMaintenance\Tasks\bin\Debug\log4net.dll
+D:\StoreMaintenance\Tasks\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenance\Tasks\bin\Debug\TasksData.pdb
+D:\StoreMaintenance\Tasks\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenance\Tasks\obj\Debug\Tasks.dll
+D:\StoreMaintenance\Tasks\obj\Debug\Tasks.pdb
+D:\StoreMaintenance\Tasks\bin\Debug\CustomerUtility.dll
+D:\StoreMaintenance\Tasks\bin\Debug\MemberData.dll
+D:\StoreMaintenance\Tasks\bin\Debug\CustomerUtility.pdb
+D:\StoreMaintenance\Tasks\bin\Debug\MemberData.pdb
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\Tasks.dll
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\Tasks.pdb
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\CustomerUtility.dll
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\MaintContracts.dll
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\TasksData.dll
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\UtilityPot.dll
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\MemberData.dll
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\log4net.dll
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\MaintContracts.pdb
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\CustomerUtility.pdb
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\TasksData.pdb
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\UtilityPot.pdb
+D:\StoreMaintenanceRepository\Tasks\bin\Debug\MemberData.pdb
+D:\StoreMaintenanceRepository\Tasks\obj\Debug\Tasks.csprojResolveAssemblyReference.cache
+D:\StoreMaintenanceRepository\Tasks\obj\Debug\Tasks.dll
+D:\StoreMaintenanceRepository\Tasks\obj\Debug\Tasks.pdb
+D:\Other Development\OttJohn\Tasks\bin\Debug\Tasks.dll
+D:\Other Development\OttJohn\Tasks\bin\Debug\Tasks.pdb
+D:\Other Development\OttJohn\Tasks\bin\Debug\CustomerUtility.dll
+D:\Other Development\OttJohn\Tasks\bin\Debug\MaintContracts.dll
+D:\Other Development\OttJohn\Tasks\bin\Debug\TasksData.dll
+D:\Other Development\OttJohn\Tasks\bin\Debug\UtilityPot.dll
+D:\Other Development\OttJohn\Tasks\bin\Debug\MemberData.dll
+D:\Other Development\OttJohn\Tasks\bin\Debug\log4net.dll
+D:\Other Development\OttJohn\Tasks\bin\Debug\MaintContracts.pdb
+D:\Other Development\OttJohn\Tasks\bin\Debug\CustomerUtility.pdb
+D:\Other Development\OttJohn\Tasks\bin\Debug\TasksData.pdb
+D:\Other Development\OttJohn\Tasks\bin\Debug\UtilityPot.pdb
+D:\Other Development\OttJohn\Tasks\bin\Debug\MemberData.pdb
+D:\Other Development\OttJohn\Tasks\obj\Debug\Tasks.csprojResolveAssemblyReference.cache
+D:\Other Development\OttJohn\Tasks\obj\Debug\Tasks.dll
+D:\Other Development\OttJohn\Tasks\obj\Debug\Tasks.pdb
+G:\Other Development\OttJohn\Tasks\bin\Debug\Tasks.dll
+G:\Other Development\OttJohn\Tasks\bin\Debug\Tasks.pdb
+G:\Other Development\OttJohn\Tasks\bin\Debug\CustomerUtility.dll
+G:\Other Development\OttJohn\Tasks\bin\Debug\MaintContracts.dll
+G:\Other Development\OttJohn\Tasks\bin\Debug\TasksData.dll
+G:\Other Development\OttJohn\Tasks\bin\Debug\UtilityPot.dll
+G:\Other Development\OttJohn\Tasks\bin\Debug\MemberData.dll
+G:\Other Development\OttJohn\Tasks\bin\Debug\log4net.dll
+G:\Other Development\OttJohn\Tasks\bin\Debug\MaintContracts.pdb
+G:\Other Development\OttJohn\Tasks\bin\Debug\CustomerUtility.pdb
+G:\Other Development\OttJohn\Tasks\bin\Debug\TasksData.pdb
+G:\Other Development\OttJohn\Tasks\bin\Debug\UtilityPot.pdb
+G:\Other Development\OttJohn\Tasks\bin\Debug\MemberData.pdb
+G:\Other Development\OttJohn\Tasks\obj\Debug\Tasks.csprojResolveAssemblyReference.cache
+G:\Other Development\OttJohn\Tasks\obj\Debug\Tasks.dll
+G:\Other Development\OttJohn\Tasks\obj\Debug\Tasks.pdb
+G:\Other Development\OttJohn\Tasks\bin\Debug\OpenPop.dll

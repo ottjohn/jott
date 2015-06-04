@@ -1,0 +1,35 @@
+﻿As part of the one-person team in my company's IT department, I get asked to do a lot of interesting things (yawn) to 
+help them streamline existing processes. For instance, one branch of their company owns almost 70 Cricket stores. Another 
+owns several Pawn shops. All of these stores are spread out all over the nation. This means that most of these stores are 
+going to have different state and local taxes. 
+<p />
+Unfortunately, the guy who built their existing system hard-coded this information into stored procedures and then had a 
+crazy long conditional based on storeid that would determine which rates were applied to the products being sold. Not only 
+is this a very bad idea, but we also found out that most of the taxation was wrong. The solution: build a control panel 
+that manages the state and local tax rates and then tear out the hard-coded values in the stored procedures and replaces 
+them with lookups based on storeid. The first stop here is to select a state. One you do this, you can define local tax 
+rules:
+<p />
+<img src="App/Examples/StateLocalTax/SelectState.png" style="display: block;" />
+<p />
+Once the state is selected, you get the following:
+<p />
+<img src="App/Examples/StateLocalTax/StateLocalTaxStart.png" style="display: block;" />
+<p />
+When you get to this first screen, everything is locked down except for the droplist at the top. From this screen, you can 
+see that there are two local rules defined for stores in these locations in Nebraska. If you want to select one of the 
+jurisdictions and update its associated values, you can do this by clicking the Update button on the lower right part of the 
+screen. This will enable all of the associated elements (besides the state and the state rate), the impacted items can 
+be changed, and those changes can be saved by clicking the  Submit button.
+<p />
+<img src="App/Examples/StateLocalTax/StateLocalTaxUpdate.png" style="display: block;" />
+<p />
+If a new jurisdiction needs to be added, the user simply clicks the New button and the screen is modified in the following way:
+<p />
+<img src="App/Examples/StateLocalTax/StateLocalTaxNew.png" style="display: block;" />
+<p />
+As most of the time, the rules associated how taxes are applied from jurisdiction to jurisdiction in a state will not change, those 
+rules are prepopulated. Now the user can simply enter in the local rules and save them so they can be assigned to a store.
+<p />
+<img src="App/Examples/StateLocalTax/StateLocalTaxSave.png" style="display: block;" />
+<p />

@@ -1,0 +1,45 @@
+﻿<div data-ng-controller="FlashCardViewController as FlashCardView">
+    <div class="ContentBackground MessageArea ContentFont" style="font-weight: bold;" id="MessageArea">{{FlashCardView.Message}}</div>
+    <div id="FlashCardView" style="padding: 10px; display: ;">
+        <table cellpadding="5" cellspacing="5" style="width: 100%;">
+            <tr>
+                <td colspan="2" class="ButtonBarSubAppBack" style="padding-top: 5px; padding-bottom: 5px; width: 100%; color: white; border: solid; border-color: black; border-width: 1px 1px 1px 1px;">
+                    <table cellpadding="0" cellspacing="2" style="width: 100%;" class="ContentFont">
+                        <tr>
+                            <td style="width: 10%;">
+                                Categories:
+                            </td>
+                            <td style="width: 70%;">
+                                <div ng-repeat="Item in FlashCardView.UsedCategories.Categories" style="margin: 2px; width: 90px; float: left; border: solid; border-color: white; border-width: 1px 1px 1px 1px;">
+                                    <input type="checkbox" name="rdoFlashCardCategory" ng-checked="Item.CategorySelected == 1" ng-click="FlashCardView.GetCategoryId(Item.CategoryId)" />&nbsp;{{Item.Category}}
+                                </div>
+                            </td>
+                            <td style="width: 20%;">
+                                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" style="font-weight: bold; float:right;" type="button" value="Pop Out" id="btnExternalSearch" ng-click="FlashCardView.GoExternalSearch()" />
+                                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" style="font-weight: bold; float:right;" type="button" value="Go" id="btnSearch" ng-click="FlashCardView.GoSearch()" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="ButtonBarSubAppBack" style="padding-top: 5px; padding-bottom: 5px; width: 100%; color: white; border: solid; border-color: black; border-width: 1px 1px 1px 1px;">
+                    <table cellpadding="0" cellspacing="2" style="width: 100%;" class="ContentFont">
+                        <tr>
+                            <td>
+                                <div id="FlashCardContainer" unselectable='on' style="overflow-y: scroll; font-size: 18pt; font-weight: bold; padding: 5px; padding-left: 20px; vertical-align: middle; height: 300px; background-color: white;" ng-click="FlashCardView.GetNext();">
+                                    &nbsp;
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="ButtonBarSubAppBack" style="border: solid; border-width: 1px 1px 1px 1px;">
+                    <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Exit" id="btnFlashCardViewExit" style="float:right;" ng-click="FlashCardView.Exit()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

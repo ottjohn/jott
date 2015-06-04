@@ -1,0 +1,22 @@
+﻿<Rows>
+  <row>
+    <TestString></TestString>
+    <TestKey>NewGroupName</TestKey>
+    <TestReturnValue>Group names must be between 4 and 50 characters in length.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>1993-07-28</TestString>
+    <TestKey>NewGroupName</TestKey>
+    <TestReturnValue>Group names must be between 4 and 50 characters in length.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>This is a test</TestString>
+    <TestKey>NewGroupName</TestKey>
+    <TestReturnValue>Group names must be between 4 and 50 characters in length.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>TheFinalGroupName</TestString>
+    <TestKey>NewGroupName</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+</Rows>

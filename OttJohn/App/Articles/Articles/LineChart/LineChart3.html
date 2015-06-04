@@ -1,0 +1,133 @@
+﻿As with most of the dynamic stuff I build in JavaScript, I made this one a self-contained object, which is defined in the following way:
+<p />
+<pre>
+var LineChartObject = function () {
+
+    var Chart = this;
+    var ChartContext = null;
+
+    Chart.BuildChart = function (ChartData) {
+
+        Chart.GetContext(ChartData);
+        Chart.DrawContentRect(ChartData);
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //  Get a reference to the container
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    Chart.GetContext = function (ChartData) {
+
+        ChartContext = element[0].getContext('2d');
+    }
+
+    ...
+    Lots of code here
+    ...
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //  Draw the chart
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    Chart.DrawContentRect = function (ChartData) {
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //  Variable creation that will be used throughout building process
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        var RectWidth = ChartData.DimsAndColor.CanvasWidth - 2 * ChartData.DimsAndColor.GridTopLeftX;
+        var RectHeight = ChartData.DimsAndColor.CanvasHeight - ChartData.DimsAndColor.GridTopLeftY - ChartData.DimsAndColor.BottomChartOffset;
+        var RectBottom = ChartData.DimsAndColor.GridTopLeftY + RectHeight;
+        var VertTickMarkIncrement = Math.floor(RectHeight / ChartData.DimsAndColor.VerticalTicCount);
+        var RectTickLineVert = RectBottom - VertTickMarkIncrement;
+        var MinY = Math.min.apply(Math, ChartData.LineData.Data);
+        var MaxY = Math.max.apply(Math, ChartData.LineData.Data);
+        var VertGridSpacing = Math.floor((MaxY - MinY) / (ChartData.DimsAndColor.VerticalTicCount - 1));
+        var FullNumericHeight = VertGridSpacing * ChartData.DimsAndColor.VerticalTicCount;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //  Build Chart Area
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        Chart.DrawChartArea(ChartData, RectWidth, RectHeight);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //  Build grid lines and vertical, numberic markings
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        Chart.DrawHorizontalLinesAndVerticalMarks(ChartData, VertGridSpacing, RectTickLineVert, RectWidth, VertTickMarkIncrement);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //  Build grid horizontal ticks and markers
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        Chart.DrawBottomChartMarkers(ChartData, RectWidth, RectHeight);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //  Draw the line
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        Chart.DrawLine(ChartData, FullNumericHeight, RectWidth, RectHeight);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //  Draw Title
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        Chart.DrawTitle(ChartData, RectWidth, RectHeight);
+
+    }
+
+    return Chart;
+}
+</pre>
+<p />
+We'll go through this part of the code first, and then we'll run through the rest of it on the next page. First, the chart object 
+has to be created in code. It will look like this:
+<p />
+<pre>
+    var MyChart = new LineChartObject();                //Instantiate chart object
+    MyChart.BuildChart(linechartcontract);              //Call BuildChart method while passing the hydrated contract
+</pre>
+<p />
+Now take a look inside the BuildChart method above. We can't do any drawing whatsoever without the canvas with the drawing context. Because my 
+code is tucked inside of a Angular custom directive, it might look a little differently than yours:
+<p />
+<pre>
+    Instead of
+        ChartContext = element[0].getContext('2d');
+
+    You might have something like 
+        ChartContext = $("CanvasObject").getContext('2d');
+</pre>
+<p />
+The second part of this code builds out metrics that we will need to build the chart. Here is basically what is going on in each of these 
+assignments (note that your algebra is going to have to be pretty good to get through this; to gain a better understanding of what I mean 
+with these comments, look at the definitions above):
+<p />
+<ol>
+    <li>
+        RectWidth: determines the width of a centered grid inside the canvas.
+    </li>
+    <li>
+        RectHeight: determines the height of a grid that is lifted off the bottom of the canvas by 60 pixels 
+        to make room for the title. Note that this should obviously be a part of the contract.
+    </li>
+    <li>
+        RectBottom: tells me where the bottom of my grid is so I can place whatever I need there and have 
+        a reference point for where I will draw all of my lines, including my horizontal markers.
+    </li>
+    <li>
+        VertTickMarkIncrement: automatically scales the distance between the vertical grid labels (in pixels).
+    </li>
+    <li>
+        RectTickLineVert: tells me where the first vertical tick mark should go.
+    </li>
+    <li>
+        MinY: min value in data
+    </li>
+    <li>
+        MaxY: max value in data
+    </li>
+    <li>
+        VertGridSpacing: automatically calculates the difference in values of the vertical labels.
+    </li>
+    <li>
+        FullNumericHeight: full hight from bottom of grid to top.
+    </li>
+</ol>
+<p />
+Most of this is just basic algebra, so if you want to create stuff like this on your own, you need to make sure you've 
+brushed up on that and also have a basic knowledge of how to scale and shift a cartesian plane. Let's move on to the meat of the matter.

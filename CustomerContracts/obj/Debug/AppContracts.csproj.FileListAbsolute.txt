@@ -1,0 +1,12 @@
+D:\AngularLearn\AngularAJAX\CustomerContracts\bin\Debug\AppContracts.dll
+D:\AngularLearn\AngularAJAX\CustomerContracts\bin\Debug\AppContracts.pdb
+D:\AngularLearn\AngularAJAX\CustomerContracts\obj\Debug\AppContracts.dll
+D:\AngularLearn\AngularAJAX\CustomerContracts\obj\Debug\AppContracts.pdb
+D:\AngularLearn\BankRate\CustomerContracts\bin\Debug\AppContracts.dll
+D:\AngularLearn\BankRate\CustomerContracts\bin\Debug\AppContracts.pdb
+D:\AngularLearn\BankRate\CustomerContracts\obj\Debug\AppContracts.dll
+D:\AngularLearn\BankRate\CustomerContracts\obj\Debug\AppContracts.pdb
+D:\StoreMaintenance\CustomerContracts\bin\Debug\AppContracts.dll
+D:\StoreMaintenance\CustomerContracts\bin\Debug\AppContracts.pdb
+D:\StoreMaintenance\CustomerContracts\obj\Debug\AppContracts.dll
+D:\StoreMaintenance\CustomerContracts\obj\Debug\AppContracts.pdb

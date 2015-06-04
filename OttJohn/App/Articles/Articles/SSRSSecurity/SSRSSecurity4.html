@@ -1,0 +1,22 @@
+﻿Now that we have the web site security taken care of, we can take care of the associated SQL Server side of 
+security. With this in mind, fire up SQL Server (the ones that contain the database(s) against which your 
+reporting server works). Once there, open up the security tab under the Object Explorer window:
+<p />
+<img src="App/Articles/Articles/SSRSSecurity/SQLServerSecurity.png" style="display: block;" />
+<p />
+Right click on Logins, the select New Login. Once there, add the same user or group that you added to the web side. 
+Your dialog, then, should look something like this:
+<p />
+<img src="App/Articles/Articles/SSRSSecurity/SQLServerNewLogin.png" style="display: block;" />
+<p />
+Now that you have a new user or group login, you need to associate that entity with databases and assign 
+permissions. To do this, click on the User Mapping menu item on the left-hand side of the dialog. Once 
+there, select the database that the report server runs against. You should see something like the following:
+<p />
+<img src="App/Articles/Articles/SSRSSecurity/SqlServerAssignment.png" style="display: block;" />
+<p />
+Here, you will notice that I have both public and db_owner. The role of db_owner really should be frowned 
+upon when assigning such permissions to a user or a group. In my case, I have a report that uses a stored 
+procure, which, in turn, requires execute permission. If your reports are generated from parameterized 
+text-based queries, I do not think you will need to do this. Beyond that, this is all you have to do. Your 
+user can now get to the report ... with perhaps one minor exception.

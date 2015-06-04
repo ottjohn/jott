@@ -1,0 +1,65 @@
+﻿Note: if you do not know how to call a stored procedure from your data layer, then this probably is not 
+for you. Further, if you struggle with SQL, then this is probably not for you, either. Now that my late-
+arriving disclaimers are out of the way, let's have a look at the stored procedure that manages the paging:
+<p />
+<pre>
+    create procedure [dbo].[GetSampleData] (
+
+	    @CurrentPage int,
+	    @PageSize int,
+	    @SortField varChar(50),
+	    @SortDirection varChar(4)
+
+    )
+    as
+    set nocount on
+
+    begin
+
+	    declare @tempTable table 
+	    (
+		    rowNum int,
+		    id int, 
+		    UserName varChar(50),
+		    FirstName varchar(50), 
+		    LastName varchar(50),  
+		    email varchar(100)
+	    )
+
+	    declare @ExecString varChar(600)
+	    if @SortField = '' set @SortField = 'LastName'
+	    if @SortDirection = '' set @SortDirection = 'DESC'
+	
+	    set @ExecString = '	select
+	            rowNum, id, UserName, FirstName, LastName, email
+            from
+	            (	select 
+			            id, UserName, FirstName, LastName, email,
+			            ROW_NUMBER() over (order by ' + @SortField +  ' ' + @SortDirection + ') as rowNum
+		            from
+			            SampleUserData ) as tempTable
+            where
+		            rowNum between ' + convert(varchar, (@CurrentPage - 1)*(@PageSize + 1)) +
+		            ' AND ' +
+		            convert(varchar, @CurrentPage*@PageSize)	
+	
+	    insert into @tempTable exec(@ExecString)
+	
+	    select
+		    rowNum, id, UserName, FirstName, LastName, email
+	    from
+		    @tempTable
+			
+    end
+</pre>
+<p />
+As you can see, there are only a few things to talk about here. At the top of the procedure, you can see the variables we 
+outlined on the previous line are passed in. Then we create a table variable to hole our final result set, and we check the 
+values of @SortField and @SortDirection and give them default values if they are empty.
+<p />
+Why do we have a table variable? Well, we could simply use the <i>exec</i> command on the sql string, and we would get the 
+result if we were running this procedure in SSMS. This is, however, not where we are running this stored procedure. We are 
+calling it from our DAL, and, because of that, it more than likely will have no idea what fields are coming its way because 
+they would not have otherwise been explicitely defined. Please note that a temp table will not work here, either. 
+<p />
+Let's move on now to the meat of the matter.

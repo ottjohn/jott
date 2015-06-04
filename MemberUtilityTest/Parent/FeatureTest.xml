@@ -1,0 +1,18 @@
+﻿<Rows>
+  <row>
+    <State>7</State>
+    <ReturnValue>false</ReturnValue>
+  </row>
+  <row>
+    <State>8</State>
+    <ReturnValue>true</ReturnValue>
+  </row>
+  <row>
+    <State>9</State>
+    <ReturnValue>false</ReturnValue>
+  </row>
+  <row>
+    <State>10</State>
+    <ReturnValue>false</ReturnValue>
+  </row>
+</Rows>

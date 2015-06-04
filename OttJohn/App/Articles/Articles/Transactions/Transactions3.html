@@ -1,0 +1,113 @@
+﻿Okay, so we've seen an instance in which the data layer itself needs to implement a transaction scope, but 
+what about within TSQL? You will be happy to know that this is just as simple! Here, though, we have a 
+little different scenario: instead of just blindly looping through inserts from the data layer, here we have 
+disparate actions being taken against the database that, again, need to be treated as an all-or-none unit. 
+For instance, say we are working with the aforementioned drops, and with each drop that is associated with 
+a deposit, we have to perhaps add and entry into a variance table. So we might have something like the 
+following (remember, this is contrived):
+<p />
+<pre>
+    declare @DepositedDropId int = 0
+
+    insert into
+
+        DepositedDrops
+
+    values (
+
+        @DropId,
+        @DropAmount,
+        @DepositId,
+        GetDate()
+
+    )
+
+    set @DepositedDropId = @@Identity
+
+    if @DropVariance != 0
+    begin
+
+        insert into
+
+            DropVarinace
+
+        values (
+
+            @DropId,
+            @DropVariance,
+            @DropVarianceReason
+
+        )
+
+    end
+</pre>
+<p />
+Again, this is great under two circumstances: one, there is never a variance; two, nothing ever goes wrong with the data or surrounding 
+infrastructure. Like that's going to happen. Let's fix this with TSQL Transactions:
+<p />
+<pre>
+    declare @DepositedDropId int = 0
+    declare @DrpError = 0
+
+    begin transaction
+    begin try
+
+        insert into
+
+            DepositedDrops
+
+        values (
+
+            @DropId,
+            @DropAmount,
+            @DepositId,
+            GetDate()
+
+        )
+
+        set @DepositedDropId = @@Identity
+
+        if @DropVariance != 0
+        begin
+
+            insert into
+
+                DropVarinace
+
+            values (
+
+                @DropId,
+                @DropVariance,
+                @DropVarianceReason
+
+            )
+
+        end
+
+    end try
+    begin catch
+
+        set @DropError = 1
+
+    end catch
+
+    if @DropError = 0
+    begin
+
+        commit trans
+
+    end
+    else
+    begin
+
+        rollback trans
+
+    end
+
+</pre>
+<p />
+Again, this is very simple. We add a structure to the code for safety and we are protected. Under the former example, say 
+the insert into the DepositedDrops table went fine but that there was an error inserting values into the DropVariance 
+table. In this case, we would lose the variance information. It would be better to simply back everything out and report an error. 
+Under the second example, however, we use a transaction, and, in the event there is an error, we don't have to worry about 
+losing information; rather, we rollback the transaction and it's like the processing never happened.  

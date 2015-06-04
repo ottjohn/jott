@@ -1,0 +1,43 @@
+﻿Okay, we are going down the road of Forms Authentication, and we have told our config file that we want to work with an authentication 
+cookie. The best way I know how to do this is to put some code into a Global.asax file. If you do not have one in your project already, 
+grab on and then open it up. Once you do, you are going to need to make two entries:
+<p />
+<pre>
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            System.Web.ApplicationServices.AuthenticationService.CreatingCookie
+                += new EventHandler<system.web.applicationservices.creatingcookieeventargs>
+                (AuthenticationService_CreatingCookie);
+        }
+</pre>
+<p />
+This registers a listener for cookie creation on Application Start. Now you can add the next entry to do what you will to build the 
+cookie:
+<p />
+<pre>
+        CustomerProcess CP = new CustomerProcess();
+        string RolesString = CP.GetRolesOnLogin(e.UserName);
+        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, e.UserName, DateTime.Now, DateTime.Now.AddMinutes(30), false, RolesString, FormsAuthentication.FormsCookiePath);
+        string encryptedCookie = FormsAuthentication.Encrypt(ticket);
+        HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedCookie);
+        HttpContext.Current.Response.Cookies.Add(cookie);
+        e.CookieIsSet = true;
+</pre>
+<p />
+In my case, I have a library that has an object called CustomerProcess. CustomerProcess with grab the UserName of the user loggin in and 
+grab all of the roles associated with that user. It will then create an authentication ticket and stuff it in a cookie. Now you have the Identity of 
+the user populated in the HttpContext object. How do you grab the cookie, you ask? By doing the following:
+<p />
+<pre>
+        HttpCookie AuthCookie = HttpContext.Current.Request.Cookies.Get(".ASPXAUTH");
+        FormsAuthenticationTicket AuthTicket = FormsAuthentication.Decrypt(AuthCookie.Value);
+        request.UserInfo.UserRoles = AuthTicket.UserData;
+        response.UserInfo = request.UserInfo;
+</pre>
+<p />
+This is the code you need to call upon successful login. Once you know the user is in the system, you can fetch the cookie and get the 
+roles. Do not change lines one and two. The request object in line three is mine. The RHS populates the roles object by getting the 
+roles from the cookie (in the format I specified in the Global.asax file). I am using a request object here because it is available. It 
+already has my UserInformation object there. In the end, I just dump that object into my reponse object and leave the method.
+<p />
+Now that we have that out of the way, let's set up a service that we can talk to using AJAX to log the user on and off.

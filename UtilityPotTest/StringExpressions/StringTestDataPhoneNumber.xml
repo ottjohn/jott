@@ -1,0 +1,17 @@
+﻿<Rows>
+  <row>
+    <TestString>4023334444</TestString>
+    <TestKey>Phone</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+  <row>
+    <TestString>402333444</TestString>
+    <TestKey>Phone</TestKey>
+    <TestReturnValue>Phone number must be ten digits long.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>40233344445</TestString>
+    <TestKey>Phone</TestKey>
+    <TestReturnValue>Phone number must be ten digits long.</TestReturnValue>
+  </row>
+</Rows>

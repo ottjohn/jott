@@ -1,0 +1,63 @@
+﻿    First, we need to work out some kind of contract that will describe what a pie chart looks like. The contract not only has to describe things like titles, colors, fonts, 
+    and labels, but it also needs to deescribe the position, radius, segment color, and proportions carried by the things being described in the chart. Most, if not all, of this 
+    information should really be populated on the server. If this is for a corporate website, then there will be standards for colors and fonts, and those can probably be hydrated 
+    from a query against some backend that contains that stuff. For really simple sites, I guess some of the data in the chart can be populated in the page itself (read "hard-coded").
+    I will show you a piece of the contract that I came up with. The part that describes the data. Then we can take a look at the rest of the contract:
+<p />
+<pre>
+    var ChartItemContract = {
+        Proportion: 0,
+        RadianPosition: 0,
+        RadianMeasure: 0,
+        FillColor: null,
+        ItemLabel: "",
+        Path: ""
+    }
+    </pre>
+<p />
+    The above contract describes a wedge of a pie chart. If you really want to get down to it, the only two items that really need to be returned
+    by the server are Proportion and ItemLabel (just for this piece). As a pie chart is the sum of wedges, we will have an array of these items for each chart. The remaining
+    descriptors are either calculated fields or fields that can be managed on the client. Now let's take a look at the parent contract, the one that describes the whole enchilada:
+<p />
+<pre>
+    var ChartContract = {
+        Title: '',                      //Title for the chart
+        ContainerHeight: 270,           //Describes the height of the container in which the chart is held
+        ContainerWidth: 340,            //Describes the width of the container in which the chart is held
+        ContainerId: '',                //Describes the id of the container in which the chart is held
+        CenterX: 100,                   //Describes the center-x of the chart relative to its container
+        CenterY: 150,                   //Describes the center-y of the chart relative to its container
+        Radius: 90,                     //Describes the radius of the chart
+        CurrentX: 0,                    //Describes the current x-coordinate for drawing in container
+        CurrentY: 0,                    //Describes the current y-coordinate for drawing in container
+        OldX: 0,                        //Describes the previous x-coordinate for drawing in container
+        OldY: 0,                        //Describes the previous y-coordinate for drawing in container
+        KeyWidth: 20,                   //Describes the width of each key box on the chart
+        KeyHeight: 20,                  //Describes the height of each key box on the chart
+        KeyCenterX: 0,                  //Describes the x-center position of the top key box on the chart
+        KeyCenterY: 0,                  //Describes the y-center position of the top key box on the chart
+        KeyOffsetTop: 40,               //Describes how far down from the upper border I want my keys to start
+        KeyOffsetInterval: 40,          //Describes how far apart I want to position the keys vertically
+        TitleCenterX: 0,                //Describes the x-center position of the title for the chart
+        TitleCenterY: 0,                //Describes the y-center position of the title for the chart
+        ItemLabelPaddingLeft: 0,        //Describes the left padding between each label and it's corresponding key
+        ChartItems: null                //This is the array of pie wedges described above
+    }
+    </pre>
+<p />
+    The only thing here that really needs to come from the server is the chart title (and maybe not even that). Everything else can be controlled locally. As you can see from the parent contract,
+    a lot of items here are prepopulated so that each chart in the array will have the same look and feel. The rest of the items are calculated fields based on other
+    entries in the chart.
+<p />
+    As for the array of charts, we need only one last contract:
+<p />
+<pre>
+    var ChartCollectionContract = {
+        Charts: null
+    }
+    </pre>
+<p />
+    To sum up this part, we have created three contracts that describe an array of charts. Of all the fields here, only a few should come from the server. The rest
+    can be populated on the client in the definition of the contract itself or calculated by the JavaScript that builds the charts. In the next section, we will look at the
+    JavaScript behind the chart creation.
+

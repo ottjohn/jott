@@ -1,0 +1,112 @@
+﻿The SQL Server code behind all of this is actually pretty straight-forward, and, if you have ever put together an old service call 
+using ActiveX objects from an old Classic ASP page, this is probably going to look familiar. I will give you the code first, and then 
+we will talk about it:
+<p />
+<pre>
+create procedure [dbo].[TestServiceCall] (
+
+	@FirstName varChar(100),
+	@LastName varChar(100),
+	@ResponseMessage varChar(1000) output
+
+)
+as
+set nocount on
+begin
+
+	declare @ObjectFlag int                     --Pointer to the XMLHttp object
+	declare @ServiceURL varChar(512)            --URL for service
+	declare @src varChar(1000)                  --Source of any error we might encounter
+	declare @desc varChar(1000)                 --Description of any error we might encounter
+	declare @ihr int                            --Error code
+
+	set @ServiceURL = 'http://localhost/SQLWCF/SQLWCF.svc/GetData?FirstName=' + 
+							@FirstName + '&LastName=' + @LastName
+							
+	exec sp_OACreate 'MSXML2.ServerXMLHTTP', @ObjectFlag output
+	begin try
+		exec @ihr = sp_OAMethod @ObjectFlag, 'Open', null, 'GET', @ServiceURL, 0
+		
+		if @ihr = 0
+		begin
+		
+			exec @ihr = sp_OAMethod @ObjectFlag, 'setRequestHeader', null, 'Content-Type', 'application/x-www-form-urlencoded'
+		
+		end
+		
+		if @ihr = 0
+		begin
+		
+			exec @ihr = sp_OAMethod @ObjectFlag, 'Send', null
+		
+		end
+		if @ihr != 0
+		begin
+		
+			exec sp_OAGetErrorInfo @ObjectFlag, @src output, @desc output
+			set @ResponseMessage = @src + ' ' + @desc
+		
+		end
+		else
+		begin
+		
+			exec sp_OAGetProperty @ObjectFlag, 'responseText', @ResponseMessage output
+		
+		end
+		select @ResponseMessage
+		exec sp_OADestroy @ObjectFlag
+		
+	end try
+	begin catch
+		set @ResponseMessage = 'Failed to communicate with service.'
+		
+	end catch
+end
+</pre>
+<p />
+For the purposes of this article, I am going to assume that you know what a stored procedure is. If you do not, simply take the code out of 
+the procedure and run it as an SQL batch. Briefly, here is what is going on in the code:
+<p />
+<ol>
+    <li>
+        sp_OACreate: this stored procedure will create an instance of an OLE object. To create the object, you send its name and and output 
+        variable that will act as a pointer to the object (not unlike the old flags we had to manage with files back in the day).
+        <p />
+    </li>
+    <li>
+        sp_OAMethod: this stored procedure will call a method against the OLE object you've instantiated. Obviously, one of the things you need 
+        to pass to this method is the pointer to the object itself. Here we also have the following:
+        <p />
+        <ul>
+            <li>
+                The method name. In this case, it is Open
+            </li>
+            <li>
+                Any object that the method might return. In this case there is none, so pass null
+            </li>
+            <li>
+                The rest are parameter values: we are performing a GET operation, we performing that operation against the service listed in the 
+                ServiceURL, and the call will not be asynchronous. 
+            </li>
+        </ul>
+        <p />
+    </li>
+    <li>
+        Every major call returns an error code. If the error code is zero, we may proceed; otherwise, we stop processing.
+        <p />
+    </li>
+    <li>
+        The next method call is a send against the service.
+        <p />
+    </li>
+    <li>
+        Again we check for errors. If there are none, we call sp_OAGetProperty, which will return a value kept by the object that contains the result of 
+        our call. In this case, we hope it's a SOAP document that contains a first and last name.
+        <p />
+    </li>
+    <li>
+        Once we have all of this accomplished, we destroy the object.
+    </li>
+</ol>
+<p />
+Now let's break it.

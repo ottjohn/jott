@@ -1,0 +1,37 @@
+﻿<Rows>
+  <row>
+    <TestString></TestString>
+    <TestKey>DateDash422</TestKey>
+    <TestReturnValue>Date must be in YYYY-MM-DD format.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>1993-07-28</TestString>
+    <TestKey>DateDash422</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+  <row>
+    <TestString>1993-7-8</TestString>
+    <TestKey>DateDash422</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+  <row>
+    <TestString>93-07-28</TestString>
+    <TestKey>DateDash422</TestKey>
+    <TestReturnValue>Date must be in YYYY-MM-DD format.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>93-07-1993</TestString>
+    <TestKey>DateDash422</TestKey>
+    <TestReturnValue>Date must be in YYYY-MM-DD format.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>93-07--1993</TestString>
+    <TestKey>DateDash422</TestKey>
+    <TestReturnValue>Date must be in YYYY-MM-DD format.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>1993,07,28</TestString>
+    <TestKey>DateDash422</TestKey>
+    <TestReturnValue>Date must be in YYYY-MM-DD format.</TestReturnValue>
+  </row>
+</Rows>

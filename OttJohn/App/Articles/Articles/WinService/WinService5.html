@@ -1,0 +1,31 @@
+﻿The final thing we need to do here is add the installer. We cannot run our service until it has been installed by registering it with the 
+service control manager. There are a few steps here:
+<p />
+<ol>
+    <li>Right click on your service name, and select View Designer</li>
+    <li>Right click on the designer surface and select Add Installer. This will create a new item in your project called ProjectInstaller</li>
+    <li>Select the design view for ProjectInstaller</li>
+    <li>Select the icon ServiceInstaller1 and then go to its associated properties box</li>
+    <li>Here, ensure that the ServiceName property is set to your service name. Also, you can set the DisplayName and Description properties 
+    here as well. Once you’ve done that, set the StartType property to Automatic if that is how you want the service to start</li>
+</ol>
+<p />
+    <img src="App/Articles/Articles/WinService/ServiceInstaller.png" style="display: block;" />
+<p />
+Once you’ve done this, click on the ServiceProcessInstaller1 icon, go to its property box, and set the Account property to LocalSystem. This is 
+the account under which the process will run. 
+<p />
+    <img src="App/Articles/Articles/WinService/ServiceProcessInstaller.png" style="display: block;" />
+<p />
+The final step is to actually install the service. Here is what you want to do:
+<p />
+<ol>
+    <li>Copy a shortcut to the VS command console to the bin\debug directory</li>
+    <li>Right click the command icon and run as administrator</li>
+    <li>Change the directory to the current bin\debug directory</li>
+    <li>Type the following command: installutil [name of executable]. In my case, it was installutil MemberReconciliation.exe</li>
+    <li>If you are anything like me, you will wind up having to uninstall this thing about a thousand times during testing so you can fix errors. 
+    To do this, add a /u right after the command but before the name of the file</li>
+</ol>
+<p />
+Now, you are ready to roll!

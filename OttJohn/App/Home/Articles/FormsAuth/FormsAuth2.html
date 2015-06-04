@@ -1,0 +1,68 @@
+﻿The first thing you need to decide on when building a membership database is whether you are going to build it yourself or if you are going to
+implement a third party database. I've built custom membership databases before, and they are pretty easy to build, but why bother when you
+have something like ASP.NET Membership Services just sitting there for free? Not only that, but ASP.NET Membership Services is also
+multi-tenant ready, so you can dive right into confusing yourself and everybody around you instantly.
+<p />
+How to get it: go here -- http://weblogs.asp.net/sukumarraju/installing-asp-net-membership-services-database-in-sql-server-expreess
+<p />
+As for the above part, that is all I am going to share. Installing the database is really very simple. The hardest part, really, is deciding
+on a name. And, honestly, I can't create directions better than those in the article. Once installed, you need to have the following in your
+web.config (if you don't know what a web.config is, you're in way over your head for now):
+<p />
+For basic membership, you need the following
+<p />
+<pre>
+    &lt;membership defaultprovider="SqlMembershipProvider" userisonlinetimewindow="15"&gt;
+    &lt;providers&gt;
+    &lt;clear /&gt;
+    &lt;add name="SqlMembershipProvider"
+         type="System.Web.Security.SqlMembershipProvider"
+         connectionstringname="[THE NAME OF THE CONNECTION STRING TO YOUR MEMBERSHIP DATABASE]"
+         applicationname="[THE NAME OF THE APPLICATION WITHIN THE MEMBERSHIP DATABASE YOU WANT TO INITIALLY CONNECT TO]"
+         enablepasswordretrieval="true"
+         enablepasswordreset="true"
+         requiresquestionandanswer="false"
+         passwordattemptwindow="20000"
+         requiresuniqueemail="false"
+         minrequiredpasswordlength="1"
+         minrequirednonalphanumericcharacters="0"
+         passwordstrengthregularexpression=""
+         passwordformat="Encrypted" /&gt;
+    &lt;/providers&gt;
+    &lt;/membership&gt;
+</pre>
+<p />
+The attributes in this XML above are simply how you want to set up authentication and user management within the database. I think they are mostly
+self-explanatory, don't you? You can, for instance add a regular expression for password strength right there in the config file. This will automatically
+throw an error any time a user tries to create a password that stinks. When you are registering a user, then, you can look at an object membership returns
+to you and it will actually tell you that the password stinks. The really important one here is encryption. Of course passwords should be encrypted. Do do
+this, you also need a key. You can create one of these or get it out of the Machine.Config file and put it right under the XML above:
+<p />
+<pre>
+&lt;machinekey validationkey="41BC83C3C3E2E9D056A651C7F30A4073DF60D109CE47417C7285FE8D6D916D3900491BB6CF2DAC37ACA34CEEBFA3922B2E86998785B9409AF26EA171A4BB8B5C"
+            decryptionkey="E08201538FCE972E060E9E0B04BA4223898A880814D704F20B3598CA3951C7A2" validation="SHA1" decryption="AES" /&gt;
+
+</pre>
+<p />
+To add a roles provider as well, we need to add the following to the config file:
+<p />
+<pre>
+    &lt;rolemanager enabled="true" defaultprovider="SqlRoleManager"&gt;
+    &lt;providers&gt;
+    &lt;clear /&gt;
+    &lt;add name="SqlRoleManager" type="System.Web.Security.SqlRoleProvider" connectionstringname="Membership" applicationname="Membership" /&gt;
+          &lt;/providers&gt;
+        &lt;/rolemanager&gt;
+</pre>
+<p />
+Notice that in both of these XML snippets, the first thing you see is <clear />. If there are any cached providers or default providers, on application start they
+are removed and yours take their place. This is mosty a just-in-case entry. The last thing we need to worrry about is how we determine if a user is indeed
+authenticated during method calls (or whether the user can use a particular method at all). We do this with the following snippet:
+<p />
+<pre>
+    &lt;authentication mode="Forms"&gt;
+        &lt;forms cookieless="UseCookies" /&gt;
+    &lt;/authentication&gt;
+</pre>
+<p />
+Okay, so we are on our way to setting up Forms Authentication over an ASP.NET Membership provider. Now let's see what we have to do to actually get the cookie.

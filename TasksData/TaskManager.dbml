@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="OttJohnData" Class="TaskManagerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=.;Initial Catalog=OttJohnData;User ID=sa;Password=3Pitters@3" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.GetUserTasks" Method="GetUserTasks">
+    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="GetUserTasksResult">
+      <Column Name="TaskId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TaskName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="LookupName" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="TaskPriorityId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.RetrieveHealthcareReport" Method="RetrieveHealthcareReport">
+    <ElementType Name="RetrieveHealthcareReportResult">
+      <Column Name="ReportItem" Type="System.String" DbType="NVarChar(219)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SubmitTask" Method="SubmitTask">
+    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="TaskId" Parameter="taskId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetSummaryOfTasks" Method="GetSummaryOfTasks">
+    <ElementType Name="GetSummaryOfTasksResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TaskId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TaskName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Completed" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Proportion" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetRecordCount" Method="GetRecordCount">
+    <Parameter Name="AppName" Parameter="appName" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="IsApproved" Parameter="isApproved" Type="System.Int32" DbType="Int" />
+    <Parameter Name="RecordCount" Parameter="recordCount" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.RetrieveHandbookReport" Method="RetrieveHandbookReport">
+    <ElementType Name="RetrieveHandbookReportResult">
+      <Column Name="ReportItem" Type="System.String" DbType="NVarChar(721)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SubmitHealthcareElection" Method="SubmitHealthcareElection">
+    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="HoursPerWeekThreshhold" Parameter="hoursPerWeekThreshhold" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="Participate" Parameter="participate" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="ElectionPlan" Parameter="electionPlan" Type="System.String" DbType="VarChar(25)" />
+    <Parameter Name="TaskId" Parameter="taskId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TaskCompleteId" Parameter="taskCompleteId" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.AddComment" Method="AddComment">
+    <Parameter Name="UserComment" Parameter="userComment" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="ArticleNumber" Parameter="articleNumber" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ErrorCode" Parameter="errorCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ArticleComments" Method="ArticleComments">
+    <Parameter Name="ArticleNumber" Parameter="articleNumber" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ArticleCommentsResult">
+      <Column Name="content" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ArticleNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="DateStamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetArticle" Method="GetArticle">
+    <Parameter Name="ArticleId" Parameter="articleId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetArticleResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="ContentUrl" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="DateStamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ArticleNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetArticleSynopsis" Method="GetArticleSynopsis">
+    <Parameter Name="CategoryFilter" Parameter="categoryFilter" Type="System.String" DbType="VarChar(512)" />
+    <ElementType Name="GetArticleSynopsisResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ArticleNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="synopsis" Type="System.String" DbType="VarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="Categories" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
+      <Column Name="DateStamp" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetVisitCounts" Method="GetVisitCounts">
+    <ElementType Name="GetVisitCountsResult">
+      <Column Name="ActivityDate" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="VisitCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetSynopsisRecordCount" Method="GetSynopsisRecordCount">
+    <Parameter Name="CategoryFilter" Parameter="categoryFilter" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="RecordCount" Parameter="recordCount" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetArticleSynopsisNew" Method="GetArticleSynopsisNew">
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CurrentPage" Parameter="currentPage" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CategoryFilter" Parameter="categoryFilter" Type="System.String" DbType="VarChar(512)" />
+    <ElementType Name="GetArticleSynopsisNewResult">
+      <Column Name="rowNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ArticleNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="synopsis" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="Categories" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
+      <Column Name="DateStamp" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.AddFlashCard" Method="AddFlashCard">
+    <Parameter Name="FlashCardQuestion" Parameter="flashCardQuestion" Type="System.String" DbType="VarChar(1024)" />
+    <Parameter Name="FlashCardAnswer" Parameter="flashCardAnswer" Type="System.String" DbType="VarChar(1024)" />
+    <Parameter Name="FlashCardCategory" Parameter="flashCardCategory" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetFlashCard" Method="GetFlashCard">
+    <Parameter Name="CategoryIdx" Parameter="categoryIdx" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SelectedCatItem" Parameter="selectedCatItem" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CategoryItemsChosen" Parameter="categoryItemsChosen" Type="System.String" DbType="VarChar(30)" />
+    <ElementType Name="GetFlashCardResult">
+      <Column Name="FlashCardQuestion" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
+      <Column Name="FlashCardAnswer" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetUsedCategories" Method="GetUsedCategories">
+    <Parameter Name="IsFlashCard" Parameter="isFlashCard" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetUsedCategoriesResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="BackColor" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ForeColor" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetUsedViewCategories" Method="GetUsedViewCategories">
+    <ElementType Name="GetUsedViewCategoriesResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="BackColor" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ForeColor" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetSpecificCategories" Method="GetSpecificCategories">
+    <Parameter Name="CatList" Parameter="catList" Type="System.String" DbType="VarChar(128)" />
+    <ElementType Name="GetSpecificCategoriesResult">
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="BackColor" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ForeColor" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="CardCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

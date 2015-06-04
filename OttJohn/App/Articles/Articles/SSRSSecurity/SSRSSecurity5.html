@@ -1,0 +1,18 @@
+﻿Occassionally, you will be cruising along and think you have all of your bases covered, and then one of 
+your users claims he can't get in to review a report. In fact, after providing credentionals, nothing at 
+all shows up in that person's browser. This, of course, sucks big time. So now you have to go to 
+Google and look for similar circumstances, find several, and then hope you can find the one that applies 
+to your dilemma quickly. Well, in my case, it was quick. 
+<p />
+SSRS has a configuration file, but it does not belong to your project. It belongs to to the directory under 
+which SSRS runs. In my case, this is 
+<p />
+<pre>
+    C:\Program Files\Microsoft SQL Server\MSRS10_50.MSSQLSERVER\Reporting Services\ReportServer
+</pre>
+<p />
+The name of the file is rsreportserver.config. When the browser tries to connect to SSRS, there are two 
+protocols that can be used: kerberos and NTLM. In my case, the communication was defaulting to 
+kerberos when it should have been NTLM. There are two tags that correspond to these protocals, their names 
+are RSWindowsNegotiate and RSWindowsNTLM, respectively. To remove kerberos as a protocol, either remove 
+the tag or comment it out. Then save the config file, restart the SRSS service, and you should be good to go.

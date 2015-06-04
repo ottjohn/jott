@@ -1,0 +1,52 @@
+﻿Whether we are using BCP or bulk insert, we still have to make the contents of the file fit our schema. Now, if 
+the file itself had everything it needed to create a primary key, and had all of the fields in the table we want 
+to populate, we'd be good to go. But it does not. Let's say, for argument's sake, we have an identity field and two 
+other fields that are not covered in the file. What do we do? Well, we are going to make a format file, that's what. 
+How do I make a format file, you ask? Easily. The following is a BCP command that you can run either from the command 
+prompt or within SSMS to create one. For this case, I am going to run it from within SSMS:
+<p />
+<pre>
+    exec xp_cmdShell 'bcp [FULL_PATH_TO_TABLE] format nul -f [LOCATION_OF_YOUR_FILE] -c -T'
+</pre>
+<p />
+I will cover some of the parameters in the command, and then also cover an error that is probably going to occur when 
+you run this on your machine:
+<p />
+<ol>
+    <li>
+        FULL_PATH_TO_TABLE: basically, [DatabaseName].[dbo].[TableName]
+    </li>
+    <li>
+        LOCATION_OF_YOUR_FILE: Full path, including drive letter
+    </li>
+    <li>
+        -c: The format of the file is in characters and not Xxml
+    </li>
+    <li>
+        -T: The connection with the server is trusted. If you do not use this, then you are going to have to use the 
+        -U and -P parameters (user name and password).
+    </li>
+    <li>
+        -f: BCP command is to generate a format file
+    </li>
+</ol>
+<p />
+Once you do this and try to run it (inside of SSMS), it will probably fail. That is because by default access to the 
+command shell has been denied. You have to switch these privileges on. Here is how to do that:
+<p />
+<pre>
+    -- To allow advanced options to be changed.
+    EXEC sp_configure 'show advanced options', 1;
+    GO
+    -- To update the currently configured value for advanced options.
+    RECONFIGURE;
+    GO
+    -- To enable the feature.
+    EXEC sp_configure 'xp_cmdshell', 1;
+    GO
+    -- To update the currently configured value for this feature.
+    RECONFIGURE;
+    GO
+</pre>
+If you are going to do this on a server at work, make sure you have permission from your mother first. Once you've done this, 
+you should be able to generate your format file. Problem is, we still have to edit it. We'll do that next.

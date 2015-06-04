@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{05E1B22C-A3ED-46B9-B65E-2F820CEE933B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MaintenanceContracts</RootNamespace>
+    <AssemblyName>MaintContracts</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MaintenanceContracts\Contracts\Common\BaseContract.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Common\CityState.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Common\CityStateList.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Common\CustomerZip.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Common\Email.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Common\EmailAccountDetails.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Common\EmailMessageItem.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Common\EmailMessageItems.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Common\FieldTemplate.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Common\Notifications.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Common\State.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Common\Store.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\Application.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\ApplicationList.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\CredentialInformation.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\ExternalMemberData.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\ExternalMembers.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\ExtendedMemberInfo.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\ExtMemberInfoManager.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\FeatureGroup.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\FeatureTreeGroups.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\FeatureTreeItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\FeatureTreeItems.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\MemberPswdUpdate.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\RegistrationInformation.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\UserApplicationList.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\UserRolesList.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\OttJohn\Article.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\OttJohn\ArticleChapter.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\OttJohn\Articles.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\OttJohn\Comment.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\OttJohn\Comments.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\FlashCardAndMeta.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\FlashCardDetail.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\FlashCardMeta.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Common\CheckForMessagesResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\OttJohn\FlashCardCategoryRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\OttJohn\SaveFlashCardRequest.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\OttJohn\VisitorData.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\OttJohn\VisitorDatum.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Payday\CurrentDayLoansForUser.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Payday\CurrentLoanList.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Payday\PaydayLoanContract.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Payday\PaydayLoanContracts.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Reports\ReportFeatureItem.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Reports\ReportFeatureItems.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\ArticleSearch.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\ArticleSynopsisCollection.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\ArticleSynopsisItem.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\DirectoryContent.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\EmployeeHandbookContract.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\SubmitTaskResult.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\HealthcareElectionContract.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\SynopsisTopic.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\SynopsisTopics.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\TaskContract.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\TaskItem.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\TaskItemList.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\TaskReportItem.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\TaskReportList.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\Tasks\TaskSummaryItem.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\AddUpdateFeatureTreeGroupRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\AddUpdateFeatureTreeGroupResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\AssignProfileRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\AssignProfileResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\GetApplicationGroupsRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\GetApplicationGroupsResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\GetApplicationListResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\GetFeatureTreeRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\GetFeatureTreeResponse.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\MemberAppConfiguration.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\MemberConfigurationManager.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\PasswordManagement.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\UserInApplication.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\UserInfo.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\UserInformation.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\UserInRoles.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\MemberManagement\UserLoggedInInfo.cs" />
+    <Compile Include="MaintenanceContracts\Contracts\StateTax\StateTaxRules.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Common\GetStateListResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Common\GetStoreListRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Common\GetStoreListResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\CheckUserResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\GetPendingUserRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\GetPendingUsersResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\GetUnapprovedMembersRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\GetUserIdResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\GetUserRolesRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\GetUserRolesResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\MembershipMergeRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\MembershipMergeResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\PasswordManagmentRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\PasswordManagmentResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\RetrieveUserRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\RetrieveUserResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\UpdateUserRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\UpdateUserResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\UserAddRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\MemberManagement\UserAddResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\OttJohn\AddCommentRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\OttJohn\AddCommentResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\OttJohn\GetArticleListRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\OttJohn\GetArticleListResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\OttJohn\GetArticleRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\OttJohn\GetArticleResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\OttJohn\GetVisitorDataResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\OttJohn\SaveFlashCardResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Payday\GetInitialPaydayContractListsRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Payday\GetInitialPaydayContractListsResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Reports\GetReportListResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\StateTax\AddTaxRuleRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\StateTax\RetrieveTaxRulesRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\StateTax\RetrieveTaxRulesResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\StateTax\UpdateStateConfigRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\CheckPaydayDirectoryResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\GetArticleSynopisRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\GetArticleSynopsisResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\GetEmployeeHandbookRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\GetEmployeeHandbookResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\GetFlashCardAndMetaRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\GetFlashCardAndMetaResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\GetFlashCardRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\GetHealthcareReportResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\GetTaskReportRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\GetTaskReportResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\RetrieveCategoriesResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\RetrieveTasksRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\RetrieveTasksResponse.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\SubmitTaskRequest.cs" />
+    <Compile Include="MaintenanceContracts\Messages\Tasks\SubmitTaskResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

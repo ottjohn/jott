@@ -1,0 +1,52 @@
+﻿<Rows>
+  <row>
+    <TestString></TestString>
+    <TestKey>Email</TestKey>
+    <TestReturnValue>Email addresses must be expressed in the format somone@somedomain.com.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>x</TestString>
+    <TestKey>Email</TestKey>
+    <TestReturnValue>Email addresses must be expressed in the format somone@somedomain.com.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>x.y@L.5</TestString>
+    <TestKey>Email</TestKey>
+    <TestReturnValue>Email addresses must be expressed in the format somone@somedomain.com.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>x.y@hotmail.com</TestString>
+    <TestKey>Email</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+  <row>
+    <TestString>x.y@@hotmail.com</TestString>
+    <TestKey>Email</TestKey>
+    <TestReturnValue>Email addresses must be expressed in the format somone@somedomain.com.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>x.y@$hotmail.com</TestString>
+    <TestKey>Email</TestKey>
+    <TestReturnValue>Email addresses must be expressed in the format somone@somedomain.com.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>x.y@hotmail..com</TestString>
+    <TestKey>Email</TestKey>
+    <TestReturnValue>Email addresses must be expressed in the format somone@somedomain.com.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>x.y@hotmail.,com</TestString>
+    <TestKey>Email</TestKey>
+    <TestReturnValue>Email addresses must be expressed in the format somone@somedomain.com.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>x.joe.ward@de.com</TestString>
+    <TestKey>Email</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+  <row>
+    <TestString>x.joe.ward@de.org</TestString>
+    <TestKey>Email</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+</Rows>

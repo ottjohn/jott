@@ -1,0 +1,58 @@
+﻿Now that we have defined the report, we need to configure the parameters so that we can make 
+the report interactive and provide values for them. The easiest part of this is providing fields for 
+the dates. On the left side of Visual Studio, you should see the Report Data window. If you do not, 
+select the View menu and Click on Report Data, which should be toward the very bottom. Why Microsoft 
+did not make this a subentry in the Other Windows menu, I have no idea. Once you have the Report Data 
+window up, expland the Parameters folder. You will see something like this (depends on the names and 
+number of parameters you have in your example):
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/Parameters.png" style="display: block;" />
+<p />
+From here on out, I am going to simply illustrate what I am doing and not generalize this discussion to 
+what you are doing as well. Having said that, I will right click on the beginData parameter and select 
+properties. This gives me the following:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/DateParam.png" style="display: block;" />
+<p />
+Here, I will select the Data Type dropdown and select <i>Date/Time</i>. That's it. That's all I have to do. 
+This is enough to have the report present a date-select dialog on the reports website. Doing this for the 
+endData parameter, I will now focus my attention on the mainCategory parameter. Before I can do anything with 
+this parameter, though, I need to supply values for it. Since my values are going to come from the database, 
+I need to provide a dataset. I can do this by right-clicking on the Datasets folder and selecting Add Dataset. 
+This gives me the the following dialog:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/NewDataSet.png" style="display: block;" />
+<p />
+Here, I will name my dataset MainCategoryDS and then select <i>Use a dataset embedded in my report</i>. This
+will change the dialog to accommodate having to configure an additional, supporting dataset for the report. 
+I will select the default data source from the asscociated dropdown and then click the Text radio button 
+and type in the query I need to hydrate the dataset. After all that, this is what my dialog looks like:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/ConfigDataset.png" style="display: block;" />
+<p />
+Once the dataset has been created, I can return to my mainCategory parameter and configure it: I will right 
+click on the parameter and select properties. I will then set the Data Type to Integer. Now, I need to tell it 
+where to get its values from. Do do this, I select Available Values on the left hand side of the dialog, then 
+select the <i>Get values from query</i> radio button. Once I do this, I can select the dataset I just created, 
+then identify the value and label fields. Here is what the dialog now looks like:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/ConfigMainParam.png" style="display: block;" />
+<p />
+Having finished providing values for this parameter, we need to set up the final parameter, the subCategory. 
+Again, we will define a dataset, but the values in this dataset are going to depend upon the value of the id 
+assigned to the mainCategory parameter. Let's set this up by once again adding a dataset. Again, I will tell 
+the dialog to use a dataset embedded in my report, I will select my default datasource, and I will specify Text 
+and type in the query. The dialog now looks like the following:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/ConfigSubParameter.png" style="display: block;" />
+<p />
+Now, since I have a parameter in this query that I need to provide a value for, I will bind that parameter to the 
+value assigned to mainCategory. To do this, I click on the Parameters menu item on the left hand side of the 
+still-open dialog. One the right-hand side of the screen there is a drop down. In there, I can select the value 
+assigned to mainCategory. Once done, my dialog looks like the following:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/SetCascadingParamInDataset.png" style="display: block;" />
+<p />
+Once I do this, I can finally return to the parameter itself and set it up. The main part here, besides it having an 
+integer value, is that, under Assigned Values, we point it to the dataset we just created. There is no difference 
+between how this parameter is set up and how the previous one was. Now we should be ready to roll.

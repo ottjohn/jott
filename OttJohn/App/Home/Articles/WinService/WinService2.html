@@ -1,0 +1,52 @@
+﻿Open Visual Studio, select New Project. When the dialog comes up, under the Installed Templates panel, select Visual C# and then Windows Desktop. Once there, in 
+the middle panel, select Windows Service. Once you do this, there is one other thing you need to do immediately: change the name of the service … unless you want to 
+keep the name Service1 in your app. To do this, right click the file Service1 in your project and rename it to whatever you want it to be. In my case, I am going to 
+call it MemberReconcile. Once you’ve done this, you will need to visit the designer and change the name of the service there as well (you will see where in step three).
+<p />
+Now figure out what you need to do. From where I stand, I can sum this up in two words: not much. I already have a solution that does pretty much everything I need it 
+to do. The problem is, it’s a web-based solution, and I’m certainly not going to put a JavaScript timer in it so a member reconciliation function can be called once every 
+24 hours. Besides, which client would call it? Then I would have to cache some kind of flag when the first client gets to it, and then base it’s execution on the setting 
+of that flag. Too. Much. Work. Since I already have almost everything I need, I am simply going to create a web service in my application that will handle requests from 
+foreign callers, i.e., my Windows service. First, though, let’s set up some of the things necessary for the service to function correctly and efficiently. 
+<p />
+There are some basic configuration values that need to be stored, so I am going to store them in the local App Configuration file. To accomplish this, we will need a 
+reference to System.Configuration so we can use the ConfigurationManager. Since a vanilla service does not come with an App.Config file, we need to add it. This will be 
+under general components. Once the file is added, we can add an appSettings node and add keys under that node. Mine looks something like this:
+<p />
+<pre>
+    &lt;appsettings&gt;
+    &lt;add key="EventLogging" value="on" /&gt;
+    &lt;add key="LogName" value="MemberLogger" /&gt;
+    &lt;add key="LogSource" value="MemberLoggerSource" /&gt;
+    &lt;add key="ThreshHold" value="1.5" /&gt;
+    &lt;add key="AlwaysSendListAt" value="10" /&gt;
+    &lt;add key="CheckInterval" value="1" /&gt;
+  &lt;/appsettings&gt;
+</pre>
+<p />
+Notice that the xml fragment we added to the configuration file mentions logging of some kind. In any application like this, we want to log errors or perhaps statuses. 
+In this case, we are going to use the event logger. To begin the process of setting that up, do the following:
+<p />
+<ol>
+    <li>
+        right click on your service and select View Designer
+    </li>
+    <li>
+        Now view your toolbox, and under Components click and drag the Event Log component onto the service designer
+    </li>
+</ol>
+<p />
+Don’t worry about changing the name of the event log. It really won't matter. Now let's go to the InitializeComponent method and add what we need to actually use the event 
+log. The constructor on your service has a call to this method. Simply right click on the method name and select Go To Definition. Modify the code in the following way to 
+initialize the Event Log (note this does not name the log. We will do that in a bit).
+<p />
+<pre>
+    private void InitializeComponent()
+    {
+        this.eventLog1 = new System.Diagnostics.EventLog();
+        ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
+        this.ServiceName = "[your service name]";
+        ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
+    }
+</pre>
+<p />

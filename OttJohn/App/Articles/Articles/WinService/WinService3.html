@@ -1,0 +1,52 @@
+﻿Now we have a configuration file and a logger. Notice that the logger name is contained in the configuration file, so we need to 
+extract that information before we can do anything with it. Let's do that now:
+<p />
+<pre>
+    public string GetConfigValue(string Key)
+    {
+        string ConfigValue = "";
+        try
+        {
+            string LocationApp = new Uri(System.Reflection.Assembly.GetExecutingAssembly( ).CodeBase).AbsolutePath;
+            System.Configuration.Configuration AppConfig = ConfigurationManager.OpenExeConfiguration(LocationApp);
+            ConfigValue = AppConfig.AppSettings.Settings[Key].Value;
+        }
+        catch (Exception ex)
+        {
+            if (EventLogActive) eventLog1.WriteEntry("Cannot find configuration value for " + Key);
+        }
+        return ConfigValue;
+    }
+</pre>
+<p />
+The first two lines simply get the location of the configuration file and open it. The second couple of lines check the 
+key and retrieve the appropriate value. Okay, so this part is now available and ready to use when we need it. Note that to make 
+use of this code, you will have to use the Reflection assembly (so if you don't have this referenced, do so).
+<p />
+Now let’s go ahead and make sure our logger is ready to use. I'm going to do this by creating a method called CheckForLogger. 
+I define it in the following way:
+<p />
+<pre>
+    private void CheckForLogger()
+    {
+        EventLogActive = false;
+        string EventLoggerState = GetConfigValue("EventLogging").ToLower();
+
+        if (EventLoggerState != "" && EventLoggerState == "on")
+        {
+            EventLogActive = true;
+            string LoggerSource = GetConfigValue("LogSource");
+            string LoggerName = GetConfigValue("LogName");
+            if (!System.Diagnostics.EventLog.SourceExists(LoggerSource))
+            {
+                System.Diagnostics.EventLog.CreateEventSource(LoggerSource, LoggerName);
+            }
+            eventLog1.Source = LoggerSource;
+            eventLog1.Log = LoggerName;
+        }
+    }
+</pre>
+<p />
+Here, we check the configuration file to determine if we want the logger to run. If we do, then we will set event logging to active (EventLogActive 
+needs to be global) and then get the source and the name for the event log to write to. This simply configures the event logger to write to a specific log. 
+<p />

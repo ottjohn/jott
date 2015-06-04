@@ -1,0 +1,53 @@
+﻿        .PagerFontStyle {
+            font-family: Verdana;
+            font-size: 8pt;
+        }
+
+        .PagerBackgroundColor {
+            background: silver;
+        }
+
+        .PagerButtons 
+        {
+            border: outset;
+            border-width: 1px;  
+            width: 30px; 
+        }
+
+        .PagerButtonColor {
+            background: red;
+            color: Blue;
+        }
+
+        .PagerContentCells {
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+
+        .PagerLabelColor {
+            color: White;
+        }
+
+        .PagerGotoText {
+            text-align: center; 
+            width: 30px; 
+            border: inset; 
+            border-width: 1px;
+        }
+
+        .PagerNavCells {
+            text-align: center; 
+            width: 30px;
+        }
+        
+        .PagerDivStyle 
+        {
+            border: solid; 
+            border-color: black; 
+            border-width: 0px 1px 1px 1px;
+        }
+        
+        .PagerDivBackground 
+        {
+            background: #dddddd; 
+        }

@@ -1,0 +1,74 @@
+﻿<div data-ng-controller="FeatureManagementController as FeatureManagement" class="ContentFull ContentBackground" style="padding: 5px;">
+    <table cellpadding="0" cellspacing="0" class="ContentFull" border="0">
+        <tr>
+            <td>
+                <div id="FeatureManagementContainer" class="ManagementSubAppMetric ContentBackground" style="display: ;">
+                    <table cellpadding="5" cellspacing="0" class="ContentFull ContentFont SolidBorder BorderColor" border="0">
+                        <tr>
+                            <td colspan="2" class="SubTitleBack TitleMenuFore SubSubAppTitleMetric">
+                                Group Management
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="TreeMenuContPadding">
+                                <treemenu id="FeatureGroupComp" treeattribute="FeatureManagement.TreeAttribute" />
+                            </td>
+                            <td style="vertical-align: top;">
+                                <table cellpadding="5" cellspacing="0">
+                                    <tr>
+                                        <td class="InputLabel">
+                                            Select App
+                                        </td>
+                                        <td>
+                                            <select id="drpApplications" class="ContentFont TextInput" ng-model="FeatureManagement.SelectedApp" ng-options="App.ApplicationName for App in FeatureManagement.Apps" ng-change="FeatureManagement.SetAppDetails();" disabled>
+                                                <option value="">...</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="InputLabel">
+                                            Groups
+                                        </td>
+                                        <td>
+                                            <select id="drpFeatureManageGroups" class="ContentFont TextInput" ng-model="FeatureManagement.SelectedGroup" ng-options="Group.FeatureGroupName for Group in FeatureManagement.ManageTreeGroups" ng-change="FeatureManagement.GetNamedGroup();" disabled>
+                                                <option value="">...</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" id="AddTreeGroupComp" style="padding: 0px; display: none;">
+                                            <table cellpadding="5" cellspacing="0">
+                                                <tr>
+                                                    <td class="InputLabel">
+                                                        Profile Name
+                                                    </td>
+                                                    <td>
+                                                        <input id="txtGroupName" ng-model="FeatureManagement.NewGroupName" class="ContentFont TextInput" type="text" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="ContentBackground MessageArea" id="MessageArea">{{FeatureManagement.Message}}</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="ButtonBar ButtonBarSubAppBack" style="width: 800px;">
+                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Exit" id="btnFeatureManagementExit" ng-click="FeatureManagement.ReturnToMainScreen()" />
+                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Cancel" id="btnFeatureManagementCancel" style="display: none;" ng-click="FeatureManagement.GetFeatureProfile('Cancel')" />
+                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Add Group Profile" id="btnFeatureManagementAddProfile" style="display: none;" ng-click="FeatureManagement.AddGroupInit()" />
+                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Update Group Profile" id="btnFeatureManagementUpdateGroupProfile" style="display: none;" ng-click="FeatureManagement.UpdateFeatureTreeGroup()" />
+                <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Submit Group Profile" id="btnFeatureManagementSubmitGroup" style="display: none;" ng-click="FeatureManagement.AddFeatureTreeGroup()"  />
+            </td>
+        </tr>
+    </table>
+    <modaldialog id="modalDialogComp" onmodalresultready="FeatureManagement.MessageFromDirective()" modalattribute="FeatureManagement.ModalAttribute" />
+</div>
+

@@ -1,0 +1,42 @@
+﻿    Okay, before we get to the meat of chart creation, we are going to do a final prep of the contract using JavaScript to calculate some of the fields I listed above. This
+    can be done in a controller just before the contract is stuffed into a directive for processing:
+<p />
+<pre>
+    Home.BuildSummaryCharts = function () {
+        var ColorArray = new Array("blue", "yellow", "green", "red", "black", "orange");
+        var ChartCollection = HomeContracts.GetChartCollectionContract();
+        ChartCollection.Charts = new Array();
+        var iLen = Home.TasksSummary.length;
+        for (var i = 0; i < iLen; i++) {
+            var Chart = HomeContracts.GetChartContract();
+            Chart.ContainerId = Home.TasksSummary[i].TaskName.replace(/ /g, "") + "holder";
+            Chart.Title = Home.TasksSummary[i].TaskName;            //  title for the pie chart
+            Chart.KeyCenterX = Chart.CenterX + Chart.Radius + 50;   //  rectangular key center x -- pushed to right. Could be a padding left
+            Chart.KeyCenterY = Chart.CenterY - Chart.Radius;        //  rectangular key center y
+            Chart.TitleCenterX = Chart.CenterX - Chart.Radius;      //  title center x
+            Chart.TitleCenterY = Chart.CenterY - Chart.Radius - 30; //  title center y -- pushed up from top of pie chart
+            Chart.ItemLabelPaddingLeft = 0;                         //  Padding between key rectangle and label
+            Chart.ChartItems = new Array();                         //  array to hold items returned from server
+            for (var j = 0; j < 2; j++) {
+                Chart.ChartItems[j] = HomeContracts.GetChartItemContract();
+                if (j == 0)
+                    Chart.ChartItems[j].Proportion = Home.TasksSummary[i].ProportionCompleted;
+                else
+                    Chart.ChartItems[j].Proportion = 100 - Home.TasksSummary[i].ProportionCompleted;
+                Chart.ChartItems[j].FillColor = ColorArray[j];
+                Chart.ChartItems[j].ItemLabel = ItemLabel[j];
+            }
+            ChartCollection.Charts[i] = Chart;
+        }
+        Home.ChartContract = ChartCollection.Charts;
+    }
+    </pre>
+<p />
+    Obviously, if you are reading this, you are familiar with JavaScript. You self-selected this article. I am, then, going to assume that you are prepared
+    enough that I do not have to go through a thorough explanation of what is going on here. Suffice it to say that I am filling out the calculated fields: some
+    based on what was returned from the server; some based on items that were hard-coded into the contract.
+<p />
+    The only item of real note here is to explain the TasksSummary array, which contains the descriptions of the pie slices for each chart along with the chart name.
+    The color array should probably be defined on the server and the colors made accessible via some kind of GUI (if this is a public-facing site, then design might
+    have some consideration here). Note that the id for each chart and the height and width of the box in which it will be contained are specified here. This will be
+    important in the next installment.

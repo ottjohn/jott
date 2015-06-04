@@ -1,0 +1,61 @@
+﻿<div data-ng-controller="FlashCardEntryController as FlashCardEntry">
+    <div class="ContentBackground MessageArea ContentFont" style="font-weight: bold;" id="MessageArea">{{FlashCardEntry.Message}}</div>
+    <div id="FlashCardEntry" style="padding: 20px; display: ;">
+        <table cellpadding="5" cellspacing="5" style="width: 100%;">
+            <tr>
+                <td colspan="2" class="ButtonBarSubAppBack" style="padding-top: 5px; padding-bottom: 5px; width: 100%; color: white; border: solid; border-color: black; border-width: 1px 1px 1px 1px;">
+                    <table cellpadding="0" cellspacing="2" style="width: 100%;" class="ContentFont">
+                        <tr>
+                            <td>
+                                Select one:
+                            </td>
+                            <td>
+                                <div ng-repeat="Item in FlashCardEntry.UsedCategories.Categories" style="margin: 2px; width: 90px; float: right; border: solid; border-color: white; border-width: 1px 1px 1px 1px;">
+                                    <input type="radio" name="rdoFlashCardCategory" ng-checked="Item.CategorySelected == 1" ng-click="FlashCardEntry.GetCategoryId(Item.CategoryId)" />&nbsp;{{Item.Category}}
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="ButtonBarSubAppBack" style="padding-top: 5px; padding-bottom: 5px; width: 100%; color: white; border: solid; border-color: black; border-width: 1px 1px 1px 1px;">
+                    <table cellpadding="0" cellspacing="2" style="width: 100%;" class="ContentFont">
+                        <tr>
+                            <td style="padding: 5px;">
+                                Enter the flash card question here:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="FlashCardEntryQuestion" contenteditable style="height: 100px; color: black; background: white; padding: 10px; overflow-y: scroll;"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="ButtonBarSubAppBack" style="padding-top: 5px; padding-bottom: 5px; width: 100%; color: white; border: solid; border-color: black; border-width: 1px 1px 1px 1px;">
+                    <table cellpadding="0" cellspacing="2" style="width: 100%;" class="ContentFont">
+                        <tr>
+                            <td style="padding: 5px;">
+                                Enter the flash card answer here:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="FlashCardEntryAnswer" contenteditable style="height: 100px; color: black;  background: white; padding: 10px; overflow-y: scroll;"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="ButtonBarSubAppBack" style="border: solid; border-width: 1px 1px 1px 1px;">
+                    <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Submit" id="btnFlashCardEntrySave" style="float:right;" ng-click="FlashCardEntry.SaveFlashCard()" />
+                    <input class="ButtonBarSubAppBack ContentFont TitleMenuFore Button" type="button" value="Exit" id="btnFlashCardEntryExit" style="float:right;" ng-click="FlashCardEntry.Exit()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7350CB44-9BA0-4C7F-9C88-3C56B8E7DC66}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CustomerUtility</RootNamespace>
+    <AssemblyName>CustomerUtility</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache\Storec.cs" />
+    <Compile Include="ContactUtility\ContactUtility.cs" />
+    <Compile Include="Email\EmailProcess.cs" />
+    <Compile Include="FeatureTree\FeatureTreeProcess.cs" />
+    <Compile Include="FeatureTree\FeatureTreeValidator.cs" />
+    <Compile Include="MemberUtility\MemberOps.cs" />
+    <Compile Include="MemberUtility\MemberRetrieval.cs" />
+    <Compile Include="MemberUtility\MemberUtility.cs" />
+    <Compile Include="CustomerProcess.cs" />
+    <Compile Include="MemberUtility\MemberValidate.cs" />
+    <Compile Include="MemberUtility\PasswordMgmt.cs" />
+    <Compile Include="MemberUtility\Register.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ICustomerProcess.cs">
+      <DependentUpon>CustomerProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\MemberCongifStructure.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerContracts\MaintContracts.csproj">
+      <Project>{05e1b22c-a3ed-46b9-b65e-2f820cee933b}</Project>
+      <Name>AppContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MemberData\MemberData.csproj">
+      <Project>{3834892c-eb77-4497-ae9f-8fd7b10bcac2}</Project>
+      <Name>MemberData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{cede6fff-8511-46b4-aa2f-8dcbd1a0d9d8}</Project>
+      <Name>Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\UtilityPot.csproj">
+      <Project>{cd5dcd75-3af6-435f-9ea4-0238c3e18f63}</Project>
+      <Name>UtilityPot</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\ChangeEmail.html" />
+    <Content Include="Templates\ChangePassword.html" />
+    <Content Include="Templates\MemberManagementNote.html" />
+    <Content Include="Templates\Registration.html" />
+    <Content Include="Templates\RetrievePassword.html" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

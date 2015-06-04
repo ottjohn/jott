@@ -1,0 +1,9 @@
+D:\AngularLearn\AngularAJAX\CustomerContracts\bin\Debug\CustomerContracts.dll
+D:\AngularLearn\AngularAJAX\CustomerContracts\bin\Debug\CustomerContracts.pdb
+D:\AngularLearn\AngularAJAX\CustomerContracts\obj\Debug\CustomerContracts.dll
+D:\AngularLearn\AngularAJAX\CustomerContracts\obj\Debug\CustomerContracts.pdb
+C:\AngularLearn\AngularAJAX\CustomerContracts\bin\Debug\CustomerContracts.dll
+C:\AngularLearn\AngularAJAX\CustomerContracts\bin\Debug\CustomerContracts.pdb
+C:\AngularLearn\AngularAJAX\CustomerContracts\obj\Debug\CustomerContracts.dll
+C:\AngularLearn\AngularAJAX\CustomerContracts\obj\Debug\CustomerContracts.pdb
+D:\AngularLearn\AngularAJAX\CustomerContracts\obj\Debug\CustomerContracts.csprojResolveAssemblyReference.cache

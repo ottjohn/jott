@@ -1,0 +1,17 @@
+﻿<Rows>
+  <row>
+    <TestString></TestString>
+    <TestKey>Addy1</TestKey>
+    <TestReturnValue>Address line one must be at least three characters in length.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>x</TestString>
+    <TestKey>Addy1</TestKey>
+    <TestReturnValue>Address line one must be at least three characters in length.</TestReturnValue>
+  </row>
+  <row>
+    <TestString>1010 Delta</TestString>
+    <TestKey>Addy1</TestKey>
+    <TestReturnValue></TestReturnValue>
+  </row>
+</Rows>

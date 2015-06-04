@@ -1,0 +1,69 @@
+﻿<div data-ng-controller="AboutController as About" id="AboutContainer">
+    <table id="AboutMeContainer" cellpadding="0" cellspacing="0" border="0" class="SolidBorder BorderColor" style="width: 100%; display:;">
+        <tr>
+            <td class="ContentFull" style="vertical-align: top; width: 100%;">
+                <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                    <tr>
+                        <!--##############################################################################################-->
+                        <!--Title                                                                                         -->
+                        <!--##############################################################################################-->
+                        <td colspan="2" class="SubTitleBack TitleMenuFore SubAppTitleMetric" style="width: 100%;">
+                            About Me
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--##############################################################################################-->
+                        <!--LHS Menu                                                                                      -->
+                        <!--##############################################################################################-->
+                        <td class="SubTitleBack" style="vertical-align: top; width: 125px;">
+                            <table cellpadding="0" cellspacing="0" border="0" class="ContentFull">
+                                <tr>
+                                    <td>
+                                        <a id="AboutDeveloper" ng-click="About.SelectLHSItem($event);" ui-sref="About.Developer" class="SubTitleBack TitleMenuFore AApp">Developer</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a id="AboutEducator" ng-click="About.SelectLHSItem($event);" ui-sref="About.Educator" class="SubTitleBack TitleMenuFore AApp">Educator</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a id="AboutWriter" ng-click="About.SelectLHSItem($event);" ui-sref="About.Writer" class="SubTitleBack TitleMenuFore AApp">Writer</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a id="AboutResume" ng-click="About.SelectLHSItem($event);" ui-sref="About.Resume" class="SubTitleBack TitleMenuFore AApp">Resume</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table cellpadding="3" cellspacing="0" border="0" class="ContentFont ManagePanel" style="width: 100%;" >
+                                <tr>
+                                    <!--##############################################################################################-->
+                                    <!--About Me Screens                                                                     -->
+                                    <!--##############################################################################################-->
+                                    <td id="AboutMe" style="vertical-align: top; display: ; background: white;">
+                                        <!--##############################################################################################-->
+                                        <!--About Me Sub App                                                                        -->
+                                        <!--##############################################################################################-->
+                                        <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                                            <tr>
+                                                <td style="vertical-align: top;">
+                                                    <div class="" style="background: white; height: 550px; overflow-y: scroll; overflow-x: hidden;" ui-view>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

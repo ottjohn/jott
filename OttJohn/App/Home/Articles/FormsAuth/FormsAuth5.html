@@ -1,0 +1,43 @@
+﻿To make a call to the authentication service using AJAX, you will need the following call in your script:
+<p />
+<pre>
+    function Authenticate(DataToSend) {
+        var responsePromise = $http({
+            method: 'POST',
+            url: 'OttjohnAuth.svc/Login',
+            data: DataToSend,
+            async: false,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return responsePromise;
+    }
+    function Logout() {
+        var responsePromise = $http({
+            method: 'POST',
+            url: 'OttjohnAuth.svc/Logout',
+            data: null,
+            async: false,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return responsePromise;
+    }
+</pre>
+<p />
+This, of course, assumes that the service name is OttjohnAuth. To check authentication on the server side, you need the HttpContext object. This is 
+going to be available for you under System.Web. Checking if a user is authenticated is simple:
+<p />
+<pre>
+    HttpContext.Current.User.Identity.IsAuthenticated
+</pre>
+<p />
+To check if a user in in a role, you can use the following:
+<p />
+<pre>
+    HttpContext.Current.User.IsInRole("ROLENAME")
+</pre>
+<p />
+That should be all there is to it. On a parting note, for examples like this, I will try to have fully working code for you to download. 

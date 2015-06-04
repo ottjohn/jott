@@ -1,0 +1,783 @@
+﻿<div data-ng-controller="PaylocityController as Paylocity" id="PaylocityContainer" class="ContentFull" ng-keydown="Paylocity.CheckValidation($event)">
+    <div class="ContentBackground MessageArea ContentFont" style="font-weight: bold;" id="MessageArea">{{Paylocity.Message}}</div>
+    <div style="padding: 10px;">
+        <table cellpadding="0" cellspacing="0" style="width: 100%;">
+            <tr>
+                <td style="width: 50px; background: gray;">
+                    &nbsp;
+                </td>
+                <td style="background: white; padding: 10px; height: 100px; vertical-align: top; opacity: initial;">
+                    <div class="ContentFont" style="font-weight: bold; font-size: 16pt;">
+                        Preview of Costs<p />
+                    </div>
+                    <div class="ContentReadFont">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td>
+                                    <table cellpadding="3" cellspacing="3" border="0">
+                                        <tr>
+                                            <td class="InputLabel">
+                                                First Name
+                                            </td>
+                                            <td>
+                                                <input class="ContentFont TextInputLong" data-ng-model="Paylocity.Person.FirstName.Value" type="text" value="" id="txtFirstName" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="InputLabel">
+                                                Last Name
+                                            </td>
+                                            <td>
+                                                <input class="ContentFont TextInputLong" data-ng-model="Paylocity.Person.LastName.Value" type="text" value="" id="txtLastName" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align:right;">
+                                                <input class="ContentFont" style="width: 100px;" type="button" value="Add" id="btnAdd" ng-click="Paylocity.AddPerson();" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="vertical-align: top; text-align: right;">
+                                                <select style="width: 400px;" size="3" id="drpBeneficiaries" class="ContentFont TextInput" ng-model="Paylocity.SelectedBeneficiary" ng-options="Person.FirstName.Value + ' ' + Person.LastName.Value for Person in Paylocity.Beneficiaries.Beneficiaries" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align:right;">
+                                                <input class="ContentFont" style="width: 100px;" type="button" value="Remove" id="btnRemove" ng-click="Paylocity.RemovePerson()" disabled />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table cellpadding="3" cellspacing="3" border="0">
+                                        <tr>
+                                            <td class="InputLabel">
+                                                Gross Pay
+                                            </td>
+                                            <td>
+                                                {{Paylocity.PayBenefitsPackage.PayDetail.BasePay | currency}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="InputLabel">
+                                                Total Deductions
+                                            </td>
+                                            <td>
+                                                {{Paylocity.PayBenefitsPackage.PayDetail.TotalDeductions | currency}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="InputLabel">
+                                                Magic Discount
+                                            </td>
+                                            <td>
+                                                {{Paylocity.PayBenefitsPackage.PayDetail.MagicDiscount | currency}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="InputLabel">
+                                                Monthly Pay
+                                            </td>
+                                            <td>
+                                                {{Paylocity.PayBenefitsPackage.PayDetail.BiWeeklyPay | currency}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="InputLabel">
+                                                Yearly Pay
+                                            </td>
+                                            <td>
+                                                {{Paylocity.PayBenefitsPackage.PayDetail.YearlyPay | currency}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td colspan="2" class="ContentFont" style="font-weight: bold; font-size: 16pt; background: white; padding: 5px;">
+                    A brief look at my architecture<p />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="ContentFont" style="font-size: 11pt; background: white; padding: 5px;">
+                    <b>Note</b>: I did not implement anything beyond the client. The directions were explicit in that I was not to spend 
+                    more than a few hours on this, so I took that to heart. Having a fully-functional app would take a good day, perhaps 
+                    a day and a half. Having said that, there are a couple of other things I left out as well:
+                    <p />
+                    <ul>
+                        <li>
+                            Check for redundant children. 
+                        </li>
+                        <li>
+                            Check for a number of dependents that would cause the employee to not earn anything.
+                        </li>
+                        <li>
+                            I did not add any confirmation dialogs.
+                        </li>
+                    </ul>
+                    <p />
+                    To compensate for what might be considered an oversight on my part because of the aforementioned exlusions, I have 
+                    included all of the code I wrote up below, with comments, and a brief look at my archtecture via a diagram. I will 
+                    be more than happy to discuss all of this with you.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="background: white;">
+                    <center><img src="App/Paylocity/Diagram.png" style="display: block;" /></center>
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td colspan ="2" class ="ContentFont" style="font-weight: bold; font-size: 16pt; background: white; padding: 5px;">
+                    The View<p />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="background: white;">
+                    <pre>
+                    &lt;div class="ContentReadFont"&gt;
+                        &lt;table cellpadding="0" cellspacing="0" border="0"&gt;
+                            &lt;tr&gt;
+                                &lt;td&gt;
+                                    &lt;table cellpadding="3" cellspacing="3" border="0"&gt;
+                                        &lt;tr&gt;
+                                            &lt;td class="InputLabel"&gt;
+                                                First Name
+                                            &lt;/td&gt;
+                                            &lt;td&gt;
+                                                &lt;input class="ContentFont TextInputLong" data-ng-model="Paylocity.Person.FirstName.Value" type="text" value="" id="txtFirstName" /&gt;
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                        &lt;tr&gt;
+                                            &lt;td class="InputLabel"&gt;
+                                                Last Name
+                                            &lt;/td&gt;
+                                            &lt;td&gt;
+                                                &lt;input class="ContentFont TextInputLong" data-ng-model="Paylocity.Person.LastName.Value" type="text" value="" id="txtLastName" /&gt;
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                        &lt;tr&gt;
+                                            &lt;td colspan="2" style="text-align:right;"&gt;
+                                                &lt;input class="ContentFont" style="width: 100px;" type="button" value="Add" id="btnAdd" ng-click="Paylocity.AddPerson();" /&gt;
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                        &lt;tr&gt;
+                                            &lt;td colspan="2" style="vertical-align: top; text-align: right;"&gt;
+                                                &lt;select style="width: 400px;" size="3" id="drpBeneficiaries" class="ContentFont TextInput" ng-model="Paylocity.SelectedBeneficiary" 
+                                                    ng-options="Person.FirstName.Value + ' ' + Person.LastName.Value for Person in Paylocity.Beneficiaries.Beneficiaries" /&gt;
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                        &lt;tr&gt;
+                                            &lt;td colspan="2" style="text-align:right;"&gt;
+                                                &lt;input class="ContentFont" style="width: 100px;" type="button" value="Remove" id="btnRemove" ng-click="Paylocity.RemovePerson()" disabled /&gt;
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                    &lt;/table&gt;
+                                &lt;/td&gt;
+                                &lt;td&gt;
+                                    &lt;table cellpadding="3" cellspacing="3" border="0"&gt;
+                                        &lt;tr&gt;
+                                            &lt;td class="InputLabel"&gt;
+                                                Gross Pay
+                                            &lt;/td&gt;
+                                            &lt;td&gt;
+                                                {{Paylocity.PayBenefitsPackage.PayDetail.BasePay | currency}}
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                        &lt;tr&gt;
+                                            &lt;td class="InputLabel"&gt;
+                                                Total Deductions
+                                            &lt;/td&gt;
+                                            &lt;td&gt;
+                                                {{Paylocity.PayBenefitsPackage.PayDetail.TotalDeductions | currency}}
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                        &lt;tr&gt;
+                                            &lt;td class="InputLabel"&gt;
+                                                Magic Discount
+                                            &lt;/td&gt;
+                                            &lt;td&gt;
+                                                {{Paylocity.PayBenefitsPackage.PayDetail.MagicDiscount | currency}}
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                        &lt;tr&gt;
+                                            &lt;td class="InputLabel"&gt;
+                                                Monthly Pay
+                                            &lt;/td&gt;
+                                            &lt;td&gt;
+                                                {{Paylocity.PayBenefitsPackage.PayDetail.BiWeeklyPay | currency}}
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                        &lt;tr&gt;
+                                            &lt;td class="InputLabel"&gt;
+                                                Yearly Pay
+                                            &lt;/td&gt;
+                                            &lt;td&gt;
+                                                {{Paylocity.PayBenefitsPackage.PayDetail.YearlyPay | currency}}
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                    &lt;/table&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                    &lt;/div&gt;
+                    </pre>
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td colspan="2" class="ContentFont" style="font-weight: bold; font-size: 16pt; background: white; padding: 5px;">
+                    The Controller<p />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="background: white;"> 
+                    <pre>
+    (function () {
+        angular.module('App.Paylocity').controller('PaylocityController',
+        ['$q', '$timeout', '$location', 'PaylocityService', 'PaylocityContracts', 'PaylocityModel', '$rootScope', 'AppState', PaylocityController]);
+        function PaylocityController($q, $timeout, $location, PaylocityService, PaylocityContracts, PaylocityModel, $rootScope, AppState) {
+
+            var Paylocity = this;
+            var scope = $rootScope.$new();
+            Paylocity.Message;
+            Paylocity.Beneficiaries;
+            Paylocity.SelectedBeneficiary;
+            Paylocity.Person;
+            Paylocity.PayBenefitsPackage;
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  Controller initialization
+            //////////////////////////////////////////////////////////////////////////////////////
+            Paylocity.Init = function () {
+
+                Paylocity.Message = "Please enter employee's name.";
+                Paylocity.HydrateEmployeeContracts();
+                Paylocity.PersonInputs().FirstName.select();
+
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //  JQuery Accessors
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            Paylocity.PersonInputs = function () {
+
+                var PersonInputs = {
+
+                    FirstName: $("#txtFirstName"),
+                    LastName: $("#txtLastName")
+
+                }
+
+                return PersonInputs;
+
+            }
+
+            Paylocity.Buttons = function () {
+
+                var Buttons = {
+
+                    Add: $("#btnAdd"),
+                    Remove: $("#btnRemove")
+
+                }
+
+                return Buttons;
+            
+            }
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //  Button Actions
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            Paylocity.RemovePerson = function () {
+
+                Payloicty.RemovePersonFromBeneficiaries();
+
+            }
+
+            Paylocity.AddPerson = function () {
+
+                if(Paylocity.ValidateFields() != "") Paylocity.LocateElement();
+
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //  Benefit Calculations
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //  Recalculate benefits
+            //
+            //  Works with payment sub contract of the BenefitsPackageContract, which simply 
+            //  describles base pay and deductions. Since the calculation here is so simply, 
+            //  I did not split it out into subparts.
+            //////////////////////////////////////////////////////////////////////////////////////
+            Paylocity.RecalcBenefits = function () {
+
+                var TotalDiscount = 0;
+                Paylocity.PayBenefitsPackage.PayDetail.TotalDeductions = 0;
+                Paylocity.PayBenefitsPackage.PayDetail.MagicDiscount = 0;
+                iLen = Paylocity.Beneficiaries.Beneficiaries.length;
+
+                for (var i = 0; i < iLen; i++) {
+
+                    var CoverageCost = 0;
+                    var MagicLetterRate = 1;
+                    var Person = Paylocity.Beneficiaries.Beneficiaries[i];
+                    if (Person.FirstName.Value.substring(0,1).toLowerCase() == Paylocity.PayBenefitsPackage.DiscountLetter) MagicLetterRate -= Paylocity.PayBenefitsPackage.DiscountPercent;
+
+                    if (!Person.IsDependent.Value) {
+
+                        CoverageCost = Paylocity.PayBenefitsPackage.CostOfEmployeeBenefitsPerYear / 26;
+
+                    } else {
+
+                        CoverageCost = Paylocity.PayBenefitsPackage.CostOfDependentEmployeesPerYear / 26;
+
+                    }
+
+                    Paylocity.PayBenefitsPackage.PayDetail.TotalDeductions += MagicLetterRate * CoverageCost;
+                    Paylocity.PayBenefitsPackage.PayDetail.MagicDiscount += (1 - MagicLetterRate) * CoverageCost;
+                    Paylocity.PayBenefitsPackage.PayDetail.BiWeeklyPay = Paylocity.PayBenefitsPackage.PayDetail.BasePay - Paylocity.PayBenefitsPackage.PayDetail.TotalDeductions;
+                    Paylocity.PayBenefitsPackage.PayDetail.YearlyPay = 26 * (Paylocity.PayBenefitsPackage.PayDetail.BasePay - Paylocity.PayBenefitsPackage.PayDetail.TotalDeductions);
+
+                }
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  Remove dependent
+            //
+            //  Simple check for dependent, loop over beneficiaries, and remove the unwanted 
+            //  node.
+            //////////////////////////////////////////////////////////////////////////////////////
+            Paylocity.RemovePersonFromBeneficiaries = function () {
+            
+                if (Paylocity.SelectedBeneficiary.IsDependent.Value) {
+
+                    iLen = Paylocity.Beneficiaries.Beneficiaries.length;
+
+                    for (var i = 0; i < iLen; i++) {
+
+                        var Person = Paylocity.Beneficiaries.Beneficiaries[i];
+                        if (Person.FirstName.Value.toLowerCase() == Paylocity.SelectedBeneficiary.FirstName.Value.toLowerCase()
+                            && Person.LastName.Value.toLowerCase() == Paylocity.SelectedBeneficiary.LastName.Value.toLowerCase()) {
+
+                            Paylocity.Beneficiaries.Beneficiaries.splice(i, 1);
+                            Paylocity.SelectedBeneficiary = Paylocity.Beneficiaries.Beneficiaries[0];
+                            break;
+
+                        }
+                    }
+
+                    Paylocity.RecalcBenefits();
+
+                } else {
+
+                    alert("You cannot remove the employee. If you need to remove someone, please select a dependent.");
+                    Paylocity.PersonInputs().FirstName.select();
+
+                }
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  Add dependent
+            //
+            //  Simple check existence of beneficiaries, create if necessary, add person to 
+            //  beneficiary list.
+            //////////////////////////////////////////////////////////////////////////////////////
+            Paylocity.AddPersonToBeneficiaries = function () {
+
+                var iLen = 0;
+                if (Paylocity.Beneficiaries.Beneficiaries != null)
+                    iLen = Paylocity.Beneficiaries.Beneficiaries.length;
+                else
+                    Paylocity.Beneficiaries.Beneficiaries = new Array();
+
+                Paylocity.Beneficiaries.Beneficiaries[iLen] = Paylocity.Person;
+                Paylocity.SelectedBeneficiary = Paylocity.Beneficiaries.Beneficiaries[iLen];
+                Paylocity.Person = PaylocityContracts.GetPersonContract();
+                Paylocity.Person.IsDependent.Value = true;
+                Paylocity.RecalcBenefits();
+                Paylocity.EnableButtons(new Array("Remove"), true);
+                Paylocity.CurrentKey = "FirstName";
+                Paylocity.Message = "Continue to add names of dependents"
+
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //  Validation
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //  Check Validation
+            //
+            //  Method entered upon the user pressing either the enter or tab key. If 
+            //  either is depressed, then validation is performed.
+            //////////////////////////////////////////////////////////////////////////////////////
+            Paylocity.CheckValidation = function (event) {
+
+                if (event.keyCode == 13 || event.keyCode == 9) {
+
+                    Paylocity.ValidateFields();
+                    return false;
+
+                }
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  Validation of fields 
+            //
+            //  In many cases, what the user enters can be validated against regular expressions.
+            //  This validator simply passes the validation effort to my model, which, then, 
+            //  passes it along to a helper in the form of an Angular service.
+            //  
+            //  If element items are valid then the person is added to the beneficiary list
+            //////////////////////////////////////////////////////////////////////////////////////
+            Paylocity.ValidateFields = function () {
+
+                var isValid = "";
+                for (var key in Paylocity.Person) {
+
+                    Paylocity.CurrentKey = key;
+                    if (Paylocity.Person[key].Required)
+                        isValid = PaylocityModel.ValidateFieldEntry(Paylocity.Person, key, Paylocity.Person[key].MapToKey, Paylocity.Person[key].Required, Paylocity.Person[key].Value);
+
+                    if (isValid != "") {
+
+                        break;
+
+                    } else {
+
+                        Paylocity.CurrentKey = "";
+
+                    }
+                }
+
+                if (isValid != "") {
+
+                    Paylocity.Message = isValid;
+
+                } else {
+
+                    Paylocity.Message = "";
+                    Paylocity.AddPersonToBeneficiaries();
+
+                }
+
+                return isValid;
+
+            }
+
+            Paylocity.GiveDirection = function (ElementId) {
+
+                scope.$apply();
+
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  Element location
+            //
+            //  Simple function that works with the validator to back up the cursor in case
+            //  an element needs to be revisited due to an error.
+            //////////////////////////////////////////////////////////////////////////////////////
+            Paylocity.LocateElement = function (Element) {
+
+                if (!Paylocity.CurrentKey || Paylocity.CurrentKey == null) {
+
+                    //Paylocity.GiveDirection();
+                    $(Element).select();
+
+                } else {
+
+                    var CurrentKey = Paylocity.CurrentKey;
+                    Paylocity.CurrentKey = null;
+                    Paylocity.PersonInputs()[CurrentKey].select();
+
+                }
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //  Contract Management
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            Paylocity.HydrateEmployeeContracts = function () {
+
+                Paylocity.Person = PaylocityContracts.GetPersonContract();
+                Paylocity.PayBenefitsPackage = PaylocityContracts.GetBenefitContract();
+                Paylocity.Beneficiaries = PaylocityContracts.GetEmployeeBenefitsContract();
+
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //  Navigation
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            Paylocity.EnableButtons = function (ButtonList, Enable) {
+
+                var iLen = ButtonList.length;
+                for (var i = 0; i < iLen; i++) {
+
+                    if (Enable)
+                        Paylocity.Buttons()[ButtonList[i]].removeAttr("disabled");
+                    else
+                        Paylocity.Buttons()[ButtonList[i]].attr("disabled", true);
+
+                }
+            }
+
+            Paylocity.ReturnToMainScreen = function () {
+
+                $location.url("/home");
+
+            }
+
+            Paylocity.RegisterRoute = function (CallingRoute) {
+
+                //At the moment, there is nothing to return to here.
+                //When there is something to return to, get the code
+                //from another controller.
+                AppState.SetRoute("Index", "/");
+
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //  Event handlers
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            scope.$watch('$viewContentLoaded', function (event, viewConfig) {
+
+                Paylocity.Init();
+                var CallingRoute = $location.$$path.replace("/", "");
+                var ProcessName = Paylocity.RegisterRoute(CallingRoute);
+
+            });
+
+            $("#PaylocityContainer input").off("focus").on("focus",
+            function (event) {
+
+                Paylocity.LocateElement($(this));
+                event.stopImmediatePropagation();
+
+            });
+        }
+    })();
+                    </pre>
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td colspan="2" class="ContentFont" style="font-weight: bold; font-size: 16pt; background: white; padding: 5px;">
+                    The Model<p />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="background: white;">
+                    <pre>
+    (function () {
+        angular.module('App.Paylocity').factory('PaylocityModel',
+        ['$q', '$http', '$timeout', 'PaylocityService', 'PaylocityContracts', 'Validation', PaylocityModel]);
+
+        function PaylocityModel($q, $http, $timeout, PaylocityService, PaylocityContracts, Validation) {
+
+            var serviceName = 'PaylocityModel'; // route to the same origin Web Api controller - root directory
+
+            var PaylocityModelMethods = {
+
+                AddEmployeeBenefitData: AddEmployeeBenefitData,
+                ValidateFieldEntry: ValidateFieldEntry
+
+            };
+
+            return PaylocityModelMethods;
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  Service Calls
+            //////////////////////////////////////////////////////////////////////////////////////
+            function AddEmployeeBenefitData() {
+
+                var deferred = $q.defer();
+                $timeout(AddEmployeeBenefitDataImpl, 0);
+                function AddEmployeeBenefitDataImpl() {
+
+                    PaylocityModelService.SendRequest(null, 'AddEmployeeBenefitData').then(ShowResult, showError);
+
+                }
+
+                function ShowResult(data) {
+
+                    VisitorData = data.data.Visitor.Data;
+                    deferred.resolve(data.data.Visitor.Message);
+
+                }
+
+                function showError() {
+
+                    deferred.reject("Communication failed");
+
+                }
+
+                return deferred.promise;
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  Model Validators -- Cannot do the update at this level. This is just a validator
+            //////////////////////////////////////////////////////////////////////////////////////
+            function ValidateFieldEntry(ContractEntryField, key, MapToKey, Required, value) {
+
+                return Validation.ValidateFieldEntry(ContractEntryField, key, MapToKey, Required, value);
+
+            }
+        }
+    })();
+                    </pre>
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td colspan="2" class="ContentFont" style="font-weight: bold; font-size: 16pt; background: white; padding: 5px;">
+                    The Contracts<p />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="background: white;">
+                    <pre>
+    (function () {
+        angular.module('App.Paylocity').factory('PaylocityContracts',
+        ['$http', '$timeout', PaylocityContracts]);
+
+        function PaylocityContracts() {
+
+            var serviceName = 'PaylocityContracts'; // route to the same origin Web Api controller - root directory
+
+            var PaylocityContracts = {
+
+                GetEmployeeBenefitsContract: GetEmployeeBenefitsContract,
+
+                GetPersonContract: GetPersonContract,
+                GetBenefitContract: GetBenefitContract
+
+            };
+
+            return PaylocityContracts;
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  Contracts and messages
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  EmployeeBenefitsContract: Manages the list of beneficiaries
+            //////////////////////////////////////////////////////////////////////////////////////
+            function GetEmployeeBenefitsContract() {
+
+                var EmployeeBenefitsContract = {
+
+                    Beneficiaries: null
+
+                }
+
+                return EmployeeBenefitsContract;
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  PersonContract: Describes beneficiaries.
+            //  This is a sub contract of the Employee benefits contract.
+            //////////////////////////////////////////////////////////////////////////////////////
+            function GetPersonContract() {
+
+                var PersonContract = {
+
+                    FirstName: { Value: '', MapToKey: 'FirstName', Required: true },
+                    LastName: { Value: '', MapToKey: 'LastName', Required: true },
+                    IsDependent: { Value: false, MapToKey: null, Required: false },
+
+                }
+
+                return PersonContract;
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  BenefitContract: Manages benefit descriptions and pay description.
+            //  Obviously, this would be populated on the data layer.
+            //////////////////////////////////////////////////////////////////////////////////////
+            function GetBenefitContract() {
+
+                var BenefitContract = {
+
+                    PayDetail: GetPaymentContract(),
+                    CostOfEmployeeBenefitsPerYear: 1000,
+                    CostOfDependentEmployeesPerYear: 500,
+                    DiscountLetter: 'a',
+                    DiscountPercent: .1
+
+                }
+
+                return BenefitContract;
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //  PaymentContract: sub contact of benefit contract.
+            //  Obviously, this would be populated on the data layer.
+            //////////////////////////////////////////////////////////////////////////////////////
+            function GetPaymentContract() {
+
+                var PaymentContract = {
+
+                    BasePay: 2000,
+                    TotalDeductions: 0.00,
+                    MagicDiscount: 0.00,
+                    BiWeeklyPay: 0.00,
+                    YearlyPay: 0.00
+
+                }
+
+                return PaymentContract;
+            }
+        }
+    })();
+                    </pre>
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td colspan="2" class="ContentFont" style="font-weight: bold; font-size: 16pt; background: white; padding: 5px;">
+                    The Service<p />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="background: white;">
+                    <pre>
+    (function () {
+        angular.module('App.Paylocity').factory('PaylocityService',
+        ['$http', '$timeout', PaylocityService]);
+
+        function PaylocityService($http, $timeout) {
+
+            var serviceName = 'PaylocityService'; // route to the same origin Web Api controller - root directory
+
+            var service = {
+
+                SendRequest: SendRequest
+
+            };
+
+            return service;
+
+            function SendRequest(DataToSend, URL) {
+
+                var responsePromise = $http({
+
+                    method: 'POST',
+                    url: 'api/Tasks/' + URL,
+                    data: DataToSend,
+                    async: false,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                return responsePromise;
+            }
+        }
+    })();
+                    </pre>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+

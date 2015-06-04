@@ -1,0 +1,21 @@
+﻿Now that we have the report defined, we need to publish it, and then have a look at it. Before we can publish it, we 
+need to configure its general properties. To do this, right click on the project name and select Properties. You 
+will see the following dialog:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/ReportProperties.png" style="display: block;" />
+<p />
+There are two fields here that you will be interested in. The folder for your reports under this project will be the 
+same as the name of your project. If you do not like this, then change the entry under TargetReportFolder. The other 
+field, TargetServerUrl, wants to know which url you want to publish your reports to. Simply type in the location of 
+your report server. In my case, it is simply http://localhost/reportserver (shhhh. Don't give that url out 
+to anyone). Once you've done this, right click on the project and select Deploy. This will publish your report to the 
+report server, and now you can go look at your report. Once it has delpoyed, go to your reports landing page, which will 
+have the same domain as report server, with the exception that you will go here ... http://localhost/reports. You should 
+now see something like the following:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/ReportsHome.png" style="display: block;" />
+<p />
+And when I click on the folder I should see the report I just created. And when I click the report name, I should see the 
+interactive page for the report:
+<p />
+<img src="App/Articles/Articles/SSRSWithParams/FinalReport.png" style="display: block;" />

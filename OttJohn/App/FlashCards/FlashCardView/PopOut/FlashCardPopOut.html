@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>FlashCards</title>
+    <style type="text/css">
+        .unselectable {
+            -moz-user-select: -moz-none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+    </style>
+    <script src="../../../../scripts/jquery-1.7.2.min.js"></script>
+    <script language="JavaScript">
+
+        var SelectedCategories;
+        var FlashCardBackground;
+        var FlashCardForeground;
+        var FlashCardDetails;
+        var IsQuestion;
+        var Category;
+
+        function GetQS() {
+
+            var CatIdArray = null;
+            var request = GetFlashCardCategoriesRequest();
+            var QS = location.href.split("?")[1];
+            QS = QS.replace(/CatId=/g, "");
+
+            if (QS.indexOf("&") > -1) {
+
+                CatIdArray = QS.split("&");
+                request.CatIdList = QS.split("&");
+
+            } else {
+
+                request.CatIdList[0] = QS;
+
+            }
+
+            CallWebService("GetSpecificCategories", request, GetPreviousCloseResponse);
+
+        }
+
+        function GetPreviousCloseResponse(response) {
+
+            var Message = response.SearchObject.Message;
+            if (Message == "") {
+
+                SelectedCategories = response.SearchObject.Categories.Categories;
+                GoSearchImpl();
+
+            } else {
+
+                alert("Problem communicating with the server. Please try again later.");
+
+            }
+        }
+
+        function SelectRandomCategoryAndCard() {
+
+            var FlashCardDetail = GetFlashCardDetail();
+            var iLen = SelectedCategories.length;
+            var CategoryIdx = Math.floor(iLen * Math.random());
+
+            Category = SelectedCategories[CategoryIdx].Category;
+            FlashCardDetail.CategoryIdx = SelectedCategories[CategoryIdx].CategoryId;
+            FlashCardBackground = SelectedCategories[CategoryIdx].BackColor;
+            FlashCardForeground = SelectedCategories[CategoryIdx].ForeColor;
+            var CatLen = SelectedCategories[CategoryIdx].CategoryCount;
+            FlashCardDetail.SelectedCatItem = Math.ceil(CatLen * Math.random());
+
+            if (SelectedCategories[CategoryIdx].CategoryItemsChosen == "")
+                SelectedCategories[CategoryIdx].CategoryItemsChosen += FlashCardDetail.SelectedCatItem;
+            else
+                SelectedCategories[CategoryIdx].CategoryItemsChosen += "," + FlashCardDetail.SelectedCatItem;
+
+            FlashCardDetail.CategoryItemsChosen = SelectedCategories[CategoryIdx].CategoryItemsChosen;
+
+            return FlashCardDetail;
+
+        }
+
+        function GoSearchImpl() {
+
+            var FlashCardDetail = SelectRandomCategoryAndCard();
+            var request = GetFlashCardRequest()
+            request.CardDetail = FlashCardDetail;
+            CallWebService('GetFlashCard', request, GetCardAndMetaDataResult)
+
+        }
+
+        GetCardAndMetaDataResult = function (response) {
+
+            if (response.FlashCardDetails.Message == "") {
+
+                FlashCardDetails = response.FlashCardDetails;
+                IsQuestion = true;
+                $("#FlashCardParent").css({ 'background-color': 'white', 'color': 'black' });
+                $("#FlashCardContainer").html(FlashCardDetails.FlashCardQuestion);
+
+                $("#Message").text("Category: " + Category + ". Please click on the card when you are ready to view the answer.");
+
+            } else {
+
+                $("#Message").text(response.FlashCardDetails.Message);
+
+            }
+        }
+
+        function GetNext() {
+
+            if (IsQuestion) {
+
+                $("#FlashCardContainer").html(FlashCardDetails.FlashCardAnswer);
+                IsQuestion = false;
+                $("#Message").text("Please click on the card when you are ready for another card.");
+
+            } else {
+
+                GoSearchImpl();
+
+            }
+
+        }
+
+        function CallWebService(URL, DataToSend, CallBackFunction) {
+
+            try {
+
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:54195/api/Tasks/' + URL,
+                    data: JSON.stringify(DataToSend),
+                    contentType: "application/json; charset=utf-8",
+                    success: CallBackFunction,
+                    dataType: "json",
+                    async: false,
+                    failure: AjaxCallFailed
+                });
+
+            }
+            catch (e) {
+
+                alert('failed to call web service. Error: ' + e);
+            }
+        }
+
+        function AjaxCallFailed(error) {
+
+            alert('error: ' + error);
+
+        }
+
+        function FlashCardCategoriesContract() {
+
+            var FlashCardCategories = {
+
+                CatIdList: new Array()
+
+            }
+
+            return FlashCardCategories;
+
+        }
+
+        function GetFlashCardCategoriesRequest() {
+
+            var FlashCardCategoriesRequest = {
+
+                CatIdList: new Array()
+
+            }
+
+            return FlashCardCategoriesRequest;
+
+        }
+
+        function GetFlashCardDetail() {
+
+            var FlashCardDetail = {
+
+                CategoryIdx: null,
+                SelectedCatItem: null,
+                CategoryItemsChosen: null
+
+            }
+
+            return FlashCardDetail;
+        }
+
+        function GetFlashCardRequest() {
+
+            var FlashCardRequest = {
+
+                CardDetail: null
+
+            }
+
+            return FlashCardRequest;
+
+        }
+
+    </script>
+</head>
+<body onload="GetQS()" style="background: black ; margin: 0px;">
+    <table cellpadding="0" cellspacing="0" border="0" style="height: 100%; width: 100%; background: black;">
+        <tr>
+            <td id="Message" style="background: black; color: white; padding: 5px; font-weight: bold;">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="ButtonBarSubAppBack" style="height: 100%; width: 100%; color: white; border: solid; border-color: black; border-width: 1px 1px 1px 1px;">
+                <table id="FlashCardParent" cellpadding="0" cellspacing="2" style="width: 100%; height: 100%;" class="ContentFont">
+                    <tr>
+                        <td style="height: 100%;">
+                            <div id="FlashCardContainer" class="unselectable"  unselectable='on' style="overflow-y: scroll; font-size: 24pt; font-weight: bold; padding: 5px; padding-left: 20px; vertical-align: middle; height: 100vh; background-color: white;" onclick="GetNext();">
+                                &nbsp;
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

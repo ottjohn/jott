@@ -1,0 +1,87 @@
+﻿<div data-ng-controller="ManageController as Manage" id="ManageContainer" ng-keydown="Manage.CheckValidation($event)">
+    <table id="ManageUsersContainer" cellpadding="0" cellspacing="0" border="0" class="SolidBorder BorderColor" style="display: ;">
+        <tr>
+            <td class="ContentFull" style="vertical-align: top;">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <!--##############################################################################################-->
+                        <!--Title                                                                                         -->
+                        <!--##############################################################################################-->
+                        <td colspan="2" class="SubTitleBack TitleMenuFore SubAppTitleMetric">
+                            User Management
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--##############################################################################################-->
+                        <!--LHS Menu                                                                                      -->
+                        <!--##############################################################################################-->
+                        <td class="SubTitleBack" style="vertical-align: top; width: 125px;">
+                            <table cellpadding="0" cellspacing="0" border="0" class="ContentFull">
+                                <tr>
+                                    <td>
+                                        <a tag="ChangeEmail" ng-click="Manage.SelectLHSItem($event);" auth id="MembershipChangeEmail" ui-sref="MemberManagement.ChangeEmail" class="SubTitleBack TitleMenuFore AApp" style="display: none;">Add Email</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a id="MembershipGetPassword" ng-click="Manage.SelectLHSItem($event);" ui-sref="MemberManagement.GetPassword" class="SubTitleBack TitleMenuFore AApp">Get Password</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a tag="ChangePassword" ng-click="Manage.SelectLHSItem($event);" auth id="MembershipChangePassword" ui-sref="MemberManagement.ChangePassword" class="SubTitleBack TitleMenuFore AApp" style="display: none;">Change Password</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a tag="ManageMembers" ng-click="Manage.SelectLHSItem($event);" auth id="MembershipManageMembers" ui-sref="MemberManagement.ManageMembers" class="SubTitleBack TitleMenuFore AApp" style="display: none;">Members</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a tag="FindUser" ng-click="Manage.SelectLHSItem($event);" auth id="MembershipFindUser" ui-sref="MemberManagement.FindUser" class="SubTitleBack TitleMenuFore AApp" style="display: none;">Find User</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a tag="FeatureManagement" ng-click="Manage.SelectLHSItem($event);" auth id="MembershipFeatureManagement" ui-sref="MemberManagement.FeatureManagement" class="SubTitleBack TitleMenuFore AApp" style="display: none;">Groups</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table cellpadding="3" cellspacing="0" border="0" class="ContentFont ManagePanel">
+                                <tr>
+                                    <!--##############################################################################################-->
+                                    <!--Member Management Screens                                                                     -->
+                                    <!--##############################################################################################-->
+                                    <td id="ManageMembers" style="vertical-align: top; display: ; background: white;">
+                                        <!--##############################################################################################-->
+                                        <!--Manage Members Sub App                                                                        -->
+                                        <!--##############################################################################################-->
+                                        <table cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td style="vertical-align: top;">
+                                                    <div class="ContentFull MemberManageContainerHeight" ui-view>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="ContentBackground MessageArea" id="MessageArea">{{Manage.Message}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="ButtonBar SubTitleBack">
+                                        <input class="SubTitleBack ContentFont TitleMenuFore Button" type="button" value="Exit Member Management" id="btnManageExit" ng-click="Manage.ReturnToMainScreen()" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

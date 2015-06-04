@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script language="JavaScript">
+
+        window.onload = function () {
+
+            ////////////////////////////////////////////////////////////////////////
+            //  Example of getElementById
+            ////////////////////////////////////////////////////////////////////////
+            var outerDivChildren = document.getElementById("outerDiv");
+
+            ////////////////////////////////////////////////////////////////////////
+            //  Example of getElementByClassName
+            ////////////////////////////////////////////////////////////////////////
+            var subParaEmements = document.getElementsByClassName("subPara");
+
+            ////////////////////////////////////////////////////////////////////////
+            //  Example of getElementsByTagName
+            ////////////////////////////////////////////////////////////////////////
+            var tdElements = document.getElementsByTagName("td");
+
+            ////////////////////////////////////////////////////////////////////////
+            //  Example of querySelector
+            ////////////////////////////////////////////////////////////////////////
+            var FirstPElement = document.querySelector("p");
+            var FirstPElementAlt = document.getElementById("innerDiv").querySelector("p");
+            var FirstPElementAlt1 = document.querySelector("#innerDiv p");
+
+            var AllPElement = document.querySelectorAll("p");
+            var AllPElementAlt = document.getElementById("innerDiv").querySelectorAll("p");
+            var AllPElementAlt1 = document.querySelectorAll("#innerDiv p");
+
+            ////////////////////////////////////////////////////////////////////////
+            //  Example of changing something in the DOM
+            ////////////////////////////////////////////////////////////////////////
+            var P1Element = document.querySelector("#P1");
+            document.querySelector("#P1").innerText = "This is a test";
+
+            ////////////////////////////////////////////////////////////////////////
+            //  Example of removing someting from the DOM
+            ////////////////////////////////////////////////////////////////////////
+            var P4Element = document.querySelector("#P4");
+            document.querySelector("#innerDiv").removeChild(P4Element);
+
+            ////////////////////////////////////////////////////////////////////////
+            //  Example of hiding someting in the DOM
+            ////////////////////////////////////////////////////////////////////////
+            var P3Element = document.querySelector("#P3");
+            P3Element.style.display = "none";
+
+            ////////////////////////////////////////////////////////////////////////
+            //  Example of creating someting in the DOM
+            ////////////////////////////////////////////////////////////////////////
+            var NewListItem = document.createElement("LI");
+            NewListItem.innerText = "Fifth list item";
+            var ListParent = document.querySelector("ul").appendChild(NewListItem);
+
+            ////////////////////////////////////////////////////////////////////////
+            //  Example of creating someting in the DOM but adding it first
+            ////////////////////////////////////////////////////////////////////////
+            var OldListItem = document.querySelector("UL LI");
+            var NewListItem = document.createElement("LI");
+            NewListItem.innerText = "Zero list item";
+            var ListParent = document.querySelector("ul").insertBefore(NewListItem, OldListItem);
+
+            ////////////////////////////////////////////////////////////////////////
+            //  Iterating through child nodes of an element
+            ////////////////////////////////////////////////////////////////////////
+            var innerDivElement = document.querySelector("#innerDiv");
+            if (innerDivElement.hasChildNodes()) {
+
+                var innerDivChildren = innerDivElement.childNodes;
+                var iLen = innerDivChildren.length;
+                for (var i = 0; i < iLen; i++) {
+                    
+                    if (innerDivChildren[i].nodeName == "P") {
+
+                        //alert(innerDivChildren[i].textContent);
+
+                    }
+                }
+            }
+
+            var DrawingSurface = document.querySelector("#drawingSurface");
+            var ctxt = DrawingSurface.getContext("2d");
+            ctxt.beginPath();
+            ctxt.moveTo(0, 0);
+            ctxt.lineTo(400, 300);
+            //ctxt.lineWidth = 2;
+            //ctxt.strokeStyle = "red";
+
+            ctxt.stroke("black");
+
+            ctxt.beginPath();
+            ctxt.arc(150, 100, 75, 0, 2 * Math.PI, false);
+            ctxt.lineWidth = 25;
+            ctxt.strokeStyle = '#0f0';
+            ctxt.stroke();
+
+            ctxt.beginPath();
+            ctxt.arc(200, 125, 80, 0, 0.5*Math.PI, false);
+            ctxt.lineWidth = 80;
+            ctxt.strokeStyle = 'blue';
+            ctxt.stroke();
+
+            ctxt.beginPath();
+            ctxt.arc(200, 125, 80, 0.5 * Math.PI, Math.PI, false);
+            ctxt.lineWidth = 80;
+            ctxt.strokeStyle = '#0ff';
+            ctxt.stroke();
+
+            ctxt.beginPath();
+            ctxt.arc(200, 125, 80, Math.PI, 2 * Math.PI, false);
+            ctxt.lineWidth = 80;
+            ctxt.strokeStyle = '#f00';
+            ctxt.stroke();
+
+            ctxt.beginPath();
+            ctxt.moveTo(10, 150);
+            ctxt.quadraticCurveTo(350, -125, 400, 300);
+            ctxt.lineWidth = 25;
+            ctxt.strokeStyle = 'black';
+            ctxt.stroke();
+
+            ctxt.beginPath();
+            ctxt.moveTo(125, 20);
+            ctxt.bezierCurveTo(0, 200, 300, 300, 50, 300);
+            ctxt.lineWidth = 5;
+            ctxt.strokeStyle = 'pink';
+            ctxt.stroke();
+
+            ctxt.beginPath();
+            ctxt.rect(300, 200, 150, 75);
+            ctxt.fillStyle = "blue";
+            ctxt.fill();
+            ctxt.stroke();
+
+            ctxt.lineWidth = 3;
+            ctxt.rect(10, 15, 50, 75);
+            var gradient = ctxt.createLinearGradient(10, 15, 50, 75);
+            gradient.addColorStop(0, "Black");
+            gradient.addColorStop(0.5, "Gray");
+            gradient.addColorStop(1, "White");
+            ctxt.fillStyle = gradient;
+            ctxt.fill();
+            ctxt.stroke();
+
+            ctxt.lineWidth = 3;
+            ctxt.rect(100, 100, 100, 100);
+            var gradient = ctxt.createRadialGradient(125, 125, 5, 175, 175, 90);
+            gradient.addColorStop(0, "Red");
+            gradient.addColorStop(.5, "Orange");
+            gradient.addColorStop(1, "Blue");
+            ctxt.fillStyle = gradient;
+            ctxt.fill();
+            ctxt.stroke();
+
+            var img = new Image();
+            img.src = "images/hal.jpg";
+            img.onload = function () {
+                ctxt.drawImage(img, 0, 0);
+                ctxt.stroke();
+            }
+
+            ctxt.font = "18pt verdana";
+            ctxt.strokeStyle = "green";
+            ctxt.textAlign = "left";
+            ctxt.strokeText("Here is some text", 100, 100);
+        }
+
+    </script>
+</head>
+    <body>
+        <canvas id="drawingSurface" height="300" width="400" style="border: 1px solid black;"></canvas>
+        <div id="outerDiv">
+            <p class='mainPara'>Main Paragraph</p>
+            <ul>
+                <li>First List Item</li>
+                <li>Second List Item</li>
+                <li>Third List Item</li>
+                <li>Fourth List Item</li>
+            </ul>
+            <div id="innerDiv">
+                <p class='subPara' id='P1'>Paragraph 1</p>
+                <p class='subPara' id='P2'>Paragraph 2</p>
+                <p class='subPara' id='P3'>Paragraph 3</p>
+                <p class='subPara' id='P4'>Paragraph 4</p>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        Row 1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Row 2
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Row 3
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Row 4
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Row 5
+                    </td>
+                </tr>
+            </table>
+            <input type="text" /><input type="submit" value="Submit" />
+        </div>
+    </body>
+</html>

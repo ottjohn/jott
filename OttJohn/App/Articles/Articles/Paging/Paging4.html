@@ -1,0 +1,40 @@
+﻿<pre>
+    set @ExecString = '	select
+	        rowNum, id, UserName, FirstName, LastName, email
+        from
+	        (	select 
+			        id, UserName, FirstName, LastName, email,
+			        ROW_NUMBER() over (order by ' + @SortField +  ' ' + @SortDirection + ') as rowNum
+		        from
+			        SampleUserData ) as tempTable
+        where
+		        rowNum between ' + convert(varchar, (@CurrentPage - 1)*(@PageSize + 1)) +
+		        ' AND ' +
+		        convert(varchar, @CurrentPage*@PageSize)	
+</pre>
+<p />
+Here, we are defining a sql string to execute against. You may or may not be familiar with what's going on here. Let's 
+look at the internal select first: Notice that it is aliased as a table? That's because it is going to be treated as one 
+as the built-in ROW_NUMBER() function is going to count over the result set specified by the sort field and add those 
+values to the aliased table. This way, you get a sequencial count and you do not have to worry about gaps in integer-valued 
+identity columns or tables that have no numeric leaning at all.
+<p />
+Simply put, we are using the ROW_NUMBER() function over the <i>order by</i> clause, which is then aliased as <i>rowNum</i>. 
+This is executed first and the result set is refered then by a table alias <i>tempTable</i>.
+<p />
+Once this result set is populated the outer select goes to work, and the paging is accomplished there (as you can see, 
+the where clause belongs to the outer select). Now, when putting this string together, don't forget to convert your 
+numerics into strings by using the <i>convert</i> function; otherwise, it won't work. Once this is accomplished, we place 
+the data into the table variable and select from it:
+<p />
+<pre>
+    insert into @tempTable exec(@ExecString)
+	
+	select
+		rowNum, id, UserName, FirstName, LastName, email
+	from
+		@tempTable
+</pre>
+<p />
+See? That wasn't so hard now, was it? Go to the next page to see an example of paging in action. Note that the grid and 
+the pager are both mine (home-grown).
